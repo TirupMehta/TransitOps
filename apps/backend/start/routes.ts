@@ -33,5 +33,22 @@ router
       .prefix('account')
       .as('profile')
       .use(middleware.auth())
+
+    // -----------------------------------------------------------------------
+    // User management routes (JSON body validated with VineJS)
+    // -----------------------------------------------------------------------
+    router
+      .group(() => {
+        router.get('/', [controllers.Users, 'index'])
+        router.post('/', [controllers.Users, 'store'])
+        router.get('/:id', [controllers.Users, 'show'])
+        router.patch('/:id/profile', [controllers.Users, 'updateProfile'])
+        router.patch('/:id/password', [controllers.Users, 'changePassword'])
+        router.patch('/:id/active', [controllers.Users, 'setActive'])
+        router.delete('/:id', [controllers.Users, 'destroy'])
+      })
+      .prefix('users')
+      .as('users')
+      .use(middleware.auth())
   })
   .prefix('/api/v1')

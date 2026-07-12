@@ -9,7 +9,6 @@ export default class UserTransformer extends BaseTransformer<User> {
       'email',
       'createdAt',
       'updatedAt',
-      'initials',
     ])
   }
 }

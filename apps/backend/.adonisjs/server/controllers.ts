@@ -5,10 +5,14 @@
 
 export const controllers = {
   AccessTokens: () => import('#controllers/access_tokens_controller'),
+  Drivers: () => import('#controllers/drivers_controller'),
+  FinancialAnalysts: () => import('#controllers/financial_analysts_controller'),
   FleetManagers: () => import('#controllers/fleet_managers_controller'),
   NewAccount: () => import('#controllers/new_account_controller'),
   Permissions: () => import('#controllers/permissions_controller'),
   Profile: () => import('#controllers/profile_controller'),
   Roles: () => import('#controllers/roles_controller'),
+  SafetyManagers: () => import('#controllers/safety_managers_controller'),
   Trpcs: () => import('#controllers/trpcs_controller'),
+  Users: () => import('#controllers/users_controller'),
 }

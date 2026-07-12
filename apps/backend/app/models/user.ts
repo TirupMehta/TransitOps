@@ -2,7 +2,7 @@ import { UserSchema } from '#database/schema'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
-import { type AccessToken, DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
+import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 import { ACCESS_TOKENS, USER_ROLES, USERS } from '#database/constant/table_name'
 import { belongsTo, column, manyToMany } from '@adonisjs/lucid/orm'
 import type { BelongsTo, ManyToMany } from '@adonisjs/lucid/types/relations'
@@ -24,7 +24,7 @@ export default class User extends compose(UserSchema, AuthFinder) {
   declare id: number
 
   @column()
-  declare userType:'financial_analyst' | 'fleet_manager' | 'driver'| 'safety_officer' 
+  declare userType: 'financial_analyst' | 'fleet_manager' | 'driver' | 'safety_officer'
 
   @column()
   declare fullName: string | null
@@ -53,18 +53,18 @@ export default class User extends compose(UserSchema, AuthFinder) {
   @column()
   declare safetyOfficerId: number | null
 
-   @belongsTo(() => Driver, )
-    declare driver: BelongsTo<typeof Driver>
+  @belongsTo(() => Driver,)
+  declare driver: BelongsTo<typeof Driver>
 
-    @belongsTo(() => FinancialAnalyst, {
-      foreignKey: 'financialAnalystId',
-    })
-    declare financialAnalyst: BelongsTo<typeof FinancialAnalyst>
+  @belongsTo(() => FinancialAnalyst, {
+    foreignKey: 'financialAnalystId',
+  })
+  declare financialAnalyst: BelongsTo<typeof FinancialAnalyst>
 
-    @belongsTo(() => FleetManager, {
-      foreignKey: 'fleetManagerId',
-    })
-    declare fleetManager: BelongsTo<typeof FleetManager>
+  @belongsTo(() => FleetManager, {
+    foreignKey: 'fleetManagerId',
+  })
+  declare fleetManager: BelongsTo<typeof FleetManager>
   @manyToMany(() => Role, {
     pivotTable: USER_ROLES,
     pivotForeignKey: 'user_id',
@@ -107,18 +107,8 @@ export default class User extends compose(UserSchema, AuthFinder) {
       return true
     }
 
-    return user.userRoles.some((role) =>
-      role.permissions.some((permission) => permission.permissionKey === permissionKey)
+    return user.userRoles.some(role =>
+      role.permissions.some(permission => permission.permissionKey === permissionKey)
     )
-  }
-
-  declare currentAccessToken?: AccessToken
-
-  get initials(): string {
-    const [first, last] = this.fullName ? this.fullName.split(' ') : this.email.split('@')
-    if (first && last) {
-      return `${first.charAt(0)}${last.charAt(0)}`.toUpperCase()
-    }
-    return `${first ? first.slice(0, 2) : 'US'}`.toUpperCase()
   }
 }
