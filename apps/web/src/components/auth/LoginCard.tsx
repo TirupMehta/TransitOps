@@ -55,17 +55,17 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
 
       {/* Brand Icon and Header */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 text-[#b84a14] bg-[#faf5e9] shadow-[3px_3px_6px_#e0d4bc,-3px_-3px_6px_#ffffff] border border-white/40">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 text-orange bg-card-theme shadow-[3px_3px_6px_var(--border-color),-3px_-3px_6px_rgba(255,255,255,0.05)] border border-white/5">
           <Truck className="w-9 h-9" />
         </div>
-        <h1 className="text-2xl font-extrabold text-[#2e2520] tracking-tight mb-1 font-sans">TransitOps</h1>
-        <p className="text-xs text-[#87786f] font-bold uppercase tracking-wider">Transport Operations Platform</p>
+        <h1 className="text-2xl font-extrabold text-primary tracking-tight mb-1 font-sans">TransitOps</h1>
+        <p className="text-xs text-secondary font-bold uppercase tracking-wider">Transport Operations Platform</p>
       </div>
 
       {/* Error Alert Box */}
       {error && (
-        <div className="mb-6 flex items-start gap-3 bg-[#fdf5f2] border border-[#f5d5c6] text-[#a6350f] px-4 py-3 rounded-2xl text-xs font-semibold animate-slide-in shadow-xs">
-          <AlertCircle className="w-5 h-5 shrink-0 text-[#b84a14] mt-0.5" />
+        <div className="mb-6 flex items-start gap-3 bg-red-500/10 border border-red-500/20 text-red-500 px-4 py-3 rounded-2xl text-xs font-semibold animate-slide-in shadow-xs">
+          <AlertCircle className="w-5 h-5 shrink-0 text-red-500 mt-0.5" />
           <div>
             <p className="font-bold">Authentication failed</p>
             <p className="opacity-90">{error}</p>
@@ -76,40 +76,40 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
       {/* Inputs and Submit Form */}
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block text-[10px] font-extrabold uppercase tracking-widest text-[#87786f] mb-2 px-1">
+          <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-2 px-1">
             Email Address
           </label>
-          <div className="relative rounded-2xl neumorph-inset group border border-slate-200/25">
-            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#87786f]/70" />
+          <div className="relative rounded-2xl neumorph-inset group border border-slate-200/5">
+            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-secondary/70" />
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@transitops.com"
-              className="w-full pl-12 pr-4 py-3.5 bg-transparent rounded-2xl text-[#2e2520] placeholder-[#87786f]/55 focus:outline-none font-bold text-sm"
+              className="w-full pl-12 pr-4 py-3.5 bg-transparent rounded-2xl text-primary placeholder-secondary/40 focus:outline-none font-bold text-sm"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-[10px] font-extrabold uppercase tracking-widest text-[#87786f] mb-2 px-1">
+          <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-2 px-1">
             Password
           </label>
-          <div className="relative rounded-2xl neumorph-inset group border border-slate-200/25">
-            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#87786f]/70" />
+          <div className="relative rounded-2xl neumorph-inset group border border-slate-200/5">
+            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-secondary/70" />
             <input
               type={showPassword ? 'text' : 'password'}
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full pl-12 pr-12 py-3.5 bg-transparent rounded-2xl text-[#2e2520] placeholder-[#87786f]/55 focus:outline-none font-bold text-sm"
+              className="w-full pl-12 pr-12 py-3.5 bg-transparent rounded-2xl text-primary placeholder-secondary/40 focus:outline-none font-bold text-sm"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1.5 text-[#87786f]/60 hover:text-[#b84a14] rounded-lg transition-all cursor-pointer"
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1.5 text-secondary/60 hover:text-orange rounded-lg transition-all cursor-pointer"
             >
               {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
             </button>
@@ -135,9 +135,9 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
       {/* Divider */}
       <div className="relative my-6 text-center">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-[#eedebd]/60"></div>
+          <div className="w-full border-t border-theme"></div>
         </div>
-        <span className="relative bg-[#faf5e9] px-3 text-[10px] font-extrabold uppercase tracking-widest text-[#87786f]">
+        <span className="relative bg-app-theme px-3 text-[10px] font-extrabold uppercase tracking-widest text-secondary">
           Quick Demo Access
         </span>
       </div>
@@ -151,10 +151,10 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
             onClick={() => handleQuickSelect(demo.email)}
             className="flex flex-col text-left p-3 rounded-2xl transition-all cursor-pointer group neumorph-btn-vanilla"
           >
-            <span className="text-xs font-extrabold text-[#2e2520] group-hover:text-[#b84a14] transition-colors">
+            <span className="text-xs font-extrabold text-primary group-hover:text-orange transition-colors">
               {demo.label}
             </span>
-            <span className="text-[10px] text-[#87786f] font-semibold truncate mt-0.5 select-all">
+            <span className="text-[10px] text-secondary font-semibold truncate mt-0.5 select-all">
               {demo.email}
             </span>
           </button>

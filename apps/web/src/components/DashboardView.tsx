@@ -13,11 +13,13 @@ import { ReportsTab } from './dashboard/ReportsTab';
 
 interface DashboardViewProps {
   user: User;
+  theme: 'light' | 'dark';
+  onToggleTheme: () => void;
 }
 
 type TabType = 'dashboard' | 'vehicles' | 'drivers' | 'trips' | 'maintenance' | 'expenses' | 'reports';
 
-export const DashboardView: React.FC<DashboardViewProps> = ({ user }) => {
+export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onToggleTheme }) => {
   const [activeTab, setActiveTab] = useState<TabType>('dashboard');
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [drivers, setDrivers] = useState<Driver[]>([]);
@@ -109,7 +111,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user }) => {
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} user={user} />
 
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        <Header activeTab={activeTab} user={user} />
+        <Header activeTab={activeTab} user={user} theme={theme} onToggleTheme={onToggleTheme} />
 
         <div className="flex-1 overflow-y-auto p-8 relative bg-[#1a120b]/30">
           {renderActiveTab()}

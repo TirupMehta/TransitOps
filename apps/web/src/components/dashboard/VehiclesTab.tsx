@@ -36,55 +36,55 @@ export const VehiclesTab: React.FC<VehiclesTabProps> = ({
   return (
     <div className="space-y-6">
       {/* Search & Actions toolbar */}
-      <div className="flex flex-wrap justify-between items-center gap-4 p-4 rounded-2xl neumorph-outset border border-white/50">
-        <div className="relative rounded-xl neumorph-inset group border border-slate-200/25 w-80">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#87786f]/70" />
+      <div className="flex flex-wrap justify-between items-center gap-4 p-4 rounded-2xl neumorph-outset">
+        <div className="relative rounded-xl neumorph-inset group border border-slate-200/5 w-80">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary/70" />
           <input
             type="text"
             placeholder="Search vehicles (Reg#, Model)..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-transparent text-sm focus:outline-none text-[#2e2520] font-bold"
+            className="w-full pl-10 pr-4 py-2 bg-transparent text-sm focus:outline-none text-primary font-bold"
           />
         </div>
 
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
-            <Filter className="w-4 h-4 text-[#87786f]" />
-            <div className="rounded-xl bg-[#faf5e9] shadow-[inset_1.5px_1.5px_3px_#e0d4bc,inset_-1.5px_-1.5px_3px_#ffffff] border border-white/10 px-2 py-0.5">
+            <Filter className="w-4 h-4 text-secondary" />
+            <div className="rounded-xl neumorph-inset px-2 py-0.5">
               <select
                 value={typeFilter}
                 onChange={(e) => setTypeFilter(e.target.value)}
-                className="bg-transparent text-xs text-[#2e2520] font-extrabold focus:outline-none py-1.5 px-2 cursor-pointer"
+                className="bg-transparent text-xs text-primary font-extrabold focus:outline-none py-1.5 px-2 cursor-pointer"
               >
-                <option value="">All Types</option>
-                <option value="Van">Vans</option>
-                <option value="Truck">Trucks</option>
+                <option value="" className="bg-card-theme text-primary">All Types</option>
+                <option value="Van" className="bg-card-theme text-primary">Vans</option>
+                <option value="Truck" className="bg-card-theme text-primary">Trucks</option>
               </select>
             </div>
           </div>
 
-          <div className="rounded-xl bg-[#faf5e9] shadow-[inset_1.5px_1.5px_3px_#e0d4bc,inset_-1.5px_-1.5px_3px_#ffffff] border border-white/10 px-2 py-0.5">
+          <div className="rounded-xl neumorph-inset px-2 py-0.5">
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="bg-transparent text-xs text-[#2e2520] font-extrabold focus:outline-none py-1.5 px-2 cursor-pointer"
+              className="bg-transparent text-xs text-primary font-extrabold focus:outline-none py-1.5 px-2 cursor-pointer"
             >
-              <option value="">All Statuses</option>
-              <option value="Available">Available</option>
-              <option value="On Trip">On Trip</option>
-              <option value="In Shop">In Shop</option>
-              <option value="Retired">Retired</option>
+              <option value="" className="bg-card-theme text-primary">All Statuses</option>
+              <option value="Available" className="bg-card-theme text-primary">Available</option>
+              <option value="On Trip" className="bg-card-theme text-primary">On Trip</option>
+              <option value="In Shop" className="bg-card-theme text-primary">In Shop</option>
+              <option value="Retired" className="bg-card-theme text-primary">Retired</option>
             </select>
           </div>
         </div>
       </div>
 
       {/* Vehicles Registry Table */}
-      <div className="rounded-2xl overflow-hidden neumorph-outset border border-white/50">
+      <div className="rounded-2xl overflow-hidden neumorph-outset">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-[#faf5e9] border-b border-[#eedebd]/60 text-[#87786f] text-xs font-extrabold uppercase tracking-wider">
+            <tr className="bg-transparent border-b border-theme text-secondary text-xs font-extrabold uppercase tracking-wider">
               <th className="px-6 py-4">Reg Number</th>
               <th className="px-6 py-4">Model & Type</th>
               <th className="px-6 py-4">Max Capacity</th>
@@ -93,27 +93,27 @@ export const VehiclesTab: React.FC<VehiclesTabProps> = ({
               <th className="px-6 py-4">Operational Cost</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#eedebd]/40 text-sm font-semibold text-[#2e2520]">
+          <tbody className="divide-y divide-theme text-sm font-semibold text-primary">
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={6} className="text-center py-12 text-[#87786f] font-bold bg-[#faf5e9]/50">
+                <td colSpan={6} className="text-center py-12 text-secondary font-bold bg-transparent">
                   No vehicles found matching filters.
                 </td>
               </tr>
             ) : (
               filtered.map((v) => (
-                <tr key={v.id} className="hover:bg-[#eedebd]/20 transition-colors">
-                  <td className="px-6 py-4 font-extrabold text-[#b84a14]">{v.registrationNumber}</td>
+                <tr key={v.id} className="hover:bg-theme-bg-app hover:opacity-90 transition-colors">
+                  <td className="px-6 py-4 font-extrabold text-orange">{v.registrationNumber}</td>
                   <td className="px-6 py-4">
-                    <span className="block text-[#2e2520] font-extrabold">{v.model}</span>
-                    <span className="block text-xs text-[#87786f] font-semibold mt-0.5">{v.type}</span>
+                    <span className="block text-primary font-extrabold">{v.model}</span>
+                    <span className="block text-xs text-secondary font-semibold mt-0.5">{v.type}</span>
                   </td>
-                  <td className="px-6 py-4 text-[#2e2520]/80">{v.loadCapacity} kg</td>
-                  <td className="px-6 py-4 font-bold text-[#87786f]">{v.odometer.toLocaleString()} km</td>
+                  <td className="px-6 py-4 text-primary/80">{v.loadCapacity} kg</td>
+                  <td className="px-6 py-4 font-bold text-secondary">{v.odometer.toLocaleString()} km</td>
                   <td className="px-6 py-4">
                     <Badge variant={getBadgeVariant(v.status)}>{v.status}</Badge>
                   </td>
-                  <td className="px-6 py-4 text-[#b84a14] font-extrabold">${getVehicleExpensesSum(v.id).toLocaleString()}</td>
+                  <td className="px-6 py-4 text-orange font-extrabold">${getVehicleExpensesSum(v.id).toLocaleString()}</td>
                 </tr>
               ))
             )}
