@@ -28,6 +28,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
   const [maintenance, setMaintenance] = useState<MaintenanceLog[]>([]);
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [kpis, setKpis] = useState(getKpis());
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(false);
 
   const refreshData = () => {
     setVehicles(storage.getVehicles());
@@ -133,7 +134,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
 
   return (
     <div className="flex h-screen bg-app-theme overflow-hidden font-sans">
-      <Sidebar activeTab={activeTab} setActiveTab={(tab) => setActiveTab(tab as TabType)} user={user} />
+      <Sidebar
+        activeTab={activeTab}
+        setActiveTab={(tab) => setActiveTab(tab as TabType)}
+        user={user}
+        isCollapsed={isSidebarCollapsed}
+        setIsCollapsed={setIsSidebarCollapsed}
+      />
 
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <Header activeTab={activeTab} user={user} theme={theme} onToggleTheme={onToggleTheme} />
