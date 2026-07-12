@@ -3,12 +3,14 @@ import type { Vehicle, Driver, Trip, DashboardKpis } from '../../types';
 import { StatCard } from '../ui/StatCard';
 import { Filter, Truck, CheckCircle, Wrench, Navigation, Clock, UserCheck, TrendingUp } from 'lucide-react';
 import { Badge } from '../ui/Badge';
+import { isTabAllowed } from './Sidebar';
 
 interface OverviewTabProps {
   kpis: DashboardKpis;
   trips: Trip[];
   vehicles: Vehicle[];
   drivers: Driver[];
+  userRole?: string;
   setActiveTab: (tab: any) => void;
 }
 
@@ -17,6 +19,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
   trips,
   vehicles,
   drivers,
+  userRole,
   setActiveTab,
 }) => {
   const [regionFilter, setRegionFilter] = useState('');
@@ -104,6 +107,78 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Quick Action Launchpad (SaaS-standard intuitive navigation helper) */}
+      {(() => {
+        const quickActions = [
+          {
+            id: 'trips',
+            label: 'Dispatch Trip',
+            desc: 'Start a new delivery',
+            icon: Navigation,
+            bgClass: 'neumorph-btn-orange text-white hover:scale-[1.01]',
+            iconBg: 'bg-white/20',
+            iconColor: 'text-white'
+          },
+          {
+            id: 'maintenance',
+            label: 'Log Maintenance',
+            desc: 'Send vehicle to shop',
+            icon: Wrench,
+            bgClass: 'neumorph-btn-vanilla text-primary shadow-sm hover:scale-[1.01]',
+            iconBg: 'bg-orange/10',
+            iconColor: 'text-orange'
+          },
+          {
+            id: 'expenses',
+            label: 'Log Fuel & Exp.',
+            desc: 'Record costs & liters',
+            icon: Filter,
+            bgClass: 'neumorph-btn-vanilla text-primary shadow-sm hover:scale-[1.01]',
+            iconBg: 'bg-amber-500/10',
+            iconColor: 'text-amber-600'
+          },
+          {
+            id: 'fleet',
+            label: 'Register Vehicle',
+            desc: 'Add truck or van',
+            icon: Truck,
+            bgClass: 'neumorph-btn-vanilla text-primary shadow-sm hover:scale-[1.01]',
+            iconBg: 'bg-blue-500/10',
+            iconColor: 'text-blue-500'
+          }
+        ].filter(action => isTabAllowed(action.id, userRole));
+
+        if (quickActions.length === 0) return null;
+
+        return (
+          <div className="rounded-3xl p-6 neumorph-outset space-y-4">
+            <h3 className="font-extrabold text-primary text-sm tracking-wider flex items-center gap-1.5">
+              <TrendingUp className="w-4.5 h-4.5 text-orange" /> Quick Action Launchpad
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+              {quickActions.map((action) => {
+                const Icon = action.icon;
+                return (
+                  <button
+                    key={action.id}
+                    onClick={() => setActiveTab(action.id)}
+                    className={`flex items-center gap-3.5 p-4 rounded-2xl transition-all cursor-pointer ${action.bgClass}`}
+                  >
+                    <div className={`p-2.5 rounded-xl ${action.iconBg} ${action.iconColor}`}>
+                      <Icon className="w-4.5 h-4.5 shrink-0" />
+                    </div>
+                    <div className="text-left overflow-hidden">
+                      <span className="block font-bold text-xs truncate leading-tight">{action.label}</span>
+                      <span className="block text-[10px] opacity-75 font-semibold truncate mt-0.5">{action.desc}</span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })()}
 
       {/* KPI Cards Row (7 Cards exactly matching Screen 1) */}
       <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">

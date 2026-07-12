@@ -49,6 +49,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
   // Filter navigation items by role
   const navItems = routes.filter(item => isTabAllowed(item.id, user.role));
 
+  // Group routes into logical sections
+  const sections = [
+    {
+      title: 'Operations',
+      items: navItems.filter(item => ['dashboard', 'trips'].includes(item.id))
+    },
+    {
+      title: 'Assets & Crew',
+      items: navItems.filter(item => ['fleet', 'drivers'].includes(item.id))
+    },
+    {
+      title: 'Finance & Logistics',
+      items: navItems.filter(item => ['maintenance', 'expenses'].includes(item.id))
+    },
+    {
+      title: 'System',
+      items: navItems.filter(item => ['analytics', 'settings'].includes(item.id))
+    }
+  ].filter(sec => sec.items.length > 0);
+
   const handleLogout = async () => {
     await logout();
   };
@@ -86,35 +106,48 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </button>
         </div>
 
-        {/* Navigation list */}
-        <nav className={`p-4 space-y-2 ${isCollapsed ? 'flex flex-col items-center' : ''}`}>
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = activeTab === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => setActiveTab(item.id)}
-                className={`relative group w-full flex items-center rounded-xl text-sm font-bold transition-all cursor-pointer ${
-                  isCollapsed ? 'justify-center p-3' : 'gap-3 px-4 py-2.5 text-left'
-                } ${
-                  isActive
-                    ? 'neumorph-btn-orange shadow-md'
-                    : 'text-secondary hover:text-orange hover:bg-app-theme border border-transparent'
-                }`}
-              >
-                <Icon className={`w-4.5 h-4.5 shrink-0 ${isActive ? 'text-white' : 'text-secondary group-hover:text-orange'}`} />
-                {!isCollapsed && <span>{item.label}</span>}
+        {/* Navigation list grouped in sections */}
+        <nav className={`p-4 space-y-4 ${isCollapsed ? 'flex flex-col items-center' : ''}`}>
+          {sections.map((section, idx) => (
+            <div key={section.title} className="w-full space-y-1.5">
+              {/* Section Header */}
+              {!isCollapsed ? (
+                <div className="text-[10px] font-bold text-secondary/50 uppercase tracking-widest px-4 pt-2 pb-1">
+                  {section.title}
+                </div>
+              ) : idx > 0 ? (
+                <div className="w-8 border-t border-theme/40 my-2 self-center mx-auto" />
+              ) : null}
 
-                {/* Collapsed Tooltip on Hover */}
-                {isCollapsed && (
-                  <div className="absolute left-full ml-3 px-3 py-1.5 bg-card-theme text-primary text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 shadow-xl whitespace-nowrap z-50 border border-theme">
-                    {item.label}
-                  </div>
-                )}
-              </button>
-            );
-          })}
+              {section.items.map((item) => {
+                const Icon = item.icon;
+                const isActive = activeTab === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`relative group w-full flex items-center rounded-xl text-sm font-bold transition-all cursor-pointer ${
+                      isCollapsed ? 'justify-center p-3' : 'gap-3 px-4 py-2.5 text-left'
+                    } ${
+                      isActive
+                        ? 'neumorph-btn-orange shadow-md'
+                        : 'text-secondary hover:text-orange hover:bg-app-theme border border-transparent'
+                    }`}
+                  >
+                    <Icon className={`w-4.5 h-4.5 shrink-0 ${isActive ? 'text-white' : 'text-secondary group-hover:text-orange'}`} />
+                    {!isCollapsed && <span>{item.label}</span>}
+
+                    {/* Collapsed Tooltip on Hover */}
+                    {isCollapsed && (
+                      <div className="absolute left-full ml-3 px-3 py-1.5 bg-card-theme text-primary text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 shadow-xl whitespace-nowrap z-50 border border-theme">
+                        {item.label}
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          ))}
         </nav>
       </div>
 

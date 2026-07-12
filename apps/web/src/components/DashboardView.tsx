@@ -72,6 +72,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
             trips={trips}
             vehicles={vehicles}
             drivers={drivers}
+            userRole={user.role}
             setActiveTab={(tab) => setActiveTab(tab as TabType)}
           />
         );
