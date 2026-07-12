@@ -207,10 +207,10 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
                 ) : (
                   filteredFuelLogs.map((log) => (
                     <tr key={log.id} className="border-b border-theme/30 hover-row transition-colors">
-                      <td className="py-3 font-extrabold text-primary">{log.vehicle?.registrationNumber || 'Unknown'}</td>
-                      <td className="py-3 font-bold text-secondary">{formatDateString(log.date)}</td>
-                      <td className="py-3 text-primary">{log.description.replace('Filled ', '')}</td>
-                      <td className="py-3 text-right font-extrabold text-orange">Rs. {log.amount.toLocaleString()}</td>
+                      <td className="py-3 font-extrabold text-primary tabular-nums">{log.vehicle?.registrationNumber || 'Unknown'}</td>
+                      <td className="py-3 font-bold text-secondary tabular-nums">{formatDateString(log.date)}</td>
+                      <td className="py-3 text-primary tabular-nums">{log.description.replace('Filled ', '')}</td>
+                      <td className="py-3 text-right font-extrabold text-orange tabular-nums">Rs. {log.amount.toLocaleString()}</td>
                     </tr>
                   ))
                 )}
@@ -248,12 +248,12 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
                     const isOther = exp.type === 'Other';
                     return (
                       <tr key={exp.id} className="border-b border-theme/30 hover-row transition-colors">
-                        <td className="py-3 font-extrabold text-primary">{exp.tripObj?.tripCode || 'N/A'}</td>
-                        <td className="py-3 font-extrabold text-orange">{exp.vehicleObj?.registrationNumber || 'Unknown'}</td>
-                        <td className="py-3 text-primary">{isToll ? `Rs. ${exp.amount.toLocaleString()}` : '0'}</td>
-                        <td className="py-3 text-primary">{isOther ? `Rs. ${exp.amount.toLocaleString()}` : '0'}</td>
-                        <td className="py-3 text-primary">{isMaint ? `Rs. ${exp.amount.toLocaleString()}` : '0'}</td>
-                        <td className="py-3 text-right font-extrabold text-orange">Rs. {exp.amount.toLocaleString()}</td>
+                        <td className="py-3 font-extrabold text-primary tabular-nums">{exp.tripObj?.tripCode || 'N/A'}</td>
+                        <td className="py-3 font-extrabold text-orange tabular-nums">{exp.vehicleObj?.registrationNumber || 'Unknown'}</td>
+                        <td className="py-3 text-primary tabular-nums">{isToll ? `Rs. ${exp.amount.toLocaleString()}` : '0'}</td>
+                        <td className="py-3 text-primary tabular-nums">{isOther ? `Rs. ${exp.amount.toLocaleString()}` : '0'}</td>
+                        <td className="py-3 text-primary tabular-nums">{isMaint ? `Rs. ${exp.amount.toLocaleString()}` : '0'}</td>
+                        <td className="py-3 text-right font-extrabold text-orange tabular-nums">Rs. {exp.amount.toLocaleString()}</td>
                       </tr>
                     );
                   })
@@ -270,7 +270,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
         <span className="text-xs font-extrabold text-secondary tracking-widest">Dynamic Calculations</span>
         <div className="text-sm font-extrabold text-primary flex items-center gap-2">
           <span>TOTAL OPERATIONAL COST (AUTO) = FUEL + MAINTENANCE =</span>
-          <span className="text-base text-orange font-black bg-card-theme/40 border border-theme px-3.5 py-1.5 rounded-2xl shadow-inner">
+          <span className="text-base text-orange font-black bg-card-theme/40 border border-theme px-3.5 py-1.5 rounded-2xl shadow-inner tabular-nums">
             Rs. {totalOperationalCost.toLocaleString()}
           </span>
         </div>

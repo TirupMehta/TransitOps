@@ -227,18 +227,18 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, userRole, onUpd
                       onClick={() => setSelectedDriverId(isSelected ? null : d.id)}
                     >
                       <td className="px-6 py-4 font-extrabold text-primary">{d.name}</td>
-                      <td className="px-6 py-4 font-extrabold text-orange">{d.licenseNumber}</td>
+                      <td className="px-6 py-4 font-extrabold text-orange tabular-nums">{d.licenseNumber}</td>
                       <td className="px-6 py-4 text-primary font-bold">{d.licenseCategory}</td>
                       <td className="px-6 py-4">
-                        <span className={`inline-flex items-center gap-1 font-bold ${expired ? 'text-rose-500 font-extrabold' : 'text-secondary'}`}>
+                        <span className={`inline-flex items-center gap-1 font-bold tabular-nums ${expired ? 'text-rose-500 font-extrabold' : 'text-secondary'}`}>
                           {expired && <AlertTriangle className="w-3.5 h-3.5 text-rose-500 shrink-0" />}
                           {d.licenseExpiryDate} {expired ? 'EXPIRED' : ''}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-secondary font-bold">{d.contactNumber}</td>
-                      <td className="px-6 py-4 text-primary font-extrabold">{d.tripCompletionRate}%</td>
+                      <td className="px-6 py-4 text-secondary font-bold tabular-nums">{d.contactNumber}</td>
+                      <td className="px-6 py-4 text-primary font-extrabold tabular-nums">{d.tripCompletionRate}%</td>
                       <td className="px-6 py-4">
-                        <span className={`font-extrabold px-2 py-0.5 rounded text-xs ${d.safetyScore >= 90 ? 'text-emerald-700 bg-emerald-50/15' : d.safetyScore >= 80 ? 'text-blue-700 bg-blue-50/15' : 'text-amber-700 bg-amber-50/15'}`}>
+                        <span className={`font-extrabold px-2 py-0.5 rounded text-xs tabular-nums ${d.safetyScore >= 90 ? 'text-emerald-700 bg-emerald-50/15' : d.safetyScore >= 80 ? 'text-blue-700 bg-blue-50/15' : 'text-amber-700 bg-amber-50/15'}`}>
                           {d.safetyScore}%
                         </span>
                       </td>

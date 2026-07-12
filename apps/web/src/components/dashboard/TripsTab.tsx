@@ -482,17 +482,17 @@ export const TripsTab: React.FC<TripsTabProps> = ({
                   <div key={trip.id} className="p-4 rounded-2xl neumorph-btn-vanilla flex flex-wrap justify-between items-center gap-4 hover:scale-[1.002] transition-all">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-extrabold text-orange">{trip.tripCode}</span>
+                        <span className="text-xs font-extrabold text-orange tabular-nums">{trip.tripCode}</span>
                         <div className="font-extrabold text-primary text-sm">{trip.source} → {trip.destination}</div>
                       </div>
                       <div className="text-xs text-secondary font-semibold">
                         Driver: <span className="text-primary font-bold">{trip.driver?.name || 'Unassigned'}</span> |
-                        Vehicle: <span className="text-primary font-bold">{trip.vehicle?.registrationNumber || 'Unassigned'} ({trip.vehicle?.model})</span> |
-                        Weight: <span className="text-primary font-bold">{trip.cargoWeight} kg</span> |
-                        Dist: <span className="text-primary font-bold">{trip.distance} km</span>
+                        Vehicle: <span className="text-primary font-bold tabular-nums">{trip.vehicle?.registrationNumber || 'Unassigned'} ({trip.vehicle?.model})</span> |
+                        Weight: <span className="text-primary font-bold tabular-nums">{trip.cargoWeight} kg</span> |
+                        Dist: <span className="text-primary font-bold tabular-nums">{trip.distance} km</span>
                       </div>
                       <div className="text-xs text-secondary font-bold flex items-center gap-1.5 mt-1">
-                        <span>ETA: <strong className="text-primary">{trip.eta}</strong></span>
+                        <span>ETA: <strong className="text-primary tabular-nums">{trip.eta}</strong></span>
                       </div>
                     </div>
 

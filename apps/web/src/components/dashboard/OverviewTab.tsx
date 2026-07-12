@@ -270,13 +270,13 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                   ) : (
                     recentTrips.map((trip) => (
                       <tr key={trip.id} className="border-b border-theme/30 hover-row transition-colors">
-                        <td className="py-3 font-extrabold text-primary">{trip.tripCode}</td>
+                        <td className="py-3 font-extrabold text-primary tabular-nums">{trip.tripCode}</td>
                         <td className="py-3 font-extrabold text-orange">{trip.vehicleObj?.model || 'Unassigned'}</td>
                         <td className="py-3 font-bold text-primary">{trip.driverObj?.name || 'Unassigned'}</td>
                         <td className="py-3">
                           <Badge variant={getTripBadgeVariant(trip.status)}>{trip.status}</Badge>
                         </td>
-                        <td className="py-3 text-right font-extrabold text-secondary">{trip.eta}</td>
+                        <td className="py-3 text-right font-extrabold text-secondary tabular-nums">{trip.eta}</td>
                       </tr>
                     ))
                   )}
@@ -306,7 +306,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                   <span className="text-primary flex items-center gap-1.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Available
                   </span>
-                  <span className="text-secondary">{availableCount} vehicles</span>
+                  <span className="text-secondary tabular-nums">{availableCount} vehicles</span>
                 </div>
                 <div className="h-2 w-full rounded-full bg-inset-theme overflow-hidden neumorph-inset">
                   <div
@@ -322,7 +322,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                   <span className="text-primary flex items-center gap-1.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span> On Trip
                   </span>
-                  <span className="text-secondary">{onTripCount} vehicles</span>
+                  <span className="text-secondary tabular-nums">{onTripCount} vehicles</span>
                 </div>
                 <div className="h-2 w-full rounded-full bg-inset-theme overflow-hidden neumorph-inset">
                   <div
@@ -338,7 +338,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                   <span className="text-primary flex items-center gap-1.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span> In Shop
                   </span>
-                  <span className="text-secondary">{inShopCount} vehicles</span>
+                  <span className="text-secondary tabular-nums">{inShopCount} vehicles</span>
                 </div>
                 <div className="h-2 w-full rounded-full bg-inset-theme overflow-hidden neumorph-inset">
                   <div
@@ -354,7 +354,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                   <span className="text-primary flex items-center gap-1.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Retired
                   </span>
-                  <span className="text-secondary">{retiredCount} vehicles</span>
+                  <span className="text-secondary tabular-nums">{retiredCount} vehicles</span>
                 </div>
                 <div className="h-2 w-full rounded-full bg-inset-theme overflow-hidden neumorph-inset">
                   <div

@@ -126,23 +126,31 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({
             <span className="text-xs font-semibold text-secondary/80 tracking-wide">Year: 2026</span>
           </div>
 
-          {/* Bar Chart Container */}
-          <div className="h-64 flex items-end justify-between gap-2 pt-6 px-2">
+          {/* Bar Chart Container with Background Grid Lines */}
+          <div className="h-64 flex items-end justify-between gap-2 pt-6 px-2 relative">
+            {/* Background Grid Lines */}
+            <div className="absolute inset-0 flex flex-col justify-between pointer-events-none pb-8 pt-6 z-0">
+              <div className="w-full border-t border-theme/40 border-dashed"></div>
+              <div className="w-full border-t border-theme/40 border-dashed"></div>
+              <div className="w-full border-t border-theme/40 border-dashed"></div>
+              <div className="w-full border-t border-theme/40 border-dashed"></div>
+            </div>
+
             {monthlyRevenueData.map((d) => {
               const heightPct = (d.amount / maxMonthlyRevenue) * 100;
               return (
-                <div key={d.month} className="flex-1 flex flex-col items-center group cursor-pointer">
+                <div key={d.month} className="flex-1 flex flex-col items-center group cursor-pointer relative z-10">
                   <div className="relative w-full flex flex-col items-center">
                     {/* Tooltip on hover */}
-                    <span className="absolute -top-8 bg-[#1e1610] text-[#faf5e9] text-[11px] font-bold px-1.5 py-0.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity border border-white/5 shadow-md">
+                    <span className="absolute -top-8 bg-[#1e1610] text-[#faf5e9] text-[11px] font-bold px-1.5 py-0.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity border border-white/5 shadow-md whitespace-nowrap tabular-nums z-25">
                       Rs. {d.amount.toLocaleString()}
                     </span>
                     <div
                       style={{ height: `${heightPct * 1.8}px` }} // Scale factor for presentation
-                      className="w-full max-w-[36px] bg-gradient-to-t from-[#b84a14] to-[#e46d2e] rounded-t-lg transition-all duration-500 group-hover:brightness-110 shadow-md border-t border-white/10"
+                      className="w-full max-w-[36px] bg-gradient-to-t from-[#b84a14] to-[#e46d2e] rounded-t-lg transition-all duration-300 group-hover:brightness-115 shadow-md border-t border-white/10"
                     ></div>
                   </div>
-                  <span className="text-xs font-semibold text-secondary/80 tracking-wide">
+                  <span className="text-xs font-semibold text-secondary/80 tracking-wide mt-2">
                     {d.month}
                   </span>
                 </div>
@@ -160,7 +168,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({
             <span className="text-xs font-semibold text-secondary/80 tracking-wide">Maintenance & Fuel</span>
           </div>
 
-          <div className="space-y-5 pt-4">
+          <div className="space-y-4.5 pt-2">
             {vehicleCosts.slice(0, 4).map((vc, i) => {
               const pct = (vc.cost / maxVehicleCost) * 100;
               const barColors = [
@@ -175,9 +183,9 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({
                     <span className="text-primary">
                       {vc.registrationNumber} <span className="text-secondary/60 text-xs">({vc.model})</span>
                     </span>
-                    <span className="text-orange font-black">Rs. {vc.cost.toLocaleString()}</span>
+                    <span className="text-orange font-black tabular-nums">Rs. {vc.cost.toLocaleString()}</span>
                   </div>
-                  <div className="h-3 w-full rounded-full bg-inset-theme overflow-hidden neumorph-inset">
+                  <div className="h-2 w-full rounded-full bg-inset-theme overflow-hidden neumorph-inset">
                     <div
                       className={`h-full rounded-full transition-all duration-500 ${barColors[i] || barColors[3]}`}
                       style={{ width: `${pct}%` }}
