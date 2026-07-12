@@ -7,6 +7,13 @@ interface LoginCardProps {
   onLoginSuccess: (user: User, token: string) => void;
 }
 
+const DEMO_CREDENTIALS = [
+  { label: 'Fleet Manager', email: 'manager@transitops.com' },
+  { label: 'Safety Officer', email: 'safety@transitops.com' },
+  { label: 'Driver', email: 'driver@transitops.com' },
+  { label: 'Financial Analyst', email: 'finance@transitops.com' },
+];
+
 export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,6 +39,12 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleQuickSelect = (demoEmail: string) => {
+    setEmail(demoEmail);
+    setPassword('password');
+    setError(null);
   };
 
   return (
@@ -118,6 +131,35 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
           )}
         </button>
       </form>
+
+      {/* Divider */}
+      <div className="relative my-6 text-center">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-[#eedebd]/60"></div>
+        </div>
+        <span className="relative bg-[#faf5e9] px-3 text-[10px] font-extrabold uppercase tracking-widest text-[#87786f]">
+          Quick Demo Access
+        </span>
+      </div>
+
+      {/* Demo Accounts Select */}
+      <div className="grid grid-cols-2 gap-2.5">
+        {DEMO_CREDENTIALS.map((demo) => (
+          <button
+            key={demo.email}
+            type="button"
+            onClick={() => handleQuickSelect(demo.email)}
+            className="flex flex-col text-left p-3 rounded-2xl transition-all cursor-pointer group neumorph-btn-vanilla"
+          >
+            <span className="text-xs font-extrabold text-[#2e2520] group-hover:text-[#b84a14] transition-colors">
+              {demo.label}
+            </span>
+            <span className="text-[10px] text-[#87786f] font-semibold truncate mt-0.5 select-all">
+              {demo.email}
+            </span>
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
