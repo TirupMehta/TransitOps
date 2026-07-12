@@ -1,18 +1,19 @@
-import { LayoutDashboard, Truck, Users, Compass, Wrench, Fuel, BarChart3 } from 'lucide-react';
+import { LayoutDashboard, Truck, Users, Compass, Wrench, Fuel, BarChart3, Settings } from 'lucide-react';
 import type { ComponentType } from 'react';
 
 export interface RouteConfig {
-  id: 'dashboard' | 'vehicles' | 'drivers' | 'trips' | 'maintenance' | 'expenses' | 'reports';
+  id: 'dashboard' | 'fleet' | 'drivers' | 'trips' | 'maintenance' | 'expenses' | 'analytics' | 'settings';
   label: string;
   icon: ComponentType<any>;
 }
 
 export const routes: RouteConfig[] = [
-  { id: 'dashboard', label: 'Overview Dashboard', icon: LayoutDashboard },
-  { id: 'vehicles', label: 'Vehicle Registry', icon: Truck },
-  { id: 'drivers', label: 'Driver Management', icon: Users },
-  { id: 'trips', label: 'Trip Management', icon: Compass },
-  { id: 'maintenance', label: 'Maintenance Logs', icon: Wrench },
+  { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { id: 'fleet', label: 'Fleet', icon: Truck },
+  { id: 'drivers', label: 'Drivers', icon: Users },
+  { id: 'trips', label: 'Trips', icon: Compass },
+  { id: 'maintenance', label: 'Maintenance', icon: Wrench },
   { id: 'expenses', label: 'Fuel & Expenses', icon: Fuel },
-  { id: 'reports', label: 'Reports & ROI', icon: BarChart3 },
+  { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+  { id: 'settings', label: 'Settings', icon: Settings },
 ];

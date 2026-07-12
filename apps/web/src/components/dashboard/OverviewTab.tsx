@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import type { Vehicle, Driver, Trip, MaintenanceLog, DashboardKpis } from '../../types';
+import type { Vehicle, Driver, Trip, DashboardKpis } from '../../types';
 import { StatCard } from '../ui/StatCard';
-import { Filter, Truck, CheckCircle, Wrench, TrendingUp, ArrowRight } from 'lucide-react';
+import { Filter, Truck, CheckCircle, Wrench, Navigation, Clock, UserCheck, TrendingUp } from 'lucide-react';
+import { Badge } from '../ui/Badge';
+import { isTabAllowed } from './Sidebar';
 
 interface OverviewTabProps {
   kpis: DashboardKpis;
   trips: Trip[];
   vehicles: Vehicle[];
   drivers: Driver[];
-  maintenance: MaintenanceLog[];
+  userRole?: string;
   setActiveTab: (tab: any) => void;
 }
 
@@ -17,36 +19,64 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
   trips,
   vehicles,
   drivers,
-  maintenance,
+  userRole,
   setActiveTab,
 }) => {
   const [regionFilter, setRegionFilter] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
 
-  // Find active trips and vehicles in shop
-  const activeDispatchedTrips = trips.filter((t) => t.status === 'Dispatched');
-  const activeMaintenance = maintenance.filter((m) => m.status === 'Active');
+  // Calculate vehicle counts for progress bars
+  const availableCount = vehicles.filter(v => v.status === 'Available').length;
+  const onTripCount = vehicles.filter(v => v.status === 'On Trip').length;
+  const inShopCount = vehicles.filter(v => v.status === 'In Shop').length;
+  const retiredCount = vehicles.filter(v => v.status === 'Retired').length;
+  const totalCount = vehicles.length || 1;
+
+  const getTripBadgeVariant = (status: Trip['status']) => {
+    switch (status) {
+      case 'Draft': return 'neutral';
+      case 'Dispatched': return 'info';
+      case 'Completed': return 'success';
+      case 'Cancelled': return 'danger';
+    }
+  };
+
+  // Filter recent trips based on selected filters (type/status)
+  const recentTrips = trips.map(t => {
+    const v = vehicles.find(veh => veh.id === t.vehicleId);
+    const d = drivers.find(drv => drv.id === t.driverId);
+    return {
+      ...t,
+      vehicleObj: v,
+      driverObj: d
+    };
+  }).filter(t => {
+    const matchesType = typeFilter ? t.vehicleObj?.type === typeFilter : true;
+    const matchesStatus = statusFilter ? t.status === statusFilter : true;
+    return matchesType && matchesStatus;
+  });
 
   return (
     <div className="space-y-8">
-      {/* Bento Header: Filters (Outset Neumorphic) */}
-      <div className="flex flex-wrap items-center justify-between gap-4 p-5 rounded-3xl neumorph-outset">
+      {/* Search Filters (Outset Neumorphic) */}
+      <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-3xl neumorph-outset">
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-2 text-secondary text-xs font-extrabold tracking-wider">
             <Filter className="w-4 h-4 text-orange" />
             <span>Search Filters</span>
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2.5">
             <div className="rounded-xl neumorph-inset px-2 py-0.5">
               <select
                 value={typeFilter}
                 onChange={(e) => setTypeFilter(e.target.value)}
                 className="bg-transparent text-xs text-primary font-extrabold focus:outline-none py-1.5 px-2 cursor-pointer"
               >
-                <option value="" className="bg-card-theme text-primary">All Vehicle Types</option>
-                <option value="Van" className="bg-card-theme text-primary">Vans</option>
-                <option value="Truck" className="bg-card-theme text-primary">Trucks</option>
+                <option value="" className="bg-card-theme text-primary">Type: All</option>
+                <option value="Van" className="bg-card-theme text-primary">Van</option>
+                <option value="Truck" className="bg-card-theme text-primary">Truck</option>
+                <option value="Mini" className="bg-card-theme text-primary">Mini</option>
               </select>
             </div>
             <div className="rounded-xl neumorph-inset px-2 py-0.5">
@@ -55,10 +85,11 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                 onChange={(e) => setStatusFilter(e.target.value)}
                 className="bg-transparent text-xs text-primary font-extrabold focus:outline-none py-1.5 px-2 cursor-pointer"
               >
-                <option value="" className="bg-card-theme text-primary">All Statuses</option>
-                <option value="Available" className="bg-card-theme text-primary">Available</option>
-                <option value="On Trip" className="bg-card-theme text-primary">On Trip</option>
-                <option value="In Shop" className="bg-card-theme text-primary">In Shop</option>
+                <option value="" className="bg-card-theme text-primary">Status: All</option>
+                <option value="Draft" className="bg-card-theme text-primary">Draft</option>
+                <option value="Dispatched" className="bg-card-theme text-primary">Dispatched</option>
+                <option value="Completed" className="bg-card-theme text-primary">Completed</option>
+                <option value="Cancelled" className="bg-card-theme text-primary">Cancelled</option>
               </select>
             </div>
             <div className="rounded-xl neumorph-inset px-2 py-0.5">
@@ -67,7 +98,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                 onChange={(e) => setRegionFilter(e.target.value)}
                 className="bg-transparent text-xs text-primary font-extrabold focus:outline-none py-1.5 px-2 cursor-pointer"
               >
-                <option value="" className="bg-card-theme text-primary">All Regions</option>
+                <option value="" className="bg-card-theme text-primary">Region: All</option>
                 <option value="East" className="bg-card-theme text-primary">East Coast</option>
                 <option value="West" className="bg-card-theme text-primary">West Coast</option>
                 <option value="Central" className="bg-card-theme text-primary">Central Hub</option>
@@ -147,116 +178,184 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
           icon={<Truck className="w-5 h-5 text-orange" />}
           iconBg="bg-orange-light"
         />
-
-        {/* KPI 2: Available Fleet */}
         <StatCard
           title="Available Fleet"
-          value={kpis.availableVehicles}
-          subtitle="Ready for dispatching"
-          icon={<CheckCircle className="w-5 h-5 text-[#4f6128]" />}
-          iconBg="bg-[#4f6128]/10"
+          value={String(kpis.availableVehicles).padStart(2, '0')}
+          subtitle="Ready for Trip"
+          icon={<CheckCircle className="w-3.5 h-3.5 text-emerald-500" />}
+          iconBg="bg-emerald-500/10"
         />
-
-        {/* KPI 3: In Maintenance */}
         <StatCard
           title="In Maintenance"
-          value={kpis.vehiclesInMaintenance}
-          subtitle="Currently inside shop"
-          icon={<Wrench className="w-5 h-5 text-[#8a4f10]" />}
-          iconBg="bg-[#8a4f10]/10"
+          value={String(kpis.vehiclesInMaintenance).padStart(2, '0')}
+          subtitle="In Shop"
+          icon={<Wrench className="w-3.5 h-3.5 text-amber-500" />}
+          iconBg="bg-amber-500/10"
         />
-
-        {/* KPI 4: Fleet Utilization */}
+        <StatCard
+          title="Active Trips"
+          value={String(kpis.activeTrips).padStart(2, '0')}
+          subtitle="On Road"
+          icon={<Navigation className="w-3.5 h-3.5 text-blue-500" />}
+          iconBg="bg-blue-500/10"
+        />
+        <StatCard
+          title="Pending Trips"
+          value={String(kpis.pendingTrips).padStart(2, '0')}
+          subtitle="Draft status"
+          icon={<Clock className="w-3.5 h-3.5 text-orange" />}
+          iconBg="bg-orange/10"
+        />
+        <StatCard
+          title="Drivers On Duty"
+          value={String(kpis.driversOnDuty).padStart(2, '0')}
+          subtitle="On Service"
+          icon={<UserCheck className="w-3.5 h-3.5 text-amber-600" />}
+          iconBg="bg-amber-600/10"
+        />
         <StatCard
           title="Fleet Utilization"
           value={`${kpis.fleetUtilization}%`}
-          subtitle="Operational utility rate"
-          icon={<TrendingUp className="w-5 h-5 text-[#2b5058]" />}
-          iconBg="bg-[#2b5058]/10"
-          progress={kpis.fleetUtilization}
+          subtitle="Utility Rate"
+          icon={<TrendingUp className="w-3.5 h-3.5 text-cyan-500" />}
+          iconBg="bg-cyan-500/10"
         />
+      </div>
 
-        {/* Bento Column (Trip Dispatches) - Spans 2 columns */}
-        <div className="md:col-span-2 rounded-3xl p-6 neumorph-outset flex flex-col justify-between">
+      {/* Main Content split panels */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        {/* Left Panel: Recent Trips Table (Spans 2 columns) */}
+        <div className="lg:col-span-2 rounded-3xl p-5 md:p-6 neumorph-outset flex flex-col justify-between">
           <div>
             <div className="flex justify-between items-center mb-6">
-              <h3 className="font-extrabold text-primary text-base tracking-wider">Active Dispatched Trips</h3>
+              <h3 className="font-extrabold text-primary text-sm tracking-wider">Recent Trips</h3>
               <button
                 onClick={() => setActiveTab('trips')}
-                className="text-xs font-bold text-orange hover:text-orange/80 flex items-center gap-1 cursor-pointer transition-all hover:translate-x-0.5"
+                className="text-xs font-bold text-orange hover:text-orange/80 cursor-pointer transition-all"
               >
-                Trips Directory <ArrowRight className="w-3.5 h-3.5" />
+                Trips Directory
               </button>
             </div>
             
-            <div className="space-y-4">
-              {activeDispatchedTrips.length === 0 ? (
-                <div className="text-center py-12 text-secondary text-xs font-bold neumorph-inset rounded-2xl">
-                  No active trips currently dispatched.
-                </div>
-              ) : (
-                activeDispatchedTrips.slice(0, 3).map((trip) => {
-                  const v = vehicles.find((veh) => veh.id === trip.vehicleId);
-                  const d = drivers.find((drv) => drv.id === trip.driverId);
-                  return (
-                    <div key={trip.id} className="flex justify-between items-center p-4 rounded-2xl neumorph-btn-vanilla hover:scale-[1.005] transition-all">
-                      <div>
-                        <span className="text-[9px] font-extrabold text-orange tracking-widest block">Route Path</span>
-                        <div className="font-extrabold text-primary text-sm mt-0.5">{trip.source} → {trip.destination}</div>
-                        <div className="text-xs text-secondary font-semibold mt-1">
-                          Driver: <span className="text-primary font-bold">{d?.name}</span> | Vehicle: <span className="text-primary font-bold">{v?.registrationNumber}</span>
-                        </div>
-                      </div>
-                      <span className="text-[10px] font-extrabold text-blue-400 bg-[#2b5058]/20 border border-[#2b5058]/30 px-2.5 py-1 rounded-full tracking-wider">
-                        On Road
-                      </span>
-                    </div>
-                  );
-                })
-              )}
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="border-b border-theme text-secondary text-xs font-semibold tracking-wider">
+                    <th className="pb-3 pr-4">Trip</th>
+                    <th className="pb-3 pr-4">Vehicle</th>
+                    <th className="pb-3 pr-4">Driver</th>
+                    <th className="pb-3 pr-4">Status</th>
+                    <th className="pb-3 text-right">ETA</th>
+                  </tr>
+                </thead>
+                <tbody className="text-xs font-semibold text-primary">
+                  {recentTrips.length === 0 ? (
+                    <tr>
+                      <td colSpan={5} className="text-center py-12 text-secondary font-bold bg-transparent">
+                        No trips found.
+                      </td>
+                    </tr>
+                  ) : (
+                    recentTrips.map((trip) => (
+                      <tr key={trip.id} className="border-b border-theme/30 hover-row transition-colors">
+                        <td className="py-3 font-extrabold text-primary tabular-nums">{trip.tripCode}</td>
+                        <td className="py-3 font-extrabold text-orange">{trip.vehicleObj?.model || 'Unassigned'}</td>
+                        <td className="py-3 font-bold text-primary">{trip.driverObj?.name || 'Unassigned'}</td>
+                        <td className="py-3">
+                          <Badge variant={getTripBadgeVariant(trip.status)}>{trip.status}</Badge>
+                        </td>
+                        <td className="py-3 text-right font-extrabold text-secondary tabular-nums">{trip.eta}</td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
-        {/* Bento Column (Vehicles In Maintenance) - Spans 2 columns */}
-        <div className="md:col-span-2 rounded-3xl p-6 neumorph-outset flex flex-col justify-between">
+        {/* Right Panel: Vehicle Status progress bars */}
+        <div className="rounded-3xl p-5 md:p-6 neumorph-outset flex flex-col justify-between">
           <div>
             <div className="flex justify-between items-center mb-6">
-              <h3 className="font-extrabold text-primary text-base tracking-wider">Vehicles In Workshop</h3>
+              <h3 className="font-extrabold text-primary text-sm uppercase tracking-wider">Vehicle Status</h3>
               <button
-                onClick={() => setActiveTab('maintenance')}
-                className="text-xs font-bold text-orange hover:text-orange/80 flex items-center gap-1 cursor-pointer transition-all hover:translate-x-0.5"
+                onClick={() => setActiveTab('fleet')}
+                className="text-xs font-bold text-orange hover:text-orange/80 cursor-pointer transition-all"
               >
-                Maintenance Logs <ArrowRight className="w-3.5 h-3.5" />
+                Fleet Registry
               </button>
             </div>
 
-            <div className="space-y-4">
-              {activeMaintenance.length === 0 ? (
-                <div className="text-center py-12 text-secondary text-xs font-bold neumorph-inset rounded-2xl">
-                  No fleet vehicles currently in the shop.
+            <div className="space-y-5 mt-4">
+              {/* Available */}
+              <div>
+                <div className="flex justify-between text-xs font-extrabold mb-1.5">
+                  <span className="text-primary flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Available
+                  </span>
+                  <span className="text-secondary tabular-nums">{availableCount} vehicles</span>
                 </div>
-              ) : (
-                activeMaintenance.slice(0, 3).map((log) => {
-                  const v = vehicles.find((veh) => veh.id === log.vehicleId);
-                  return (
-                    <div key={log.id} className="flex justify-between items-center p-4 rounded-2xl neumorph-btn-vanilla hover:scale-[1.005] transition-all">
-                      <div>
-                        <span className="text-[9px] font-extrabold text-[#8a4f10] tracking-widest block">Service Job</span>
-                        <div className="font-extrabold text-primary text-sm mt-0.5">{v?.registrationNumber} ({v?.model})</div>
-                        <div className="text-xs text-secondary font-semibold mt-1">Issue: <span className="text-primary font-bold">{log.description}</span></div>
-                      </div>
-                      <span className="text-[10px] font-extrabold text-amber-400 bg-[#8a4f10]/20 border border-[#8a4f10]/30 px-2.5 py-1 rounded-full tracking-wider">
-                        In Shop
-                      </span>
-                    </div>
-                  );
-                })
-              )}
+                <div className="h-2 w-full rounded-full bg-inset-theme overflow-hidden neumorph-inset">
+                  <div
+                    className="h-full bg-emerald-500 rounded-full transition-all duration-500"
+                    style={{ width: `${(availableCount / totalCount) * 100}%` }}
+                  ></div>
+                </div>
+              </div>
+
+              {/* On Trip */}
+              <div>
+                <div className="flex justify-between text-xs font-extrabold mb-1.5">
+                  <span className="text-primary flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span> On Trip
+                  </span>
+                  <span className="text-secondary tabular-nums">{onTripCount} vehicles</span>
+                </div>
+                <div className="h-2 w-full rounded-full bg-inset-theme overflow-hidden neumorph-inset">
+                  <div
+                    className="h-full bg-blue-500 rounded-full transition-all duration-500"
+                    style={{ width: `${(onTripCount / totalCount) * 100}%` }}
+                  ></div>
+                </div>
+              </div>
+
+              {/* In Shop */}
+              <div>
+                <div className="flex justify-between text-xs font-extrabold mb-1.5">
+                  <span className="text-primary flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span> In Shop
+                  </span>
+                  <span className="text-secondary tabular-nums">{inShopCount} vehicles</span>
+                </div>
+                <div className="h-2 w-full rounded-full bg-inset-theme overflow-hidden neumorph-inset">
+                  <div
+                    className="h-full bg-amber-500 rounded-full transition-all duration-500"
+                    style={{ width: `${(inShopCount / totalCount) * 100}%` }}
+                  ></div>
+                </div>
+              </div>
+
+              {/* Retired */}
+              <div>
+                <div className="flex justify-between text-xs font-extrabold mb-1.5">
+                  <span className="text-primary flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Retired
+                  </span>
+                  <span className="text-secondary tabular-nums">{retiredCount} vehicles</span>
+                </div>
+                <div className="h-2 w-full rounded-full bg-inset-theme overflow-hidden neumorph-inset">
+                  <div
+                    className="h-full bg-rose-500 rounded-full transition-all duration-500"
+                    style={{ width: `${(retiredCount / totalCount) * 100}%` }}
+                  ></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --font-family: "Inter", "Inter Fallback", sans-serif;
-  --font-weight: 300;
+  --font-family: "Outfit", "Inter", sans-serif;
+  --font-weight: 400;
   
   /* Light Theme Colors (Screenshot flat modern card style) */
   --bg-app: #f4f4f6;
@@ -60,9 +60,9 @@
     font-family: var(--font-family);
     font-weight: var(--font-weight);
     font-style: normal;
-    font-size: 18px;
-    line-height: 28px;
-    transition: background-color 0.25s ease, color 0.25s ease;
+    font-size: 14px;
+    line-height: 20px;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
   
   h1, h2, h3, h4, h5, h6, p, span, button, input, select, td, th, label, div {
@@ -97,6 +97,16 @@
 
 .bg-card-theme {
   background-color: var(--bg-card) !important;
+}
+
+.bg-inset-theme {
+  background-color: var(--bg-inset) !important;
+}
+
+.glass-backdrop {
+  background-color: var(--glass-bg) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
 }
 
 .border-theme {
@@ -169,16 +179,40 @@
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-app);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb);
-  border-radius: 4px;
+  border-radius: 99px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--orange-accent);
+}
+
+/* Tabular Figures Monospace Styling */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+}
+
+/* Custom Inset Select Chevron Arrow */
+.neumorph-inset select {
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235e4e44' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 10px center !important;
+  background-size: 10px !important;
+  padding-right: 28px !important;
+}
+.dark .neumorph-inset select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238c8884' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+}
+
+/* Smooth Transition Tweaks */
+.neumorph-btn-vanilla, .neumorph-btn-orange, .neumorph-outset, .neumorph-inset {
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
