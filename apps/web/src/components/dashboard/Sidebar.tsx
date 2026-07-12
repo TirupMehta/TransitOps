@@ -23,14 +23,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <aside
-      className={`bg-card-theme flex flex-col justify-between shrink-0 h-full border-r border-theme shadow-[4px_0_12px_rgba(0,0,0,0.05)] transition-all duration-300 ${
+      className={`relative bg-card-theme flex flex-col justify-between shrink-0 h-full border-r border-theme shadow-[4px_0_12px_rgba(0,0,0,0.05)] transition-all duration-300 ${
         isCollapsed ? 'w-16' : 'w-64'
       }`}
     >
       <div>
         {/* Brand Header */}
-        <div className="flex items-center justify-between p-4 border-b border-theme bg-card-theme h-16 shrink-0">
-          <div className="flex items-center gap-3 overflow-hidden">
+        <div className={`flex items-center p-4 border-b border-theme bg-card-theme h-16 shrink-0 ${isCollapsed ? 'justify-center' : 'justify-between'}`}>
+          <div className={`flex items-center gap-3 overflow-hidden ${isCollapsed ? 'justify-center' : ''}`}>
             <div className="bg-black text-white w-9 h-9 rounded-full flex items-center justify-center font-extrabold text-base shrink-0 shadow-sm cursor-pointer hover:opacity-90">
               T
             </div>
@@ -41,10 +41,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="p-1 rounded-lg hover:bg-app-theme text-secondary cursor-pointer hover:text-orange shrink-0 flex items-center justify-center"
+            className="absolute -right-3 top-5 w-6 h-6 rounded-full bg-card-theme border border-theme text-secondary hover:text-orange flex items-center justify-center shadow-md cursor-pointer z-50 transition-all duration-200"
             title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
           >
-            {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+            {isCollapsed ? <ChevronRight className="w-3.5 h-3.5" /> : <ChevronLeft className="w-3.5 h-3.5" />}
           </button>
         </div>
 
