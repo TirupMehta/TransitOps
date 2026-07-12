@@ -145,7 +145,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
           value={kpis.activeVehicles}
           subtitle="Fleet currently dispatched"
           icon={<Truck className="w-5 h-5 text-orange" />}
-          iconBg="bg-orange/10"
+          iconBg="bg-orange-light"
         />
 
         {/* KPI 2: Available Fleet */}

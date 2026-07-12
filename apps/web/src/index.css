@@ -25,6 +25,7 @@
   --orange-active-shadow: 0 4px 12px rgba(200, 32, 70, 0.2);
   --divider-color: #f2f2f7;
   --scrollbar-thumb: #e5e5ea;
+  --orange-accent-light: rgba(200, 32, 70, 0.1);
 }
 
 .dark {
@@ -49,6 +50,7 @@
   --orange-active-shadow: 0 4px 12px rgba(224, 53, 90, 0.25);
   --divider-color: rgba(255, 255, 255, 0.06);
   --scrollbar-thumb: #32251c;
+  --orange-accent-light: rgba(224, 53, 90, 0.15);
 }
 
 @layer base {
@@ -79,6 +81,14 @@
 
 .text-orange {
   color: var(--orange-accent) !important;
+}
+
+.bg-orange {
+  background-color: var(--orange-accent) !important;
+}
+
+.bg-orange-light {
+  background-color: var(--orange-accent-light) !important;
 }
 
 .bg-app-theme {
