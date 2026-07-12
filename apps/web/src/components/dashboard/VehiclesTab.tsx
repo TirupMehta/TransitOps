@@ -227,12 +227,12 @@ export const VehiclesTab: React.FC<VehiclesTabProps> = ({
             ) : (
               filtered.map((v) => (
                 <tr key={v.id} className="border-b border-theme/30 hover-row transition-colors">
-                  <td className="px-6 py-4 font-extrabold text-primary">{v.registrationNumber}</td>
+                  <td className="px-6 py-4 font-extrabold text-primary tabular-nums">{v.registrationNumber}</td>
                   <td className="px-6 py-4 font-extrabold text-orange">{v.model}</td>
                   <td className="px-6 py-4 text-primary font-bold">{v.type}</td>
-                  <td className="px-6 py-4 text-primary">{v.loadCapacity >= 1000 ? `${(v.loadCapacity / 1000).toFixed(1)} Ton` : `${v.loadCapacity} kg`}</td>
-                  <td className="px-6 py-4 font-bold text-secondary">{v.odometer.toLocaleString()} km</td>
-                  <td className="px-6 py-4 text-primary font-extrabold">Rs. {v.acquisitionCost.toLocaleString()}</td>
+                  <td className="px-6 py-4 text-primary tabular-nums">{v.loadCapacity >= 1000 ? `${(v.loadCapacity / 1000).toFixed(1)} Ton` : `${v.loadCapacity} kg`}</td>
+                  <td className="px-6 py-4 font-bold text-secondary tabular-nums">{v.odometer.toLocaleString()} km</td>
+                  <td className="px-6 py-4 text-primary font-extrabold tabular-nums">Rs. {v.acquisitionCost.toLocaleString()}</td>
                   <td className="px-6 py-4">
                     <Badge variant={getBadgeVariant(v.status)}>{v.status}</Badge>
                   </td>

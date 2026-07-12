@@ -4,51 +4,65 @@ const BASE_URL = 'http://localhost:3333/api/v1';
 
 // Seed Initial Mock Data exactly matching the mockup screens
 const INITIAL_VEHICLES: Vehicle[] = [
-  { id: 1, registrationNumber: 'GJ01AB4321', model: 'VAN-05', type: 'Van', loadCapacity: 500, odometer: 74000, acquisitionCost: 620000, status: 'Available' },
-  { id: 2, registrationNumber: 'GJ01AB9981', model: 'TRUCK-11', type: 'Truck', loadCapacity: 5000, odometer: 182000, acquisitionCost: 2450000, status: 'On Trip' },
-  { id: 3, registrationNumber: 'GJ01AB1120', model: 'MINI-03', type: 'Mini', loadCapacity: 1000, odometer: 66000, acquisitionCost: 410000, status: 'In Shop' },
-  { id: 4, registrationNumber: 'GJ01AB0087', model: 'VAN-09', type: 'Van', loadCapacity: 750, odometer: 241900, acquisitionCost: 590000, status: 'Retired' },
+  { id: 1, registrationNumber: 'GJ01AB4321', model: 'Mahindra Bolero Pik-Up', type: 'Van', loadCapacity: 1250, odometer: 74000, acquisitionCost: 850000, status: 'Available' },
+  { id: 2, registrationNumber: 'MH12CD9981', model: 'BharatBenz 1918R', type: 'Truck', loadCapacity: 10500, odometer: 182000, acquisitionCost: 2850000, status: 'On Trip' },
+  { id: 3, registrationNumber: 'GJ01AB1120', model: 'Tata Ace Gold (Chota Hathi)', type: 'Mini', loadCapacity: 750, odometer: 66000, acquisitionCost: 420000, status: 'In Shop' },
+  { id: 4, registrationNumber: 'DL01EF0087', model: 'Tata 407 SFC', type: 'Van', loadCapacity: 2250, odometer: 241900, acquisitionCost: 980000, status: 'Retired' },
 ];
 
 const INITIAL_DRIVERS: Driver[] = [
-  { id: 1, name: 'Alex', licenseNumber: 'DL-987213', licenseCategory: 'LMV', licenseExpiryDate: '2029-12-31', contactNumber: '98765xxxxx', safetyScore: 92, status: 'Available', tripCompletionRate: 96 },
-  { id: 2, name: 'Jean', licenseNumber: 'DL-441210', licenseCategory: 'HMV', licenseExpiryDate: '2025-03-15', contactNumber: '98220xxxxx', safetyScore: 78, status: 'Suspended', tripCompletionRate: 91 }, // Expired
-  { id: 3, name: 'Priya', licenseNumber: 'DL-770311', licenseCategory: 'LMV', licenseExpiryDate: '2027-09-30', contactNumber: '99810xxxxx', safetyScore: 85, status: 'On Trip', tripCompletionRate: 95 },
-  { id: 4, name: 'Suresh', licenseNumber: 'DL-900145', licenseCategory: 'HMV', licenseExpiryDate: '2027-01-15', contactNumber: '97440xxxxx', safetyScore: 82, status: 'Off Duty', tripCompletionRate: 88 },
+  { id: 1, name: 'Ranjeet Singh', licenseNumber: 'DL-987213', licenseCategory: 'LMV', licenseExpiryDate: '2029-12-31', contactNumber: '9876543210', safetyScore: 92, status: 'Available', tripCompletionRate: 96 },
+  { id: 2, name: 'Rajesh Kumar', licenseNumber: 'DL-441210', licenseCategory: 'HMV', licenseExpiryDate: '2025-03-15', contactNumber: '9822011223', safetyScore: 78, status: 'Suspended', tripCompletionRate: 91 }, // Expired
+  { id: 3, name: 'Priya Patel', licenseNumber: 'DL-770311', licenseCategory: 'LMV', licenseExpiryDate: '2027-09-30', contactNumber: '9981088776', safetyScore: 85, status: 'On Trip', tripCompletionRate: 95 },
+  { id: 4, name: 'Suresh Naidu', licenseNumber: 'DL-900145', licenseCategory: 'HMV', licenseExpiryDate: '2027-01-15', contactNumber: '9744099887', safetyScore: 82, status: 'Off Duty', tripCompletionRate: 88 },
 ];
 
 const INITIAL_TRIPS: Trip[] = [
-  { id: 1, tripCode: 'TR001', source: 'Gandhinagar Depot', destination: 'Ahmedabad Hub', cargoWeight: 450, distance: 28, status: 'Dispatched', vehicleId: 1, driverId: 1, eta: '45 min' },
-  { id: 2, tripCode: 'TR002', source: 'Depot A', destination: 'Distribution Yard', cargoWeight: 4200, distance: 340, status: 'Completed', vehicleId: 2, driverId: 3, eta: '--' },
-  { id: 3, tripCode: 'TR003', source: 'Mansa', destination: 'Kalol Depot', cargoWeight: 300, distance: 15, status: 'Dispatched', vehicleId: 3, driverId: 1, eta: '3h 10m' },
-  { id: 4, tripCode: 'TR004', source: 'Vatva Industrial Area', destination: 'Sanand Warehouse', cargoWeight: 3500, distance: 60, status: 'Draft', vehicleId: 2, driverId: 4, eta: 'Awaiting driver' },
-  { id: 6, tripCode: 'TR006', source: 'Mansa', destination: 'Kalol Depot', cargoWeight: 0, distance: 0, status: 'Cancelled', vehicleId: 4, driverId: 2, eta: 'Vehicle sent to shop' }
+  { id: 1, tripCode: 'TR001', source: 'Gandhinagar GIDC Depot', destination: 'Ahmedabad Naroda Hub', cargoWeight: 850, distance: 28, status: 'Dispatched', vehicleId: 1, driverId: 1, eta: '45 min' },
+  { id: 2, tripCode: 'TR002', source: 'Surat Textile Market', destination: 'Mumbai Kalamboli Yard', cargoWeight: 9200, distance: 340, status: 'Completed', vehicleId: 2, driverId: 3, eta: '--' },
+  { id: 3, tripCode: 'TR003', source: 'Mansa GIDC', destination: 'Kalol GIDC Depot', cargoWeight: 500, distance: 15, status: 'Dispatched', vehicleId: 3, driverId: 1, eta: '3h 10m' },
+  { id: 4, tripCode: 'TR004', source: 'Vatva Industrial Area', destination: 'Sanand GIDC Warehouse', cargoWeight: 2100, distance: 60, status: 'Draft', vehicleId: 2, driverId: 4, eta: 'Awaiting driver' },
+  { id: 6, tripCode: 'TR006', source: 'Mansa GIDC', destination: 'Kalol GIDC Depot', cargoWeight: 0, distance: 0, status: 'Cancelled', vehicleId: 4, driverId: 2, eta: 'Vehicle sent to shop' }
 ];
 
 const INITIAL_MAINTENANCE: MaintenanceLog[] = [
-  { id: 1, vehicleId: 1, description: 'Oil Change', cost: 2500, date: '2026-07-07', status: 'Active' },
-  { id: 2, vehicleId: 2, description: 'Engine Repair', cost: 18000, date: '2026-07-06', status: 'Completed' },
-  { id: 3, vehicleId: 3, description: 'Tyre Replace', cost: 6200, date: '2026-07-05', status: 'Active' },
+  { id: 1, vehicleId: 1, description: 'Engine Oil Replacement', cost: 3500, date: '2026-07-07', status: 'Active' },
+  { id: 2, vehicleId: 2, description: 'Brake Shoe Service', cost: 12000, date: '2026-07-06', status: 'Completed' },
+  { id: 3, vehicleId: 3, description: 'Tyre Realignment', cost: 4500, date: '2026-07-05', status: 'Active' },
 ];
 
 const INITIAL_EXPENSES: Expense[] = [
-  { id: 1, vehicleId: 1, type: 'Fuel', amount: 3150, date: '2026-07-05', description: 'Filled 42 Liters' },
-  { id: 2, vehicleId: 2, type: 'Fuel', amount: 8400, date: '2026-07-06', description: 'Filled 110 Liters' },
-  { id: 3, vehicleId: 3, type: 'Fuel', amount: 2050, date: '2026-07-06', description: 'Filled 28 Liters' },
-  { id: 4, vehicleId: 1, tripId: 1, type: 'Toll', amount: 120, date: '2026-07-05', description: 'Toll plaza charges' },
-  { id: 5, vehicleId: 2, tripId: 2, type: 'Toll', amount: 340, date: '2026-07-06', description: 'Highway entry toll' },
-  { id: 6, vehicleId: 2, tripId: 2, type: 'Other', amount: 150, date: '2026-07-06', description: 'Loading fee' },
-  { id: 7, vehicleId: 2, type: 'Maintenance', amount: 18000, date: '2026-07-06', description: 'Engine Repair' },
+  { id: 1, vehicleId: 1, type: 'Fuel', amount: 3150, date: '2026-07-05', description: 'Filled 35 Liters Diesel' },
+  { id: 2, vehicleId: 2, type: 'Fuel', amount: 9800, date: '2026-07-06', description: 'Filled 110 Liters Diesel' },
+  { id: 3, vehicleId: 3, type: 'Fuel', amount: 2050, date: '2026-07-06', description: 'Filled 22 Liters Diesel' },
+  { id: 4, vehicleId: 1, tripId: 1, type: 'Toll', amount: 120, date: '2026-07-05', description: 'NH-48 Toll plaza charges' },
+  { id: 5, vehicleId: 2, tripId: 2, type: 'Toll', amount: 780, date: '2026-07-06', description: 'Surat-Mumbai Express Toll' },
+  { id: 6, vehicleId: 2, tripId: 2, type: 'Other', amount: 450, date: '2026-07-06', description: 'Loading & unloading helpers fee' },
+  { id: 7, vehicleId: 2, type: 'Maintenance', amount: 12000, date: '2026-07-06', description: 'Brake Shoe Service' },
 ];
 
 const INITIAL_SETTINGS: GeneralSettings = {
-  depotName: 'Gandhinagar Depot GIDY',
+  depotName: 'Gandhinagar Depot GIDC',
   currency: 'INR (Rs)',
   distanceUnit: 'Kilometers',
 };
 
-// Helper to initialize local storage data if empty
+// Helper to initialize local storage data if empty or version mismatch
 function initStorage() {
+  const STORAGE_VERSION = 'v2_indian';
+  const currentVersion = localStorage.getItem('transit_storage_version');
+  
+  if (currentVersion !== STORAGE_VERSION) {
+    // Clear old mockup data to avoid collision with new Indian types
+    localStorage.removeItem('transit_vehicles');
+    localStorage.removeItem('transit_drivers');
+    localStorage.removeItem('transit_trips');
+    localStorage.removeItem('transit_maintenance');
+    localStorage.removeItem('transit_expenses');
+    localStorage.removeItem('transit_settings');
+    localStorage.setItem('transit_storage_version', STORAGE_VERSION);
+  }
+
   if (!localStorage.getItem('transit_vehicles')) {
     localStorage.setItem('transit_vehicles', JSON.stringify(INITIAL_VEHICLES));
   }
@@ -142,15 +156,15 @@ export function getStoredToken(): string | null {
 
 // Mock auth database
 const DEMO_USERS: Record<string, { name: string; role: string }> = {
-  'manager@transitops.com': { name: 'David Smith', role: 'Fleet Manager' },
-  'manager@transitops.in': { name: 'David Smith', role: 'Fleet Manager' },
-  'safety@transitops.com': { name: 'Elena Rostova', role: 'Safety Officer' },
-  'safety@transitops.in': { name: 'Elena Rostova', role: 'Safety Officer' },
-  'driver@transitops.com': { name: 'Marcus Miller', role: 'Driver' },
-  'driver@transitops.in': { name: 'Marcus Miller', role: 'Driver' },
-  'dispatcher@transitops.in': { name: 'Ranjeet K.', role: 'Driver' },
-  'finance@transitops.com': { name: 'Sarah Jenkins', role: 'Financial Analyst' },
-  'finance@transitops.in': { name: 'Sarah Jenkins', role: 'Financial Analyst' },
+  'manager@transitops.com': { name: 'Devendra Sharma', role: 'Fleet Manager' },
+  'manager@transitops.in': { name: 'Devendra Sharma', role: 'Fleet Manager' },
+  'safety@transitops.com': { name: 'Ekta Rawat', role: 'Safety Officer' },
+  'safety@transitops.in': { name: 'Ekta Rawat', role: 'Safety Officer' },
+  'driver@transitops.com': { name: 'Manpreet Singh', role: 'Driver' },
+  'driver@transitops.in': { name: 'Manpreet Singh', role: 'Driver' },
+  'dispatcher@transitops.in': { name: 'Ranjeet Singh', role: 'Driver' },
+  'finance@transitops.com': { name: 'Swati Joshi', role: 'Financial Analyst' },
+  'finance@transitops.in': { name: 'Swati Joshi', role: 'Financial Analyst' },
 };
 
 // Login API that supports both Backend and Fallback

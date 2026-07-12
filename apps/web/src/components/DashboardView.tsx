@@ -138,6 +138,20 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
     }
   };
 
+  const getBreadcrumbTitle = (tab: string) => {
+    switch (tab) {
+      case 'dashboard': return 'Overview Dashboard';
+      case 'fleet': return 'Fleet Registry';
+      case 'drivers': return 'Driver Profiles';
+      case 'trips': return 'Trip Dispatcher';
+      case 'maintenance': return 'Maintenance Shop';
+      case 'expenses': return 'Fuel & Expenses';
+      case 'analytics': return 'Reports & Analytics';
+      case 'settings': return 'Settings & RBAC';
+      default: return tab;
+    }
+  };
+
   return (
     <div className="flex h-screen bg-app-theme overflow-hidden font-sans">
       <Sidebar
@@ -151,8 +165,19 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <Header activeTab={activeTab} user={user} theme={theme} onToggleTheme={onToggleTheme} />
 
-        <div className="flex-1 overflow-y-auto p-5 md:p-7.5 relative bg-app-theme">
-          {renderActiveTab()}
+        <div className="flex-1 overflow-y-auto p-5 md:p-8 relative bg-app-theme space-y-6">
+          {/* Page Title & Breadcrumbs header */}
+          <div className="flex items-center gap-2.5 shrink-0 border-b border-theme/60 pb-3.5">
+            <span className="text-secondary text-xs font-extrabold tracking-wider">TransitOps</span>
+            <span className="text-secondary/20 text-sm">/</span>
+            <h1 className="text-sm font-extrabold text-primary tracking-widest font-sans uppercase">
+              {getBreadcrumbTitle(activeTab)}
+            </h1>
+          </div>
+
+          <div>
+            {renderActiveTab()}
+          </div>
         </div>
       </div>
     </div>

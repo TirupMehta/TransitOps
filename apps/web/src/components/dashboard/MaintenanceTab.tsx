@@ -292,11 +292,11 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
                   filteredLogs.map((log) => (
                     <tr key={log.id} className="border-b border-theme/30 hover-row transition-colors">
                       <td className="py-3 font-extrabold text-primary">
-                        <span className="block text-orange">{log.vehicle?.registrationNumber || 'Unknown'}</span>
+                        <span className="block text-orange tabular-nums">{log.vehicle?.registrationNumber || 'Unknown'}</span>
                         <span className="block text-xs text-secondary/80 font-medium mt-0.5">{log.vehicle?.model}</span>
                       </td>
                       <td className="py-3 font-extrabold text-primary">{log.description}</td>
-                      <td className="py-3 font-extrabold text-orange">Rs. {log.cost.toLocaleString()}</td>
+                      <td className="py-3 font-extrabold text-orange tabular-nums">Rs. {log.cost.toLocaleString()}</td>
                       <td className="py-3">
                         <Badge variant={log.status === 'Active' ? 'warning' : 'success'}>
                           {log.status === 'Active' ? 'In Shop' : 'Completed'}
