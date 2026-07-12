@@ -5,52 +5,52 @@
   --font-weight: 400;
   
   /* Light Theme Colors */
-  --bg-app: #faf5e9;
-  --bg-card: #faf5e9;
-  --bg-inset: #ebdcb9;
-  --text-primary: #211a16;
-  --text-secondary: #4c3d34;
-  --shadow-outset: 6px 6px 16px #e0d4bc, -6px -6px 16px #ffffff;
-  --shadow-inset: inset 4px 4px 10px #e0d4bc, inset -4px -4px 10px #ffffff;
-  --border-color: rgba(0, 0, 0, 0.04);
+  --bg-app: #f3ebd6; /* Soft warm gold-sand backdrop */
+  --bg-card: #faf6ee; /* Soft vanilla card background */
+  --bg-inset: #e9dfc6; /* Warm sand recessed shade */
+  --text-primary: #2d231e; /* Soft deep brown text (softer than black) */
+  --text-secondary: #5e4e44; /* Warm chocolate-gray secondary text */
+  --shadow-outset: 5px 5px 15px #e2d7be, -5px -5px 15px #ffffff; /* Smooth outset shadow highlights */
+  --shadow-inset: inset 3px 3px 8px #e2d7be, inset -3px -3px 8px #ffffff;
+  --border-color: rgba(0, 0, 0, 0.02);
   --btn-vanilla-from: #ffffff;
-  --btn-vanilla-to: #fdfbf7;
-  --btn-vanilla-hover-from: #fdfbf7;
-  --btn-vanilla-hover-to: #eedebc;
-  --btn-vanilla-text: #211a16;
-  --btn-vanilla-shadow-active: inset 3px 3px 6px #e0d4bc, inset -3px -3px 6px #ffffff;
-  --orange-accent: #b84a14;
-  --orange-accent-hover: #d35e23;
-  --orange-accent-active: #a03f0f;
-  --orange-active-shadow: inset 4px 4px 8px #7e3009, inset -4px -4px 8px rgba(255, 255, 255, 0.15);
-  --divider-color: #eedebd;
+  --btn-vanilla-to: #faf7f2;
+  --btn-vanilla-hover-from: #faf7f2;
+  --btn-vanilla-hover-to: #efe6d4;
+  --btn-vanilla-text: #2d231e;
+  --btn-vanilla-shadow-active: inset 2px 2px 5px #e2d7be, inset -2px -2px 5px #ffffff;
+  --orange-accent: #b04612; /* Slightly softer burnt copper orange */
+  --orange-accent-hover: #c95217;
+  --orange-accent-active: #963a0e;
+  --orange-active-shadow: inset 3px 3px 6px #7a2d07, inset -3px -3px 6px rgba(255, 255, 255, 0.15);
+  --divider-color: #e5dac2;
   --scrollbar-thumb: #eedebd;
-  --glass-bg: rgba(250, 245, 233, 0.45);
+  --glass-bg: rgba(250, 246, 238, 0.5);
 }
 
 .dark {
   /* Dark Theme Colors */
-  --bg-app: #120e0c; /* Deep rich espresso black */
-  --bg-card: #1a1410; /* Warm dark cocoa card */
-  --bg-inset: #0a0807; /* Deepest warm shade for inputs */
-  --text-primary: #e6dfd5; /* Soft warm light sand vanilla (prevents harsh high-contrast white text) */
-  --text-secondary: #9e9185; /* Soft warm gray-brown for text */
-  --shadow-outset: 6px 6px 18px #080605, -6px -6px 18px #221c17; /* Softened dark shadows */
-  --shadow-inset: inset 4px 4px 10px #080605, inset -4px -4px 10px #221c17;
-  --border-color: rgba(255, 255, 255, 0.02); /* Extremely subtle border */
-  --btn-vanilla-from: #221b17; /* Dark cocoa button */
-  --btn-vanilla-to: #18120f;
-  --btn-vanilla-hover-from: #2a211c;
-  --btn-vanilla-hover-to: #1e1814;
-  --btn-vanilla-text: #e6dfd5;
-  --btn-vanilla-shadow-active: inset 3px 3px 6px #080605, inset -3px -3px 6px #221c17;
-  --orange-accent: #cf622c; /* Calmed down warm copper orange (less aggressive/neon) */
-  --orange-accent-hover: #dd713a;
-  --orange-accent-active: #b5501e;
-  --orange-active-shadow: inset 4px 4px 8px #6d2807, inset -4px -4px 8px rgba(255, 255, 255, 0.1);
-  --divider-color: rgba(230, 223, 213, 0.05); /* Softer divider lines */
-  --scrollbar-thumb: #251c17;
-  --glass-bg: rgba(18, 14, 12, 0.65); /* Rich dark glass overlay */
+  --bg-app: #131215; /* Soft dark charcoal with a tiny warm undertone */
+  --bg-card: #1b1a1f; /* Softer card charcoal background */
+  --bg-inset: #0e0d0f; /* Recessed shade */
+  --text-primary: #d6d2cc; /* Very soft light gray-cream */
+  --text-secondary: #8c8884; /* Soft neutral gray */
+  --shadow-outset: 5px 5px 14px rgba(0, 0, 0, 0.45), -5px -5px 14px rgba(255, 255, 255, 0.015);
+  --shadow-inset: inset 3px 3px 8px rgba(0, 0, 0, 0.55), inset -3px -3px 8px rgba(255, 255, 255, 0.01);
+  --border-color: rgba(255, 255, 255, 0.02);
+  --btn-vanilla-from: #222126;
+  --btn-vanilla-to: #18171b;
+  --btn-vanilla-hover-from: #2c2a30;
+  --btn-vanilla-hover-to: #1f1e22;
+  --btn-vanilla-text: #d6d2cc;
+  --btn-vanilla-shadow-active: inset 2px 2px 5px rgba(0,0,0,0.5), inset -2px -2px 5px rgba(255,255,255,0.01);
+  --orange-accent: #c05c2e; /* Soft terracotta copper */
+  --orange-accent-hover: #ce6a3a;
+  --orange-accent-active: #a64c20;
+  --orange-active-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.4), inset -3px -3px 6px rgba(255, 255, 255, 0.05);
+  --divider-color: rgba(255, 255, 255, 0.04);
+  --scrollbar-thumb: #252429;
+  --glass-bg: rgba(19, 18, 21, 0.7);
 }
 
 @layer base {

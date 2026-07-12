@@ -151,7 +151,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <Header activeTab={activeTab} user={user} theme={theme} onToggleTheme={onToggleTheme} />
 
-        <div className="flex-1 overflow-y-auto p-8 relative bg-app-theme">
+        <div className="flex-1 overflow-y-auto p-5 md:p-7.5 relative bg-app-theme">
           {renderActiveTab()}
         </div>
       </div>

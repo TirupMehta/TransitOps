@@ -181,7 +181,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
       })()}
 
       {/* KPI Cards Row (7 Cards exactly matching Screen 1) */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
         <StatCard
           title="Active Vehicles"
           value={String(kpis.activeVehicles).padStart(2, '0')}
@@ -237,7 +237,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* Left Panel: Recent Trips Table (Spans 2 columns) */}
-        <div className="lg:col-span-2 rounded-3xl p-6 neumorph-outset flex flex-col justify-between">
+        <div className="lg:col-span-2 rounded-3xl p-5 md:p-6 neumorph-outset flex flex-col justify-between">
           <div>
             <div className="flex justify-between items-center mb-6">
               <h3 className="font-extrabold text-primary text-sm tracking-wider">Recent Trips</h3>
@@ -287,7 +287,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
         </div>
 
         {/* Right Panel: Vehicle Status progress bars */}
-        <div className="rounded-3xl p-6 neumorph-outset flex flex-col justify-between">
+        <div className="rounded-3xl p-5 md:p-6 neumorph-outset flex flex-col justify-between">
           <div>
             <div className="flex justify-between items-center mb-6">
               <h3 className="font-extrabold text-primary text-sm uppercase tracking-wider">Vehicle Status</h3>
