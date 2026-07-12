@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { storage, getKpis } from '../utils/api';
 import type { User, Vehicle, Driver, Trip, MaintenanceLog, Expense } from '../types';
-import { Sidebar } from './dashboard/Sidebar';
+import { Sidebar, isTabAllowed } from './dashboard/Sidebar';
 import { Header } from './dashboard/Header';
 import { OverviewTab } from './dashboard/OverviewTab';
 import { VehiclesTab } from './dashboard/VehiclesTab';
@@ -10,14 +10,17 @@ import { TripsTab } from './dashboard/TripsTab';
 import { MaintenanceTab } from './dashboard/MaintenanceTab';
 import { ExpensesTab } from './dashboard/ExpensesTab';
 import { ReportsTab } from './dashboard/ReportsTab';
+import { SettingsTab as DashboardSettingsTab } from './dashboard/SettingsTab';
 
 interface DashboardViewProps {
   user: User;
+  theme: 'light' | 'dark';
+  onToggleTheme: () => void;
 }
 
-type TabType = 'dashboard' | 'vehicles' | 'drivers' | 'trips' | 'maintenance' | 'expenses' | 'reports';
+type TabType = 'dashboard' | 'fleet' | 'drivers' | 'trips' | 'maintenance' | 'expenses' | 'analytics' | 'settings';
 
-export const DashboardView: React.FC<DashboardViewProps> = ({ user }) => {
+export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onToggleTheme }) => {
   const [activeTab, setActiveTab] = useState<TabType>('dashboard');
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [drivers, setDrivers] = useState<Driver[]>([]);
@@ -25,6 +28,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user }) => {
   const [maintenance, setMaintenance] = useState<MaintenanceLog[]>([]);
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [kpis, setKpis] = useState(getKpis());
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(false);
 
   const refreshData = () => {
     setVehicles(storage.getVehicles());
@@ -39,17 +43,24 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user }) => {
     refreshData();
   }, [activeTab]);
 
-  const getVehicleExpensesSum = (vehicleId: number) => {
-    return expenses.filter((e) => e.vehicleId === vehicleId).reduce((sum, e) => sum + e.amount, 0);
-  };
+  // Ensure user is redirected to a tab they are allowed to see if the active tab is restricted
+  useEffect(() => {
+    if (!isTabAllowed(activeTab, user.role)) {
+      setActiveTab('dashboard');
+    }
+  }, [user.role, activeTab]);
 
-  const getVehicleFuelEfficiency = (vehicleId: number) => {
-    const vTrips = trips.filter((t) => t.vehicleId === vehicleId && t.status === 'Completed');
-    const totalDist = vTrips.reduce((sum, t) => sum + t.distance, 0);
-    const fuelLogs = expenses.filter((e) => e.vehicleId === vehicleId && e.type === 'Fuel');
-    const totalFuelAmount = fuelLogs.reduce((sum, e) => sum + e.amount, 0);
-    const estLiters = totalFuelAmount / 1.65; // $1.65 per liter
-    return estLiters > 0 ? (totalDist / estLiters).toFixed(1) : '0.0';
+  const getVehicleExpensesSum = (vehicleId: number) => {
+    const vExpenses = expenses.filter((e) => e.vehicleId === vehicleId);
+    const fuelLogsSum = vExpenses.filter(e => e.type === 'Fuel').reduce((sum, e) => sum + e.amount, 0);
+    const otherExpensesSum = vExpenses.filter(e => e.type !== 'Fuel').reduce((sum, e) => sum + e.amount, 0);
+    
+    // Include maintenance costs directly linked to this vehicle
+    const maintSum = storage.getMaintenance()
+      .filter(m => m.vehicleId === vehicleId)
+      .reduce((sum, m) => sum + m.cost, 0);
+
+    return fuelLogsSum + maintSum + otherExpensesSum;
   };
 
   const renderActiveTab = () => {
@@ -61,25 +72,34 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user }) => {
             trips={trips}
             vehicles={vehicles}
             drivers={drivers}
-            maintenance={maintenance}
-            setActiveTab={setActiveTab}
+            userRole={user.role}
+            setActiveTab={(tab) => setActiveTab(tab as TabType)}
           />
         );
-      case 'vehicles':
+      case 'fleet':
         return (
           <VehiclesTab
             vehicles={vehicles}
-            getVehicleExpensesSum={getVehicleExpensesSum}
+            userRole={user.role}
+            onUpdate={refreshData}
           />
         );
       case 'drivers':
-        return <DriversTab drivers={drivers} />;
+        return (
+          <DriversTab 
+            drivers={drivers} 
+            userRole={user.role}
+            onUpdate={refreshData} 
+          />
+        );
       case 'trips':
         return (
           <TripsTab
             trips={trips}
             vehicles={vehicles}
             drivers={drivers}
+            userRole={user.role}
+            onUpdate={refreshData}
           />
         );
       case 'maintenance':
@@ -87,16 +107,30 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user }) => {
           <MaintenanceTab
             maintenance={maintenance}
             vehicles={vehicles}
+            userRole={user.role}
+            onUpdate={refreshData}
           />
         );
       case 'expenses':
-        return <ExpensesTab expenses={expenses} vehicles={vehicles} />;
-      case 'reports':
+        return (
+          <ExpensesTab 
+            expenses={expenses} 
+            vehicles={vehicles} 
+            userRole={user.role}
+            onUpdate={refreshData}
+          />
+        );
+      case 'analytics':
         return (
           <ReportsTab
             vehicles={vehicles}
             getVehicleExpensesSum={getVehicleExpensesSum}
-            getVehicleFuelEfficiency={getVehicleFuelEfficiency}
+          />
+        );
+      case 'settings':
+        return (
+          <DashboardSettingsTab 
+            onUpdate={refreshData} 
           />
         );
       default:
@@ -105,13 +139,19 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user }) => {
   };
 
   return (
-    <div className="flex h-screen bg-slate-50 overflow-hidden font-sans">
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} user={user} />
+    <div className="flex h-screen bg-app-theme overflow-hidden font-sans">
+      <Sidebar
+        activeTab={activeTab}
+        setActiveTab={(tab) => setActiveTab(tab as TabType)}
+        user={user}
+        isCollapsed={isSidebarCollapsed}
+        setIsCollapsed={setIsSidebarCollapsed}
+      />
 
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        <Header activeTab={activeTab} user={user} />
+        <Header activeTab={activeTab} user={user} theme={theme} onToggleTheme={onToggleTheme} />
 
-        <div className="flex-1 overflow-y-auto p-8 relative bg-slate-50/50">
+        <div className="flex-1 overflow-y-auto p-5 md:p-7.5 relative bg-app-theme">
           {renderActiveTab()}
         </div>
       </div>

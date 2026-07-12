@@ -1,8 +1,190 @@
 @import "tailwindcss";
 
+:root {
+  --font-family: "Outfit", "Inter", sans-serif;
+  --font-weight: 400;
+  
+  /* Light Theme Colors */
+  --bg-app: #f3ebd6; /* Soft warm gold-sand backdrop */
+  --bg-card: #faf6ee; /* Soft vanilla card background */
+  --bg-inset: #e9dfc6; /* Warm sand recessed shade */
+  --text-primary: #2d231e; /* Soft deep brown text (softer than black) */
+  --text-secondary: #5e4e44; /* Warm chocolate-gray secondary text */
+  --shadow-outset: 5px 5px 15px #e2d7be, -5px -5px 15px #ffffff; /* Smooth outset shadow highlights */
+  --shadow-inset: inset 3px 3px 8px #e2d7be, inset -3px -3px 8px #ffffff;
+  --border-color: rgba(0, 0, 0, 0.02);
+  --btn-vanilla-from: #ffffff;
+  --btn-vanilla-to: #faf7f2;
+  --btn-vanilla-hover-from: #faf7f2;
+  --btn-vanilla-hover-to: #efe6d4;
+  --btn-vanilla-text: #2d231e;
+  --btn-vanilla-shadow-active: inset 2px 2px 5px #e2d7be, inset -2px -2px 5px #ffffff;
+  --orange-accent: #b04612; /* Slightly softer burnt copper orange */
+  --orange-accent-hover: #c95217;
+  --orange-accent-active: #963a0e;
+  --orange-active-shadow: inset 3px 3px 6px #7a2d07, inset -3px -3px 6px rgba(255, 255, 255, 0.15);
+  --divider-color: #e5dac2;
+  --scrollbar-thumb: #eedebd;
+  --glass-bg: rgba(250, 246, 238, 0.5);
+}
+
+.dark {
+  /* Dark Theme Colors */
+  --bg-app: #131215; /* Soft dark charcoal with a tiny warm undertone */
+  --bg-card: #1b1a1f; /* Softer card charcoal background */
+  --bg-inset: #0e0d0f; /* Recessed shade */
+  --text-primary: #d6d2cc; /* Very soft light gray-cream */
+  --text-secondary: #8c8884; /* Soft neutral gray */
+  --shadow-outset: 5px 5px 14px rgba(0, 0, 0, 0.45), -5px -5px 14px rgba(255, 255, 255, 0.015);
+  --shadow-inset: inset 3px 3px 8px rgba(0, 0, 0, 0.55), inset -3px -3px 8px rgba(255, 255, 255, 0.01);
+  --border-color: rgba(255, 255, 255, 0.02);
+  --btn-vanilla-from: #222126;
+  --btn-vanilla-to: #18171b;
+  --btn-vanilla-hover-from: #2c2a30;
+  --btn-vanilla-hover-to: #1f1e22;
+  --btn-vanilla-text: #d6d2cc;
+  --btn-vanilla-shadow-active: inset 2px 2px 5px rgba(0,0,0,0.5), inset -2px -2px 5px rgba(255,255,255,0.01);
+  --orange-accent: #c05c2e; /* Soft terracotta copper */
+  --orange-accent-hover: #ce6a3a;
+  --orange-accent-active: #a64c20;
+  --orange-active-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.4), inset -3px -3px 6px rgba(255, 255, 255, 0.05);
+  --divider-color: rgba(255, 255, 255, 0.04);
+  --scrollbar-thumb: #252429;
+  --glass-bg: rgba(19, 18, 21, 0.7);
+}
+
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-800 antialiased;
-    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    background-color: var(--bg-app);
+    color: var(--text-secondary);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight);
+    font-style: normal;
+    font-size: 18px;
+    line-height: 28px;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
+  
+  h1, h2, h3, h4, h5, h6, p, span, button, input, select, td, th, label, div {
+    font-family: var(--font-family) !important;
+  }
+}
+
+/* Theme Helper Classes to avoid color conflicts */
+.text-primary {
+  color: var(--text-primary) !important;
+}
+
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+.text-orange {
+  color: var(--orange-accent) !important;
+}
+
+.bg-orange {
+  background-color: var(--orange-accent) !important;
+}
+
+.bg-app-theme {
+  background-color: var(--bg-app) !important;
+}
+
+.bg-card-theme {
+  background-color: var(--bg-card) !important;
+}
+
+.bg-inset-theme {
+  background-color: var(--bg-inset) !important;
+}
+
+.glass-backdrop {
+  background-color: var(--glass-bg) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.border-theme {
+  border-color: var(--divider-color) !important;
+}
+
+.divide-theme > * + * {
+  border-color: var(--divider-color) !important;
+}
+
+.hover-row {
+  transition: background-color 0.15s ease;
+}
+
+.hover-row:hover {
+  background-color: var(--border-color) !important;
+}
+
+.bg-gradient-theme {
+  background: linear-gradient(135deg, var(--bg-app) 0%, var(--btn-vanilla-to) 100%) !important;
+}
+
+/* Neumorphic Outset Panel */
+.neumorph-outset {
+  background-color: var(--bg-card);
+  box-shadow: var(--shadow-outset);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* Neumorphic Inset Panel */
+.neumorph-inset {
+  background-color: var(--bg-inset);
+  box-shadow: var(--shadow-inset);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* Skeuomorphic clicky vanilla buttons */
+.neumorph-btn-vanilla {
+  background: linear-gradient(145deg, var(--btn-vanilla-from), var(--btn-vanilla-to));
+  box-shadow: var(--shadow-outset);
+  border: 1px solid var(--border-color);
+  color: var(--btn-vanilla-text);
+  transition: all 0.2s ease;
+}
+.neumorph-btn-vanilla:hover {
+  background: linear-gradient(145deg, var(--btn-vanilla-hover-from), var(--btn-vanilla-hover-to));
+}
+.neumorph-btn-vanilla:active {
+  box-shadow: var(--btn-vanilla-shadow-active);
+}
+
+/* Skeuomorphic clicky Burnt Orange buttons */
+.neumorph-btn-orange {
+  background: linear-gradient(145deg, var(--orange-accent-hover), var(--orange-accent));
+  box-shadow: var(--shadow-outset);
+  color: #ffffff !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+}
+.neumorph-btn-orange:hover {
+  background: linear-gradient(145deg, var(--orange-accent-hover), var(--orange-accent-active));
+}
+.neumorph-btn-orange:active {
+  background: var(--orange-accent-active);
+  box-shadow: var(--orange-active-shadow);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-app);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--orange-accent);
 }
