@@ -11,6 +11,8 @@ import { MaintenanceTab } from './dashboard/MaintenanceTab';
 import { ExpensesTab } from './dashboard/ExpensesTab';
 import { ReportsTab } from './dashboard/ReportsTab';
 import { SettingsTab as DashboardSettingsTab } from './dashboard/SettingsTab';
+import { FleetManagerSection } from './dashboard/FleetManagerSection';
+import { trpcClient } from '../lib/trpc';
 
 interface DashboardViewProps {
   user: User;
@@ -18,7 +20,7 @@ interface DashboardViewProps {
   onToggleTheme: () => void;
 }
 
-type TabType = 'dashboard' | 'fleet' | 'drivers' | 'trips' | 'maintenance' | 'expenses' | 'analytics' | 'settings';
+type TabType = 'dashboard' | 'fleet' | 'drivers' | 'trips' | 'maintenance' | 'expenses' | 'analytics' | 'settings' | 'fleet-registry';
 
 export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onToggleTheme }) => {
   const [activeTab, setActiveTab] = useState<TabType>('dashboard');
@@ -30,9 +32,28 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
   const [kpis, setKpis] = useState(getKpis());
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(false);
 
-  const refreshData = () => {
+  const refreshData = async () => {
     setVehicles(storage.getVehicles());
-    setDrivers(storage.getDrivers());
+
+    try {
+      const client = trpcClient as any;
+      const res = await client.driver.list.query({ page: 1, perPage: 100 });
+      const mapped = res.data.map((d: any) => ({
+        id: d.id,
+        name: d.driverName,
+        licenseNumber: d.driverLicenseNumber,
+        licenseCategory: 'LMV',
+        licenseExpiryDate: d.driverLicenseExpiryDate,
+        contactNumber: d.driverPhone,
+        tripCompletionRate: 98,
+        safetyScore: 92,
+        status: 'Available',
+      }));
+      setDrivers(mapped);
+    } catch {
+      setDrivers(storage.getDrivers());
+    }
+
     setTrips(storage.getTrips());
     setMaintenance(storage.getMaintenance());
     setExpenses(storage.getExpenses());
@@ -84,6 +105,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
             onUpdate={refreshData}
           />
         );
+      case 'fleet-registry':
+        return (
+          <FleetManagerSection
+            vehicles={vehicles}
+            userRole={user.role}
+            onUpdate={refreshData}
+          />
+        );
       case 'drivers':
         return (
           <DriversTab 
@@ -130,6 +159,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
       case 'settings':
         return (
           <DashboardSettingsTab 
+            user={user}
             onUpdate={refreshData} 
           />
         );
@@ -142,6 +172,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
     switch (tab) {
       case 'dashboard': return 'Overview Dashboard';
       case 'fleet': return 'Fleet Registry';
+      case 'fleet-registry': return 'Fleet Managers';
       case 'drivers': return 'Driver Profiles';
       case 'trips': return 'Trip Dispatcher';
       case 'maintenance': return 'Maintenance Shop';

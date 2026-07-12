@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import type { GeneralSettings } from '../../types';
+import type { GeneralSettings, User } from '../../types';
 import { storage } from '../../utils/api';
 import { Settings, ShieldCheck, Check, Info } from 'lucide-react';
+import { FleetManagerSection } from './FleetManagerSection';
 
 interface SettingsTabProps {
   onUpdate: () => void;
+  user: User;
 }
 
-export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
+export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate, user }) => {
   const [settings, setSettings] = useState<GeneralSettings>(storage.getSettings());
   const [depotName, setDepotName] = useState(settings.depotName);
   const [currency, setCurrency] = useState(settings.currency);
@@ -230,6 +232,15 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
         </div>
 
       </div>
+
+      {/* Fleet Manager Administration Section (Only visible to other Fleet Managers) */}
+      {user.role?.toLowerCase().includes('manager') && (
+        <FleetManagerSection
+          vehicles={[]}
+          userRole={user.role}
+          onUpdate={onUpdate}
+        />
+      )}
     </div>
   );
 };

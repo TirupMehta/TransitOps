@@ -1,6 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { getStoredUser, getStoredToken } from './utils/api';
+import { useAuth } from './hooks/useAuth';
 import type { User } from './types';
 
 const AppRoutes = lazy(() => import('./router/routes'));
@@ -15,12 +15,13 @@ const LoadingScreen = () => (
 );
 
 function App() {
-  const [user, setUser] = useState<User | null>(getStoredUser());
-  const [token, setToken] = useState<string | null>(getStoredToken());
+  const { user, token, mutateUser } = useAuth();
+
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     return (localStorage.getItem('theme') as 'light' | 'dark') || 'dark';
   });
 
+  // Apply theme class to <html>
   useEffect(() => {
     const root = window.document.documentElement;
     if (theme === 'dark') {
@@ -33,21 +34,18 @@ function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  // Re-sync SWR user state when the auth-changed event fires
+  // (covers token cleared from Axios 401 interceptor)
   useEffect(() => {
     const handleAuthChange = () => {
-      setUser(getStoredUser());
-      setToken(getStoredToken());
+      mutateUser(undefined, { revalidate: true });
     };
-
     window.addEventListener('auth-changed', handleAuthChange);
-    return () => {
-      window.removeEventListener('auth-changed', handleAuthChange);
-    };
-  }, []);
+    return () => window.removeEventListener('auth-changed', handleAuthChange);
+  }, [mutateUser]);
 
-  const handleLoginSuccess = (loggedInUser: User, sessionToken: string) => {
-    setUser(loggedInUser);
-    setToken(sessionToken);
+  const handleLoginSuccess = async (loggedInUser: User, _sessionToken: string) => {
+    await mutateUser(loggedInUser);
   };
 
   const toggleTheme = () => {

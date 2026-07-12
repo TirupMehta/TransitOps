@@ -139,4 +139,16 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/users_controller').default['destroy']>>>
     }
   }
+  'trpcs': {
+    methods: ["HEAD","OPTIONS","GET","POST","PUT","PATCH","DELETE"]
+    pattern: '/trpc/*'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { '*': ParamValue[] }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/trpcs_controller').default['handle']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/trpcs_controller').default['handle']>>>
+    }
+  }
 }
