@@ -4,50 +4,50 @@
   --font-family: "Inter", "Inter Fallback", sans-serif;
   --font-weight: 300;
   
-  /* Light Theme Colors */
-  --bg-app: #faf5e9;
-  --bg-card: #faf5e9;
-  --bg-inset: #faf5e9;
-  --text-primary: #2e2520;
-  --text-secondary: #625146;
-  --shadow-outset: 6px 6px 16px #e0d4bc, -6px -6px 16px #ffffff;
-  --shadow-inset: inset 4px 4px 10px #e0d4bc, inset -4px -4px 10px #ffffff;
-  --border-color: rgba(0, 0, 0, 0.04);
+  /* Light Theme Colors (Screenshot flat modern card style) */
+  --bg-app: #f4f4f6;
+  --bg-card: #ffffff;
+  --bg-inset: #f8f8fa;
+  --text-primary: #111111;
+  --text-secondary: #76767d;
+  --shadow-outset: 0 4px 20px rgba(0, 0, 0, 0.02), 0 2px 8px rgba(0, 0, 0, 0.01);
+  --shadow-inset: inset 0 2px 6px rgba(0, 0, 0, 0.02);
+  --border-color: rgba(0, 0, 0, 0.05);
   --btn-vanilla-from: #ffffff;
-  --btn-vanilla-to: #fdfbf7;
-  --btn-vanilla-hover-from: #fdfbf7;
-  --btn-vanilla-hover-to: #eedebc;
-  --btn-vanilla-text: #2e2520;
-  --btn-vanilla-shadow-active: inset 3px 3px 6px #e0d4bc, inset -3px -3px 6px #ffffff;
-  --orange-accent: #b84a14;
-  --orange-accent-hover: #d35e23;
-  --orange-accent-active: #a03f0f;
-  --orange-active-shadow: inset 4px 4px 8px #7e3009, inset -4px -4px 8px rgba(255, 255, 255, 0.15);
-  --divider-color: #eedebd;
-  --scrollbar-thumb: #eedebd;
+  --btn-vanilla-to: #fafafa;
+  --btn-vanilla-hover-from: #fafafa;
+  --btn-vanilla-hover-to: #f0f0f2;
+  --btn-vanilla-text: #111111;
+  --btn-vanilla-shadow-active: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  --orange-accent: #c82046; /* Crimson Red accents */
+  --orange-accent-hover: #d62d4a;
+  --orange-accent-active: #b01c3d;
+  --orange-active-shadow: 0 4px 12px rgba(200, 32, 70, 0.2);
+  --divider-color: #f2f2f7;
+  --scrollbar-thumb: #e5e5ea;
 }
 
 .dark {
   /* Dark Theme Colors */
-  --bg-app: #1a120b;
-  --bg-card: #251c16;
-  --bg-inset: #1e1610;
+  --bg-app: #120e0c;
+  --bg-card: #1c1512;
+  --bg-inset: #16110f;
   --text-primary: #faf5e9;
   --text-secondary: rgba(255, 255, 255, 0.6);
-  --shadow-outset: 6px 6px 16px #0c0806, -6px -6px 16px #36281f;
-  --shadow-inset: inset 4px 4px 10px #0c0806, inset -4px -4px 10px #2e2118;
-  --border-color: rgba(255, 255, 255, 0.03);
-  --btn-vanilla-from: #2b2019;
-  --btn-vanilla-to: #1e1610;
-  --btn-vanilla-hover-from: #32251c;
-  --btn-vanilla-hover-to: #251c16;
+  --shadow-outset: 0 4px 20px rgba(0, 0, 0, 0.2);
+  --shadow-inset: inset 0 2px 6px rgba(0, 0, 0, 0.3);
+  --border-color: rgba(255, 255, 255, 0.04);
+  --btn-vanilla-from: #221a15;
+  --btn-vanilla-to: #1c1512;
+  --btn-vanilla-hover-from: #2a201a;
+  --btn-vanilla-hover-to: #221a15;
   --btn-vanilla-text: rgba(255, 255, 255, 0.85);
-  --btn-vanilla-shadow-active: inset 3px 3px 6px #0c0806, inset -3px -3px 6px #2e2118;
-  --orange-accent: #d35e23;
-  --orange-accent-hover: #e46d2e;
-  --orange-accent-active: #b84a14;
-  --orange-active-shadow: inset 4px 4px 8px #6d2807, inset -4px -4px 8px rgba(255, 255, 255, 0.1);
-  --divider-color: rgba(238, 222, 189, 0.1);
+  --btn-vanilla-shadow-active: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+  --orange-accent: #e0355a;
+  --orange-accent-hover: #f04a6e;
+  --orange-accent-active: #c82046;
+  --orange-active-shadow: 0 4px 12px rgba(224, 53, 90, 0.25);
+  --divider-color: rgba(255, 255, 255, 0.06);
   --scrollbar-thumb: #32251c;
 }
 
@@ -109,7 +109,7 @@
   background: linear-gradient(135deg, var(--bg-app) 0%, var(--btn-vanilla-to) 100%) !important;
 }
 
-/* Neumorphic Outset Panel */
+/* Neumorphic Outset Panel (Adapted to clean card styles) */
 .neumorph-outset {
   background-color: var(--bg-card);
   box-shadow: var(--shadow-outset);

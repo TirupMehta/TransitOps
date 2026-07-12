@@ -77,6 +77,65 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
         </div>
       </div>
 
+      {/* Central Report Hero Card matching screenshot */}
+      <div className="rounded-3xl p-8 bg-card-theme border border-theme shadow-sm relative overflow-hidden flex flex-col md:flex-row justify-between gap-6">
+        <div className="flex-1 space-y-4">
+          <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#c82046] block">Overview Analysis</span>
+          <h2 className="text-2xl font-extrabold text-primary font-sans">Fleet Performance Metrics</h2>
+          
+          <div className="space-y-1">
+            <span className="text-xs font-semibold text-secondary block">Total Distance Covered</span>
+            <div className="flex items-baseline gap-3 flex-wrap">
+              <span className="text-4xl font-extrabold text-primary tracking-tight">224,500 km</span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 text-xs font-extrabold">
+                ▲ 12.4%
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#c82046]/10 text-[#c82046] text-xs font-extrabold">
+                Avg: 8.5 km/L
+              </span>
+            </div>
+            <span className="text-[10px] text-secondary font-bold block">vs prev. 199,730 km Jun 1 - Aug 31, 2026</span>
+          </div>
+
+          {/* Mini split bar mimicking the distribution bar in screenshot */}
+          <div className="pt-4 flex flex-wrap items-center gap-4">
+            <div className="flex items-center gap-2 text-xs font-bold text-primary">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#c82046]"></div>
+              <span>Vans (12,500 km)</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs font-bold text-primary">
+              <div className="w-2.5 h-2.5 rounded-full bg-indigo-500"></div>
+              <span>Trucks (89,000 km)</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs font-bold text-primary">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#76767d]"></div>
+              <span>Other (123,000 km)</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Small stats pill cards on the right side matching screenshot */}
+        <div className="flex flex-wrap md:flex-col justify-end gap-3 shrink-0">
+          <div className="rounded-2xl p-4 bg-app-theme/40 border border-theme flex items-center justify-between gap-4 w-44">
+            <div>
+              <span className="text-[9px] text-secondary font-extrabold uppercase tracking-wider block">Fleet Size</span>
+              <span className="text-sm font-extrabold text-primary">{vehicles.length} Active</span>
+            </div>
+            <Truck className="w-5 h-5 text-orange shrink-0" />
+          </div>
+
+          <div className="rounded-2xl p-4 bg-app-theme/40 border border-theme flex items-center justify-between gap-4 w-44">
+            <div>
+              <span className="text-[9px] text-secondary font-extrabold uppercase tracking-wider block">Utilization</span>
+              <span className="text-sm font-extrabold text-primary">{kpis.fleetUtilization}%</span>
+            </div>
+            <div className="w-5 h-5 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600 font-extrabold text-[10px]">
+              ▲
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Bento Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         

@@ -2,7 +2,7 @@ import React from 'react';
 import type { User } from '../../types';
 import { logout } from '../../utils/api';
 import { routes } from '../../routes';
-import { Truck, LogOut, ChevronLeft, ChevronRight } from 'lucide-react';
+import { LogOut, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface SidebarProps {
   activeTab: string;
@@ -23,94 +23,147 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <aside
-      className={`bg-card-theme text-secondary flex flex-col justify-between shrink-0 h-full border-r border-theme shadow-[4px_0_12px_rgba(0,0,0,0.05)] transition-all duration-300 ${
-        isCollapsed ? 'w-20' : 'w-64'
+      className={`bg-card-theme flex shrink-0 h-full border-r border-theme transition-all duration-300 ${
+        isCollapsed ? 'w-16' : 'w-64'
       }`}
     >
-      <div>
-        {/* Brand Header */}
-        <div
-          className={`flex items-center justify-between py-5 border-b border-theme bg-card-theme ${
-            isCollapsed ? 'px-4 flex-col gap-4' : 'px-6'
-          }`}
-        >
-          <div className="flex items-center gap-3">
-            <div className="bg-[#b84a14] p-2 rounded-xl text-white shadow-md shadow-[#b84a14]/15">
-              <Truck className="w-5 h-5" />
+      {/* Left Icon Strip (Narrow Panel) */}
+      <div className="w-16 flex flex-col justify-between items-center py-4 border-r border-theme bg-card-theme shrink-0 h-full">
+        <div className="flex flex-col items-center gap-6 w-full">
+          {/* Logo (Pill like Codename.com 'C') */}
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-black flex items-center justify-center text-white font-extrabold text-base shadow-sm cursor-pointer hover:opacity-90">
+              T
             </div>
-            {!isCollapsed && (
-              <div>
-                <span className="font-extrabold text-primary tracking-wide block font-sans">TransitOps</span>
-                <span className="text-[9px] text-[#87786f] font-extrabold tracking-wider">Operations Hub</span>
-              </div>
+            {isCollapsed && (
+              <button
+                onClick={() => setIsCollapsed(false)}
+                className="p-1 rounded-lg hover:bg-app-theme text-secondary cursor-pointer"
+                title="Expand Sidebar"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
             )}
           </div>
-          <button
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            className="p-1.5 rounded-lg neumorph-btn-vanilla text-secondary cursor-pointer hover:text-orange flex items-center justify-center"
-            title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
-          >
-            {isCollapsed ? <ChevronRight className="w-3.5 h-3.5" /> : <ChevronLeft className="w-3.5 h-3.5" />}
-          </button>
+
+          {/* Navigation Icons list */}
+          <nav className="flex flex-col items-center gap-3 w-full px-2">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = activeTab === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all cursor-pointer relative group ${
+                    isActive
+                      ? 'bg-orange text-white shadow-sm font-extrabold'
+                      : 'text-secondary hover:text-orange hover:bg-app-theme'
+                  }`}
+                >
+                  <Icon className="w-4.5 h-4.5" />
+                  
+                  {/* Collapsed Tooltip on Hover */}
+                  {isCollapsed && (
+                    <div className="absolute left-full ml-3 px-3 py-1.5 bg-card-theme text-primary text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 shadow-xl whitespace-nowrap z-50 border border-theme">
+                      {item.label}
+                    </div>
+                  )}
+                </button>
+              );
+            })}
+          </nav>
         </div>
 
-        {/* Navigation list */}
-        <nav className={`p-4 space-y-2 ${isCollapsed ? 'flex flex-col items-center' : ''}`}>
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = activeTab === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => setActiveTab(item.id)}
-                className={`relative group w-full flex items-center rounded-xl text-sm font-bold transition-all cursor-pointer ${
-                  isCollapsed ? 'justify-center p-3' : 'gap-3 px-4 py-2.5 text-left'
-                } ${
-                  isActive
-                    ? 'neumorph-btn-orange shadow-md'
-                    : 'text-secondary hover:text-orange hover:bg-app-theme border border-transparent'
-                }`}
-              >
-                <Icon className={`w-4.5 h-4.5 shrink-0 ${isActive ? 'text-white' : 'text-secondary group-hover:text-orange'}`} />
-                {!isCollapsed && <span>{item.label}</span>}
-
-                {/* Collapsed Tooltip on Hover */}
-                {isCollapsed && (
-                  <div className="absolute left-full ml-3 px-3 py-1.5 bg-card-theme text-primary text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 shadow-xl whitespace-nowrap z-50 border border-theme">
-                    {item.label}
-                  </div>
-                )}
-              </button>
-            );
-          })}
-        </nav>
-      </div>
-
-      {/* User profile & Logout footer */}
-      <div className="p-4 border-t border-theme bg-card-theme space-y-3">
-        <div className={`flex items-center gap-3 py-1 ${isCollapsed ? 'justify-center px-0' : 'px-2'}`}>
-          <div className="w-9 h-9 rounded-xl text-orange neumorph-inset flex items-center justify-center font-extrabold text-sm shrink-0">
+        {/* User initials & Settings */}
+        <div className="flex flex-col items-center gap-4 w-full">
+          <button
+            onClick={() => logout()}
+            className="w-9 h-9 rounded-xl flex items-center justify-center text-secondary hover:text-rose-500 hover:bg-rose-500/5 transition-all cursor-pointer"
+            title="Sign Out"
+          >
+            <LogOut className="w-4 h-4" />
+          </button>
+          
+          <div className="w-9 h-9 rounded-full text-orange neumorph-inset flex items-center justify-center font-extrabold text-[10px] shrink-0 cursor-default uppercase">
             {user.initials}
           </div>
-          {!isCollapsed && (
-            <div className="overflow-hidden">
-              <span className="block text-sm font-extrabold text-primary truncate leading-tight">{user.fullName || user.email}</span>
-              <span className="block text-[9px] text-[#87786f] font-extrabold tracking-wider leading-none mt-1">{user.role || 'User'}</span>
-            </div>
-          )}
         </div>
-
-        <button
-          onClick={() => logout()}
-          className={`w-full flex items-center gap-2.5 px-3 py-2 hover:bg-rose-500/5 border border-transparent hover:border-[#eccbc1]/20 hover:text-red-500 rounded-xl text-xs font-extrabold transition-all text-secondary cursor-pointer ${
-            isCollapsed ? 'justify-center' : ''
-          }`}
-          title={isCollapsed ? 'Sign Out' : undefined}
-        >
-          <LogOut className="w-4 h-4 shrink-0" />
-          {!isCollapsed && <span>Sign Out</span>}
-        </button>
       </div>
+
+      {/* Right Content Panel (Visible when expanded) */}
+      {!isCollapsed && (
+        <div className="flex-1 flex flex-col justify-between p-4 overflow-y-auto min-w-0">
+          <div>
+            {/* Header: Title */}
+            <div className="flex items-center justify-between pb-4 mb-4 border-b border-theme">
+              <div>
+                <span className="font-extrabold text-primary text-sm tracking-wide block font-sans">TransitOps</span>
+                <span className="text-[9px] text-secondary font-bold tracking-wider uppercase mt-0.5 block">Operations Hub</span>
+              </div>
+              <button
+                onClick={() => setIsCollapsed(true)}
+                className="p-1 rounded-lg hover:bg-app-theme text-secondary cursor-pointer"
+                title="Collapse Sidebar"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Navigation Sections */}
+            <div className="space-y-6">
+              <div>
+                <span className="text-[9px] font-extrabold uppercase tracking-widest text-secondary/40 px-2 block mb-2">Starred</span>
+                <div className="space-y-1">
+                  {navItems.slice(0, 3).map((item) => (
+                    <button
+                      key={`star-${item.id}`}
+                      onClick={() => setActiveTab(item.id)}
+                      className={`w-full text-left px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                        activeTab === item.id
+                          ? 'text-orange bg-app-theme font-extrabold'
+                          : 'text-secondary hover:text-orange hover:bg-app-theme/50'
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <span className="text-[9px] font-extrabold uppercase tracking-widest text-secondary/40 px-2 block mb-2">Registry & Logs</span>
+                <div className="space-y-1">
+                  {navItems.map((item) => (
+                    <button
+                      key={`list-${item.id}`}
+                      onClick={() => setActiveTab(item.id)}
+                      className={`w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                        activeTab === item.id
+                          ? 'text-orange bg-app-theme font-extrabold'
+                          : 'text-secondary hover:text-orange hover:bg-app-theme/50'
+                      }`}
+                    >
+                      <span className="truncate mr-2">{item.label}</span>
+                      {item.id === 'vehicles' && <span className="px-1.5 py-0.5 rounded-md bg-[#c82046]/10 text-[#c82046] text-[8px] font-extrabold shrink-0">Active</span>}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* User profile footer */}
+          <div className="border-t border-theme pt-3 mt-4">
+            <div className="flex items-center gap-2 px-1">
+              <div className="overflow-hidden">
+                <span className="block text-xs font-extrabold text-primary truncate leading-tight">{user.fullName || user.email}</span>
+                <span className="block text-[8px] text-secondary font-extrabold tracking-wider uppercase mt-1">{user.role || 'User'}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </aside>
   );
 };
