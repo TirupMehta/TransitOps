@@ -59,7 +59,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
           <Truck className="w-9 h-9" />
         </div>
         <h1 className="text-2xl font-extrabold text-primary tracking-tight mb-1 font-sans">TransitOps</h1>
-        <p className="text-xs text-secondary font-bold uppercase tracking-wider">Transport Operations Platform</p>
+        <p className="text-xs text-secondary font-bold tracking-wider">Transport Operations Platform</p>
       </div>
 
       {/* Error Alert Box */}
@@ -76,7 +76,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
       {/* Inputs and Submit Form */}
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-2 px-1">
+          <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-2 px-1">
             Email Address
           </label>
           <div className="relative rounded-2xl neumorph-inset group border border-slate-200/5">
@@ -93,7 +93,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
         </div>
 
         <div>
-          <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-2 px-1">
+          <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-2 px-1">
             Password
           </label>
           <div className="relative rounded-2xl neumorph-inset group border border-slate-200/5">
@@ -137,7 +137,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-theme"></div>
         </div>
-        <span className="relative bg-app-theme px-3 text-[10px] font-extrabold uppercase tracking-widest text-secondary">
+        <span className="relative bg-app-theme px-3 text-[10px] font-extrabold tracking-widest text-secondary">
           Quick Demo Access
         </span>
       </div>

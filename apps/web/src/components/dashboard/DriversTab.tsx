@@ -66,7 +66,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers }) => {
       <div className="rounded-2xl overflow-hidden neumorph-outset">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-transparent border-b border-theme text-secondary text-xs font-extrabold uppercase tracking-wider">
+            <tr className="bg-transparent border-b border-theme text-secondary text-xs font-extrabold tracking-wider">
               <th className="px-6 py-4">Driver Name</th>
               <th className="px-6 py-4">License Category / Expiry</th>
               <th className="px-6 py-4">Contact Number</th>

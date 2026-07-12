@@ -74,7 +74,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({ trips, vehicles, drivers }) 
       <div className="rounded-2xl overflow-hidden neumorph-outset">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-transparent border-b border-theme text-secondary text-xs font-extrabold uppercase tracking-wider">
+            <tr className="bg-transparent border-b border-theme text-secondary text-xs font-extrabold tracking-wider">
               <th className="px-6 py-4">Route Info</th>
               <th className="px-6 py-4">Vehicle</th>
               <th className="px-6 py-4">Driver</th>

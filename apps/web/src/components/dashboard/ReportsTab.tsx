@@ -16,9 +16,9 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({
     <div className="space-y-8">
       <div className="p-6 rounded-3xl neumorph-outset flex justify-between items-center">
         <div>
-          <h3 className="font-extrabold text-primary text-base uppercase tracking-wider">Financial Performance & Fleet ROI</h3>
+          <h3 className="font-extrabold text-primary text-base tracking-wider">Financial Performance & Fleet ROI</h3>
           <p className="text-xs text-secondary font-bold mt-2">
-            Calculated as: <code className="text-orange bg-app-theme border border-theme px-2.5 py-1 rounded-xl font-bold font-mono text-[10px] uppercase tracking-wider">[ Revenue - (Maintenance + Fuel) ] / Acquisition Cost</code>
+            Calculated as: <code className="text-orange bg-app-theme border border-theme px-2.5 py-1 rounded-xl font-bold font-mono text-[10px] tracking-wider">[ Revenue - (Maintenance + Fuel) ] / Acquisition Cost</code>
           </p>
         </div>
       </div>

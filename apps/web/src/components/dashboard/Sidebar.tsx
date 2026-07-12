@@ -41,7 +41,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             {!isCollapsed && (
               <div>
                 <span className="font-extrabold text-primary tracking-wide block font-sans">TransitOps</span>
-                <span className="text-[9px] text-[#87786f] font-extrabold tracking-wider uppercase">Operations Hub</span>
+                <span className="text-[9px] text-[#87786f] font-extrabold tracking-wider">Operations Hub</span>
               </div>
             )}
           </div>
@@ -95,7 +95,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {!isCollapsed && (
             <div className="overflow-hidden">
               <span className="block text-sm font-extrabold text-primary truncate leading-tight">{user.fullName || user.email}</span>
-              <span className="block text-[9px] text-[#87786f] font-extrabold tracking-wider uppercase leading-none mt-1">{user.role || 'User'}</span>
+              <span className="block text-[9px] text-[#87786f] font-extrabold tracking-wider leading-none mt-1">{user.role || 'User'}</span>
             </div>
           )}
         </div>

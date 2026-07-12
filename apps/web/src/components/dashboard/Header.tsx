@@ -26,9 +26,9 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, user, theme, onToggle
   return (
     <header className="h-16 border-b border-theme bg-card-theme flex items-center justify-between px-8 shrink-0">
       <div className="flex items-center gap-2">
-        <span className="text-secondary text-xs font-extrabold tracking-wider uppercase">TransitOps</span>
+        <span className="text-secondary text-xs font-extrabold tracking-wider">TransitOps</span>
         <span className="text-secondary/20 text-lg font-light">/</span>
-        <h2 className="text-sm font-extrabold text-primary uppercase tracking-widest font-sans">
+        <h2 className="text-sm font-extrabold text-primary tracking-widest font-sans">
           {getBreadcrumbTitle(activeTab)}
         </h2>
       </div>
@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, user, theme, onToggle
         </button>
 
         {/* User Role Tag */}
-        <span className="neumorph-inset text-orange px-3.5 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-widest border border-theme">
+        <span className="neumorph-inset text-orange px-3.5 py-1.5 rounded-full text-[10px] font-extrabold tracking-widest border border-theme">
           {user.role}
         </span>
       </div>

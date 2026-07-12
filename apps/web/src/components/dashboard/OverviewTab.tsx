@@ -33,7 +33,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
       {/* Bento Header: Filters (Outset Neumorphic) */}
       <div className="flex flex-wrap items-center justify-between gap-4 p-5 rounded-3xl neumorph-outset">
         <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-2 text-secondary text-xs font-extrabold uppercase tracking-wider">
+          <div className="flex items-center gap-2 text-secondary text-xs font-extrabold tracking-wider">
             <Filter className="w-4 h-4 text-orange" />
             <span>Search Filters</span>
           </div>
@@ -121,7 +121,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
         <div className="md:col-span-2 rounded-3xl p-6 neumorph-outset flex flex-col justify-between">
           <div>
             <div className="flex justify-between items-center mb-6">
-              <h3 className="font-extrabold text-primary text-base uppercase tracking-wider">Active Dispatched Trips</h3>
+              <h3 className="font-extrabold text-primary text-base tracking-wider">Active Dispatched Trips</h3>
               <button
                 onClick={() => setActiveTab('trips')}
                 className="text-xs font-bold text-orange hover:text-orange/80 flex items-center gap-1 cursor-pointer transition-all hover:translate-x-0.5"
@@ -142,13 +142,13 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                   return (
                     <div key={trip.id} className="flex justify-between items-center p-4 rounded-2xl neumorph-btn-vanilla hover:scale-[1.005] transition-all">
                       <div>
-                        <span className="text-[9px] font-extrabold text-orange uppercase tracking-widest block">Route Path</span>
+                        <span className="text-[9px] font-extrabold text-orange tracking-widest block">Route Path</span>
                         <div className="font-extrabold text-primary text-sm mt-0.5">{trip.source} → {trip.destination}</div>
                         <div className="text-xs text-secondary font-semibold mt-1">
                           Driver: <span className="text-primary font-bold">{d?.name}</span> | Vehicle: <span className="text-primary font-bold">{v?.registrationNumber}</span>
                         </div>
                       </div>
-                      <span className="text-[10px] font-extrabold text-blue-400 bg-[#2b5058]/20 border border-[#2b5058]/30 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                      <span className="text-[10px] font-extrabold text-blue-400 bg-[#2b5058]/20 border border-[#2b5058]/30 px-2.5 py-1 rounded-full tracking-wider">
                         On Road
                       </span>
                     </div>
@@ -163,7 +163,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
         <div className="md:col-span-2 rounded-3xl p-6 neumorph-outset flex flex-col justify-between">
           <div>
             <div className="flex justify-between items-center mb-6">
-              <h3 className="font-extrabold text-primary text-base uppercase tracking-wider">Vehicles In Workshop</h3>
+              <h3 className="font-extrabold text-primary text-base tracking-wider">Vehicles In Workshop</h3>
               <button
                 onClick={() => setActiveTab('maintenance')}
                 className="text-xs font-bold text-orange hover:text-orange/80 flex items-center gap-1 cursor-pointer transition-all hover:translate-x-0.5"
@@ -183,11 +183,11 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                   return (
                     <div key={log.id} className="flex justify-between items-center p-4 rounded-2xl neumorph-btn-vanilla hover:scale-[1.005] transition-all">
                       <div>
-                        <span className="text-[9px] font-extrabold text-[#8a4f10] uppercase tracking-widest block">Service Job</span>
+                        <span className="text-[9px] font-extrabold text-[#8a4f10] tracking-widest block">Service Job</span>
                         <div className="font-extrabold text-primary text-sm mt-0.5">{v?.registrationNumber} ({v?.model})</div>
                         <div className="text-xs text-secondary font-semibold mt-1">Issue: <span className="text-primary font-bold">{log.description}</span></div>
                       </div>
-                      <span className="text-[10px] font-extrabold text-amber-400 bg-[#8a4f10]/20 border border-[#8a4f10]/30 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                      <span className="text-[10px] font-extrabold text-amber-400 bg-[#8a4f10]/20 border border-[#8a4f10]/30 px-2.5 py-1 rounded-full tracking-wider">
                         In Shop
                       </span>
                     </div>
