@@ -108,86 +108,75 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
         </div>
       </div>
 
-      {/* Quick Action Launchpad (SaaS-standard intuitive navigation helper) */}
-      {(() => {
-        const quickActions = [
-          {
-            id: 'trips',
-            label: 'Dispatch Trip',
-            desc: 'Start a new delivery',
-            icon: Navigation,
-            bgClass: 'neumorph-btn-orange text-white hover:scale-[1.01]',
-            iconBg: 'bg-white/20',
-            iconColor: 'text-white'
-          },
-          {
-            id: 'maintenance',
-            label: 'Log Maintenance',
-            desc: 'Send vehicle to shop',
-            icon: Wrench,
-            bgClass: 'neumorph-btn-vanilla text-primary shadow-sm hover:scale-[1.01]',
-            iconBg: 'bg-orange/10',
-            iconColor: 'text-orange'
-          },
-          {
-            id: 'expenses',
-            label: 'Log Fuel & Exp.',
-            desc: 'Record costs & liters',
-            icon: Filter,
-            bgClass: 'neumorph-btn-vanilla text-primary shadow-sm hover:scale-[1.01]',
-            iconBg: 'bg-amber-500/10',
-            iconColor: 'text-amber-600'
-          },
-          {
-            id: 'fleet',
-            label: 'Register Vehicle',
-            desc: 'Add truck or van',
-            icon: Truck,
-            bgClass: 'neumorph-btn-vanilla text-primary shadow-sm hover:scale-[1.01]',
-            iconBg: 'bg-blue-500/10',
-            iconColor: 'text-blue-500'
-          }
-        ].filter(action => isTabAllowed(action.id, userRole));
+      {/* Central Report Hero Card matching screenshot */}
+      <div className="rounded-3xl p-8 bg-card-theme border border-theme shadow-sm relative overflow-hidden flex flex-col md:flex-row justify-between gap-6">
+        <div className="flex-1 space-y-4">
+          <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#c82046] block">Overview Analysis</span>
+          <h2 className="text-2xl font-extrabold text-primary font-sans">Fleet Performance Metrics</h2>
+          
+          <div className="space-y-1">
+            <span className="text-xs font-semibold text-secondary block">Total Distance Covered</span>
+            <div className="flex items-baseline gap-3 flex-wrap">
+              <span className="text-4xl font-extrabold text-primary tracking-tight">224,500 km</span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 text-xs font-extrabold">
+                ▲ 12.4%
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#c82046]/10 text-[#c82046] text-xs font-extrabold">
+                Avg: 8.5 km/L
+              </span>
+            </div>
+            <span className="text-[10px] text-secondary font-bold block">vs prev. 199,730 km Jun 1 - Aug 31, 2026</span>
+          </div>
 
-        if (quickActions.length === 0) return null;
-
-        return (
-          <div className="rounded-3xl p-6 neumorph-outset space-y-4">
-            <h3 className="font-extrabold text-primary text-sm tracking-wider flex items-center gap-1.5">
-              <TrendingUp className="w-4.5 h-4.5 text-orange" /> Quick Action Launchpad
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-              {quickActions.map((action) => {
-                const Icon = action.icon;
-                return (
-                  <button
-                    key={action.id}
-                    onClick={() => setActiveTab(action.id)}
-                    className={`flex items-center gap-3.5 p-4 rounded-2xl transition-all cursor-pointer ${action.bgClass}`}
-                  >
-                    <div className={`p-2.5 rounded-xl ${action.iconBg} ${action.iconColor}`}>
-                      <Icon className="w-4.5 h-4.5 shrink-0" />
-                    </div>
-                    <div className="text-left overflow-hidden">
-                      <span className="block font-bold text-xs truncate leading-tight">{action.label}</span>
-                      <span className="block text-[10px] opacity-75 font-semibold truncate mt-0.5">{action.desc}</span>
-                    </div>
-                  </button>
-                );
-              })}
+          {/* Mini split bar mimicking the distribution bar in screenshot */}
+          <div className="pt-4 flex flex-wrap items-center gap-4">
+            <div className="flex items-center gap-2 text-xs font-bold text-primary">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#c82046]"></div>
+              <span>Vans (12,500 km)</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs font-bold text-primary">
+              <div className="w-2.5 h-2.5 rounded-full bg-indigo-500"></div>
+              <span>Trucks (89,000 km)</span>
+            </div>
+            <div className="flex items-center gap-2 text-xs font-bold text-primary">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#76767d]"></div>
+              <span>Other (123,000 km)</span>
             </div>
           </div>
-        );
-      })()}
+        </div>
 
-      {/* KPI Cards Row (7 Cards exactly matching Screen 1) */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+        {/* Small stats pill cards on the right side matching screenshot */}
+        <div className="flex flex-wrap md:flex-col justify-end gap-3 shrink-0">
+          <div className="rounded-2xl p-4 bg-app-theme/40 border border-theme flex items-center justify-between gap-4 w-44">
+            <div>
+              <span className="text-[9px] text-secondary font-extrabold uppercase tracking-wider block">Fleet Size</span>
+              <span className="text-sm font-extrabold text-primary">{vehicles.length} Active</span>
+            </div>
+            <Truck className="w-5 h-5 text-orange shrink-0" />
+          </div>
+
+          <div className="rounded-2xl p-4 bg-app-theme/40 border border-theme flex items-center justify-between gap-4 w-44">
+            <div>
+              <span className="text-[9px] text-secondary font-extrabold uppercase tracking-wider block">Utilization</span>
+              <span className="text-sm font-extrabold text-primary">{kpis.fleetUtilization}%</span>
+            </div>
+            <div className="w-5 h-5 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600 font-extrabold text-[10px]">
+              ▲
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bento Grid Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        
+        {/* KPI 1: Active Vehicles */}
         <StatCard
           title="Active Vehicles"
-          value={String(kpis.activeVehicles).padStart(2, '0')}
-          subtitle="On Road"
-          icon={<Truck className="w-3.5 h-3.5 text-orange" />}
-          iconBg="bg-orange/10"
+          value={kpis.activeVehicles}
+          subtitle="Fleet currently dispatched"
+          icon={<Truck className="w-5 h-5 text-orange" />}
+          iconBg="bg-orange-light"
         />
         <StatCard
           title="Available Fleet"

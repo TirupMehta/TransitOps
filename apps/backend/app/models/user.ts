@@ -24,7 +24,7 @@ export default class User extends compose(UserSchema, AuthFinder) {
   declare id: number
 
   @column()
-  declare userType:'financial_analyst' | 'fleet_manager' | 'driver'| 'safety_officer' 
+  declare userType: 'financial_analyst' | 'fleet_manager' | 'driver' | 'safety_officer'
 
   @column()
   declare fullName: string | null
@@ -53,18 +53,18 @@ export default class User extends compose(UserSchema, AuthFinder) {
   @column()
   declare safetyOfficerId: number | null
 
-   @belongsTo(() => Driver, )
-    declare driver: BelongsTo<typeof Driver>
+  @belongsTo(() => Driver,)
+  declare driver: BelongsTo<typeof Driver>
 
-    @belongsTo(() => FinancialAnalyst, {
-      foreignKey: 'financialAnalystId',
-    })
-    declare financialAnalyst: BelongsTo<typeof FinancialAnalyst>
+  @belongsTo(() => FinancialAnalyst, {
+    foreignKey: 'financialAnalystId',
+  })
+  declare financialAnalyst: BelongsTo<typeof FinancialAnalyst>
 
-    @belongsTo(() => FleetManager, {
-      foreignKey: 'fleetManagerId',
-    })
-    declare fleetManager: BelongsTo<typeof FleetManager>
+  @belongsTo(() => FleetManager, {
+    foreignKey: 'fleetManagerId',
+  })
+  declare fleetManager: BelongsTo<typeof FleetManager>
   @manyToMany(() => Role, {
     pivotTable: USER_ROLES,
     pivotForeignKey: 'user_id',
@@ -107,8 +107,8 @@ export default class User extends compose(UserSchema, AuthFinder) {
       return true
     }
 
-    return user.userRoles.some((role) =>
-      role.permissions.some((permission) => permission.permissionKey === permissionKey)
+    return user.userRoles.some(role =>
+      role.permissions.some(permission => permission.permissionKey === permissionKey)
     )
   }
 }

@@ -1,6 +1,6 @@
-import { BaseModel, column, scope } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeSave, column, scope } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
-
+import hash from '@adonisjs/core/services/hash'
 export default class FleetManager extends BaseModel {
   static softDeletes = scope((query) => {
     query.whereNull('deleted_at')
@@ -43,4 +43,15 @@ export default class FleetManager extends BaseModel {
 
   @column.dateTime()
   declare deletedAt: DateTime
+
+   @beforeSave()
+   public static async hashPassword( fleetManager: FleetManager) {
+    if (fleetManager.$dirty.password) {
+      fleetManager.password = await hash.make(fleetManager.password) 
+    }
+  }
+
+  async verifyPassword(password: string): Promise<boolean> {
+    return await hash.verify(this.password, password) 
+  }
 }

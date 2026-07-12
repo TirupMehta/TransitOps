@@ -1,7 +1,9 @@
-import { BaseModel, column } from "@adonisjs/lucid/orm";
+import { BaseModel, beforeSave, column } from "@adonisjs/lucid/orm";
 import { DateTime } from "luxon";
-
+import hash from '@adonisjs/core/services/hash'
 export default class FinancialAnalyst extends BaseModel{
+    public static table = 'financial_analists'
+
     @column({ isPrimary: true })
     declare id: number
 
@@ -43,4 +45,15 @@ export default class FinancialAnalyst extends BaseModel{
 
     @column.dateTime()
     declare deletedAt: DateTime
+
+    @beforeSave()
+   public static async hashPassword( financialAnalyst: FinancialAnalyst) {
+    if (financialAnalyst.$dirty.financialAnalistPassword) {
+      financialAnalyst.financialAnalistPassword = await hash.make(financialAnalyst.financialAnalistPassword) 
+    }
+  }
+
+  async verifyPassword(password: string): Promise<boolean> {
+    return await hash.verify(this.financialAnalistPassword, password) 
+  }
 }

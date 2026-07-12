@@ -4,53 +4,53 @@
   --font-family: "Outfit", "Inter", sans-serif;
   --font-weight: 400;
   
-  /* Light Theme Colors */
-  --bg-app: #f3ebd6; /* Soft warm gold-sand backdrop */
-  --bg-card: #faf6ee; /* Soft vanilla card background */
-  --bg-inset: #e9dfc6; /* Warm sand recessed shade */
-  --text-primary: #2d231e; /* Soft deep brown text (softer than black) */
-  --text-secondary: #5e4e44; /* Warm chocolate-gray secondary text */
-  --shadow-outset: 5px 5px 15px #e2d7be, -5px -5px 15px #ffffff; /* Smooth outset shadow highlights */
-  --shadow-inset: inset 3px 3px 8px #e2d7be, inset -3px -3px 8px #ffffff;
-  --border-color: rgba(0, 0, 0, 0.02);
+  /* Light Theme Colors (Screenshot flat modern card style) */
+  --bg-app: #f4f4f6;
+  --bg-card: #ffffff;
+  --bg-inset: #f8f8fa;
+  --text-primary: #111111;
+  --text-secondary: #76767d;
+  --shadow-outset: 0 4px 20px rgba(0, 0, 0, 0.02), 0 2px 8px rgba(0, 0, 0, 0.01);
+  --shadow-inset: inset 0 2px 6px rgba(0, 0, 0, 0.02);
+  --border-color: rgba(0, 0, 0, 0.05);
   --btn-vanilla-from: #ffffff;
-  --btn-vanilla-to: #faf7f2;
-  --btn-vanilla-hover-from: #faf7f2;
-  --btn-vanilla-hover-to: #efe6d4;
-  --btn-vanilla-text: #2d231e;
-  --btn-vanilla-shadow-active: inset 2px 2px 5px #e2d7be, inset -2px -2px 5px #ffffff;
-  --orange-accent: #b04612; /* Slightly softer burnt copper orange */
-  --orange-accent-hover: #c95217;
-  --orange-accent-active: #963a0e;
-  --orange-active-shadow: inset 3px 3px 6px #7a2d07, inset -3px -3px 6px rgba(255, 255, 255, 0.15);
-  --divider-color: #e5dac2;
-  --scrollbar-thumb: #eedebd;
-  --glass-bg: rgba(250, 246, 238, 0.5);
+  --btn-vanilla-to: #fafafa;
+  --btn-vanilla-hover-from: #fafafa;
+  --btn-vanilla-hover-to: #f0f0f2;
+  --btn-vanilla-text: #111111;
+  --btn-vanilla-shadow-active: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  --orange-accent: #c82046; /* Crimson Red accents */
+  --orange-accent-hover: #d62d4a;
+  --orange-accent-active: #b01c3d;
+  --orange-active-shadow: 0 4px 12px rgba(200, 32, 70, 0.2);
+  --divider-color: #f2f2f7;
+  --scrollbar-thumb: #e5e5ea;
+  --orange-accent-light: rgba(200, 32, 70, 0.1);
 }
 
 .dark {
   /* Dark Theme Colors */
-  --bg-app: #131215; /* Soft dark charcoal with a tiny warm undertone */
-  --bg-card: #1b1a1f; /* Softer card charcoal background */
-  --bg-inset: #0e0d0f; /* Recessed shade */
-  --text-primary: #d6d2cc; /* Very soft light gray-cream */
-  --text-secondary: #8c8884; /* Soft neutral gray */
-  --shadow-outset: 5px 5px 14px rgba(0, 0, 0, 0.45), -5px -5px 14px rgba(255, 255, 255, 0.015);
-  --shadow-inset: inset 3px 3px 8px rgba(0, 0, 0, 0.55), inset -3px -3px 8px rgba(255, 255, 255, 0.01);
-  --border-color: rgba(255, 255, 255, 0.02);
-  --btn-vanilla-from: #222126;
-  --btn-vanilla-to: #18171b;
-  --btn-vanilla-hover-from: #2c2a30;
-  --btn-vanilla-hover-to: #1f1e22;
-  --btn-vanilla-text: #d6d2cc;
-  --btn-vanilla-shadow-active: inset 2px 2px 5px rgba(0,0,0,0.5), inset -2px -2px 5px rgba(255,255,255,0.01);
-  --orange-accent: #c05c2e; /* Soft terracotta copper */
-  --orange-accent-hover: #ce6a3a;
-  --orange-accent-active: #a64c20;
-  --orange-active-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.4), inset -3px -3px 6px rgba(255, 255, 255, 0.05);
-  --divider-color: rgba(255, 255, 255, 0.04);
-  --scrollbar-thumb: #252429;
-  --glass-bg: rgba(19, 18, 21, 0.7);
+  --bg-app: #120e0c;
+  --bg-card: #1c1512;
+  --bg-inset: #16110f;
+  --text-primary: #faf5e9;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --shadow-outset: 0 4px 20px rgba(0, 0, 0, 0.2);
+  --shadow-inset: inset 0 2px 6px rgba(0, 0, 0, 0.3);
+  --border-color: rgba(255, 255, 255, 0.04);
+  --btn-vanilla-from: #221a15;
+  --btn-vanilla-to: #1c1512;
+  --btn-vanilla-hover-from: #2a201a;
+  --btn-vanilla-hover-to: #221a15;
+  --btn-vanilla-text: rgba(255, 255, 255, 0.85);
+  --btn-vanilla-shadow-active: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+  --orange-accent: #e0355a;
+  --orange-accent-hover: #f04a6e;
+  --orange-accent-active: #c82046;
+  --orange-active-shadow: 0 4px 12px rgba(224, 53, 90, 0.25);
+  --divider-color: rgba(255, 255, 255, 0.06);
+  --scrollbar-thumb: #32251c;
+  --orange-accent-light: rgba(224, 53, 90, 0.15);
 }
 
 @layer base {
@@ -85,6 +85,10 @@
 
 .bg-orange {
   background-color: var(--orange-accent) !important;
+}
+
+.bg-orange-light {
+  background-color: var(--orange-accent-light) !important;
 }
 
 .bg-app-theme {
@@ -125,7 +129,7 @@
   background: linear-gradient(135deg, var(--bg-app) 0%, var(--btn-vanilla-to) 100%) !important;
 }
 
-/* Neumorphic Outset Panel */
+/* Neumorphic Outset Panel (Adapted to clean card styles) */
 .neumorph-outset {
   background-color: var(--bg-card);
   box-shadow: var(--shadow-outset);

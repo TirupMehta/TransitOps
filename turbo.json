@@ -15,7 +15,8 @@
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "env": ["NODE_ENV", "HOST", "PORT", "APP_KEY", "DB_HOST", "DB_PORT", "DB_USER", "DB_PASSWORD", "DB_DATABASE", "LOG_LEVEL", "ACCESS_TOKEN_EXPIRES_IN"]
     },
     "test": {
       "dependsOn": ["build"],
