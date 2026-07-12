@@ -105,13 +105,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user }) => {
   };
 
   return (
-    <div className="flex h-screen bg-slate-50 overflow-hidden font-sans">
+    <div className="flex h-screen bg-[#1a120b] overflow-hidden font-sans">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} user={user} />
 
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <Header activeTab={activeTab} user={user} />
 
-        <div className="flex-1 overflow-y-auto p-8 relative bg-slate-50/50">
+        <div className="flex-1 overflow-y-auto p-8 relative bg-[#1a120b]/30">
           {renderActiveTab()}
         </div>
       </div>

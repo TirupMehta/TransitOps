@@ -2,69 +2,81 @@
 
 @layer base {
   body {
-    background-color: #faf5e9;
-    color: #2e2520;
-    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    background-color: #1a120b;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: "Inter", "Inter Fallback", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 28px;
+  }
+  
+  /* Ensure all headings, text and sub-elements respect the Inter 300 style */
+  h1, h2, h3, h4, h5, h6, p, span, button, input, select, td, th, label, div {
+    font-family: "Inter", "Inter Fallback", sans-serif !important;
+    font-weight: 300 !important;
   }
 }
 
-/* Neumorphic Outset Panel */
+/* Dark Neumorphic Outset Panel */
 .neumorph-outset {
-  background-color: #faf5e9;
-  box-shadow: 6px 6px 16px #e0d4bc, -6px -6px 16px #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: #251c16;
+  box-shadow: 6px 6px 16px #0c0806, -6px -6px 16px #36281f;
+  border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
-/* Neumorphic Inset Panel (pressed inputs or fields) */
+/* Dark Neumorphic Inset Panel (pressed inputs or fields) */
 .neumorph-inset {
-  background-color: #faf5e9;
-  box-shadow: inset 4px 4px 10px #e0d4bc, inset -4px -4px 10px #ffffff;
+  background-color: #1e1610;
+  box-shadow: inset 4px 4px 10px #0c0806, inset -4px -4px 10px #2e2118;
+  border: 1px solid rgba(255, 255, 255, 0.02);
 }
 
-/* Skeuomorphic clicky vanilla buttons */
+/* Clicky Vanilla Buttons in Dark Mode */
 .neumorph-btn-vanilla {
-  background: linear-gradient(145deg, #ffffff, #fdfbf7);
-  box-shadow: 4px 4px 8px #e2dac6, -4px -4px 8px #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  color: #2e2520;
+  background: linear-gradient(145deg, #2b2019, #1e1610);
+  box-shadow: 4px 4px 8px #0c0806, -4px -4px 8px #32251c;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.85);
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .neumorph-btn-vanilla:hover {
-  background: linear-gradient(145deg, #fdfbf7, #f6ebd4);
+  background: linear-gradient(145deg, #32251c, #251c16);
+  color: #faf5e9;
 }
 .neumorph-btn-vanilla:active {
-  box-shadow: inset 3px 3px 6px #e0d4bc, inset -3px -3px 6px #ffffff;
+  box-shadow: inset 3px 3px 6px #0c0806, inset -3px -3px 6px #2e2118;
 }
 
-/* Skeuomorphic clicky Burnt Orange buttons */
+/* Clicky Burnt Orange Buttons in Dark Mode */
 .neumorph-btn-orange {
-  background: linear-gradient(145deg, #e7733a, #b84a14);
-  box-shadow: 4px 4px 10px #e2dac6, -4px -4px 10px #ffffff;
+  background: linear-gradient(145deg, #d35e23, #b84a14);
+  box-shadow: 4px 4px 10px #0c0806, -4px -4px 10px #32251c;
   color: #ffffff;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .neumorph-btn-orange:hover {
-  background: linear-gradient(145deg, #f3844d, #c55118);
+  background: linear-gradient(145deg, #e46d2e, #c55118);
 }
 .neumorph-btn-orange:active {
   background: #b84a14;
-  box-shadow: inset 4px 4px 8px #7e3009, inset -4px -4px 8px rgba(255, 255, 255, 0.15);
+  box-shadow: inset 4px 4px 8px #6d2807, inset -4px -4px 8px rgba(255, 255, 255, 0.1);
 }
 
-/* Custom warm scrollbar */
+/* Scrollbar for dark warm theme */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #faf5e9;
+  background: #1a120b;
 }
 ::-webkit-scrollbar-thumb {
-  background: #eedebd;
+  background: #2b2019;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #d5c39d;
+  background: #3a2b22;
 }
