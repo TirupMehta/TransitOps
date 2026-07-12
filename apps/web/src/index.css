@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --font-family: "Inter", "Inter Fallback", sans-serif;
-  --font-weight: 300;
+  --font-family: "Outfit", "Inter", sans-serif;
+  --font-weight: 400;
   
   /* Light Theme Colors */
   --bg-app: #faf5e9;
   --bg-card: #faf5e9;
   --bg-inset: #faf5e9;
-  --text-primary: #2e2520;
-  --text-secondary: #625146;
+  --text-primary: #211a16;
+  --text-secondary: #4c3d34;
   --shadow-outset: 6px 6px 16px #e0d4bc, -6px -6px 16px #ffffff;
   --shadow-inset: inset 4px 4px 10px #e0d4bc, inset -4px -4px 10px #ffffff;
   --border-color: rgba(0, 0, 0, 0.04);
@@ -17,7 +17,7 @@
   --btn-vanilla-to: #fdfbf7;
   --btn-vanilla-hover-from: #fdfbf7;
   --btn-vanilla-hover-to: #eedebc;
-  --btn-vanilla-text: #2e2520;
+  --btn-vanilla-text: #211a16;
   --btn-vanilla-shadow-active: inset 3px 3px 6px #e0d4bc, inset -3px -3px 6px #ffffff;
   --orange-accent: #b84a14;
   --orange-accent-hover: #d35e23;
@@ -29,26 +29,26 @@
 
 .dark {
   /* Dark Theme Colors */
-  --bg-app: #1a120b;
-  --bg-card: #251c16;
-  --bg-inset: #1e1610;
+  --bg-app: #150e0a;
+  --bg-card: #201712;
+  --bg-inset: #1a120e;
   --text-primary: #faf5e9;
-  --text-secondary: rgba(255, 255, 255, 0.6);
-  --shadow-outset: 6px 6px 16px #0c0806, -6px -6px 16px #36281f;
-  --shadow-inset: inset 4px 4px 10px #0c0806, inset -4px -4px 10px #2e2118;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --shadow-outset: 6px 6px 16px #080504, -6px -6px 16px #2e211a;
+  --shadow-inset: inset 4px 4px 10px #080504, inset -4px -4px 10px #271c15;
   --border-color: rgba(255, 255, 255, 0.03);
-  --btn-vanilla-from: #2b2019;
-  --btn-vanilla-to: #1e1610;
-  --btn-vanilla-hover-from: #32251c;
-  --btn-vanilla-hover-to: #251c16;
-  --btn-vanilla-text: rgba(255, 255, 255, 0.85);
-  --btn-vanilla-shadow-active: inset 3px 3px 6px #0c0806, inset -3px -3px 6px #2e2118;
-  --orange-accent: #d35e23;
-  --orange-accent-hover: #e46d2e;
+  --btn-vanilla-from: #261c16;
+  --btn-vanilla-to: #1a120e;
+  --btn-vanilla-hover-from: #2f231b;
+  --btn-vanilla-hover-to: #201712;
+  --btn-vanilla-text: rgba(255, 255, 255, 0.9);
+  --btn-vanilla-shadow-active: inset 3px 3px 6px #080504, inset -3px -3px 6px #271c15;
+  --orange-accent: #df6a2e;
+  --orange-accent-hover: #eb7a3f;
   --orange-accent-active: #b84a14;
-  --orange-active-shadow: inset 4px 4px 8px #6d2807, inset -4px -4px 8px rgba(255, 255, 255, 0.1);
-  --divider-color: rgba(238, 222, 189, 0.1);
-  --scrollbar-thumb: #32251c;
+  --orange-active-shadow: inset 4px 4px 8px #6d2807, inset -4px -4px 8px rgba(255, 255, 255, 0.15);
+  --divider-color: rgba(238, 222, 189, 0.08);
+  --scrollbar-thumb: #2a1e17;
 }
 
 @layer base {

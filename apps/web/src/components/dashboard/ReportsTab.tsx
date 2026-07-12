@@ -120,10 +120,10 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({
         {/* Left Side: Monthly Revenue (Vertical Bar Chart) */}
         <div className="rounded-3xl p-6 neumorph-outset space-y-4">
           <div className="flex justify-between items-center mb-2">
-            <h3 className="font-extrabold text-primary text-sm uppercase tracking-wider flex items-center gap-1.5">
+            <h3 className="font-extrabold text-primary text-sm tracking-wider flex items-center gap-1.5">
               <BarChart3 className="w-4 h-4 text-orange" /> Monthly Revenue
             </h3>
-            <span className="text-[10px] font-extrabold uppercase text-secondary tracking-widest">Year: 2026</span>
+            <span className="text-[10px] font-extrabold text-secondary tracking-widest">Year: 2026</span>
           </div>
 
           {/* Bar Chart Container */}
@@ -142,7 +142,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({
                       className="w-full max-w-[36px] bg-gradient-to-t from-[#b84a14] to-[#e46d2e] rounded-t-lg transition-all duration-500 group-hover:brightness-110 shadow-md border-t border-white/10"
                     ></div>
                   </div>
-                  <span className="text-[10px] font-extrabold text-secondary mt-2.5 uppercase tracking-wider">
+                  <span className="text-[10px] font-extrabold text-secondary mt-2.5 tracking-wider">
                     {d.month}
                   </span>
                 </div>
@@ -154,10 +154,10 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({
         {/* Right Side: Top Costliest Vehicles (Horizontal Bar Chart) */}
         <div className="rounded-3xl p-6 neumorph-outset space-y-4">
           <div className="flex justify-between items-center mb-2">
-            <h3 className="font-extrabold text-primary text-sm uppercase tracking-wider flex items-center gap-1.5">
+            <h3 className="font-extrabold text-primary text-sm tracking-wider flex items-center gap-1.5">
               <PieChart className="w-4 h-4 text-[#8a4f10]" /> Top Costliest Vehicles
             </h3>
-            <span className="text-[10px] font-extrabold uppercase text-secondary tracking-widest">Maintenance & Fuel</span>
+            <span className="text-[10px] font-extrabold text-secondary tracking-widest">Maintenance & Fuel</span>
           </div>
 
           <div className="space-y-5 pt-4">

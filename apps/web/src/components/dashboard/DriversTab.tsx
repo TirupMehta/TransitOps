@@ -188,7 +188,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
       <div className="rounded-2xl overflow-hidden neumorph-outset">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-transparent border-b border-theme text-secondary text-xs font-extrabold uppercase tracking-wider">
+            <tr className="bg-transparent border-b border-theme text-secondary text-xs font-extrabold tracking-wider">
               <th className="px-6 py-4">Driver</th>
               <th className="px-6 py-4">License No.</th>
               <th className="px-6 py-4">Category</th>
@@ -302,7 +302,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 animate-fade-in">
           <div className="w-full max-w-md rounded-3xl p-6 bg-app-theme neumorph-outset relative border border-white/5 animate-scale-up">
-            <h3 className="text-base font-extrabold text-primary uppercase tracking-wider mb-6">
+            <h3 className="text-base font-extrabold text-primary tracking-wider mb-6">
               {editDriver ? 'Edit Driver Profile' : 'Add New Driver'}
             </h3>
 
@@ -315,7 +315,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
 
             <form onSubmit={handleSave} className="space-y-4">
               <div>
-                <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                   Driver Name
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -331,7 +331,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
               </div>
 
               <div>
-                <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                   License Number
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -348,7 +348,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                     License Category
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -364,7 +364,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                     Expiry Date
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -380,7 +380,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
               </div>
 
               <div>
-                <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                   Contact Number
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -397,7 +397,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                     Trip Completion (%)
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -414,7 +414,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                     Safety Score (%)
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -432,7 +432,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
               </div>
 
               <div>
-                <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                   Initial Status
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">

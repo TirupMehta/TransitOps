@@ -131,15 +131,15 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
             className="w-full pl-10 pr-4 py-2 bg-transparent text-sm focus:outline-none text-primary font-bold"
           />
         </div>
-        <div className="text-xs font-extrabold text-orange uppercase tracking-wider flex items-center gap-1.5">
-          <Wrench className="w-5 h-5" /> Maintenance workshop logs
+        <div className="text-xs font-extrabold text-orange tracking-wider flex items-center gap-1.5">
+          <Wrench className="w-5 h-5" /> Maintenance Workshop Logs
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Panel: Log Service Record Form */}
         <div className="rounded-3xl p-6 neumorph-outset relative">
-          <h3 className="font-extrabold text-primary text-sm uppercase tracking-wider mb-6">Log Service Record</h3>
+          <h3 className="font-extrabold text-primary text-sm tracking-wider mb-6">Log Service Record</h3>
 
           {validationError && (
             <div className="mb-4 flex items-center gap-2 bg-red-500/10 border-2 border-dashed border-red-500/20 text-red-500 px-3 py-2 rounded-xl text-xs font-bold">
@@ -150,7 +150,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
 
           <form onSubmit={handleSaveRecord} className="space-y-4">
             <div>
-              <label className="block text-[9px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+              <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
                 Vehicle
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -170,7 +170,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
             </div>
 
             <div>
-              <label className="block text-[9px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+              <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
                 Service Type
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -187,7 +187,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-[9px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
                   Cost (Rs.)
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -203,7 +203,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
               </div>
 
               <div>
-                <label className="block text-[9px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
                   Date
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -219,7 +219,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
             </div>
 
             <div>
-              <label className="block text-[9px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+              <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
                 Status
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -244,7 +244,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
 
           {/* Visual Diagram Transition (Exactly from Screen 5) */}
           <div className="mt-8 p-4 rounded-2xl border border-theme bg-card-theme/30 text-xs font-bold text-secondary text-center space-y-2">
-            <span className="text-[10px] uppercase tracking-wider block text-primary/80">Workflow State Transition</span>
+            <span className="text-[10px] tracking-wider block text-primary/80">Workflow State Transition</span>
             <div className="flex items-center justify-center gap-3 py-2">
               <span className="text-emerald-500 font-extrabold bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/10">Available</span>
               <ArrowRightLeft className="w-4 h-4 text-orange" />
@@ -258,12 +258,12 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
 
         {/* Right Panel: Service Log Table */}
         <div className="lg:col-span-2 rounded-3xl p-6 neumorph-outset">
-          <h3 className="font-extrabold text-primary text-sm uppercase tracking-wider mb-6">Service Log</h3>
+          <h3 className="font-extrabold text-primary text-sm tracking-wider mb-6">Service Log</h3>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-transparent border-b border-theme text-secondary text-[10px] font-extrabold uppercase tracking-wider">
+                <tr className="bg-transparent border-b border-theme text-secondary text-[10px] font-extrabold tracking-wider">
                   <th className="pb-3">Vehicle</th>
                   <th className="pb-3">Service</th>
                   <th className="pb-3">Cost</th>

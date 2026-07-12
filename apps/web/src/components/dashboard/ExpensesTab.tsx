@@ -175,11 +175,11 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
         
         {/* Table 1: Fuel Logs */}
         <div className="rounded-3xl p-6 neumorph-outset space-y-4">
-          <h3 className="font-extrabold text-primary text-sm uppercase tracking-wider">Fuel Logs</h3>
+          <h3 className="font-extrabold text-primary text-sm tracking-wider">Fuel Logs</h3>
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-theme text-secondary text-[10px] font-extrabold uppercase tracking-wider">
+                <tr className="border-b border-theme text-secondary text-[10px] font-extrabold tracking-wider">
                   <th className="pb-3 pr-4">Vehicle</th>
                   <th className="pb-3 pr-4">Date</th>
                   <th className="pb-3 pr-4">Liters</th>
@@ -210,11 +210,11 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
 
         {/* Table 2: Other Expenses */}
         <div className="rounded-3xl p-6 neumorph-outset space-y-4">
-          <h3 className="font-extrabold text-primary text-sm uppercase tracking-wider">Other Expenses (Toll / Misc)</h3>
+          <h3 className="font-extrabold text-primary text-sm tracking-wider">Other Expenses (Toll / Misc)</h3>
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-theme text-secondary text-[10px] font-extrabold uppercase tracking-wider">
+                <tr className="border-b border-theme text-secondary text-[10px] font-extrabold tracking-wider">
                   <th className="pb-3 pr-4">Trip</th>
                   <th className="pb-3 pr-4">Vehicle</th>
                   <th className="pb-3 pr-4">Toll</th>
@@ -256,7 +256,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
 
       {/* Footer dynamic Operational Cost (Exactly from Screen 6) */}
       <div className="p-5 rounded-3xl neumorph-outset flex flex-wrap justify-between items-center bg-gradient-theme border border-white/5 shadow-md">
-        <span className="text-xs font-extrabold text-secondary uppercase tracking-widest">Dynamic Calculations</span>
+        <span className="text-xs font-extrabold text-secondary tracking-widest">Dynamic Calculations</span>
         <div className="text-sm font-extrabold text-primary flex items-center gap-2">
           <span>TOTAL OPERATIONAL COST (AUTO) = FUEL + MAINTENANCE =</span>
           <span className="text-base text-orange font-black bg-card-theme/40 border border-theme px-3.5 py-1.5 rounded-2xl shadow-inner">
@@ -269,7 +269,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
       {isFuelModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 animate-fade-in">
           <div className="w-full max-w-md rounded-3xl p-6 bg-app-theme neumorph-outset relative border border-white/5 animate-scale-up">
-            <h3 className="text-base font-extrabold text-primary uppercase tracking-wider mb-6">
+            <h3 className="text-base font-extrabold text-primary tracking-wider mb-6">
               Log Fuel Refill
             </h3>
 
@@ -303,7 +303,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                     Liters Filled
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -319,7 +319,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                     Total Cost (Rs.)
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -374,7 +374,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
       {isExpenseModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 animate-fade-in">
           <div className="w-full max-w-md rounded-3xl p-6 bg-app-theme neumorph-outset relative border border-white/5 animate-scale-up">
-            <h3 className="text-base font-extrabold text-primary uppercase tracking-wider mb-6">
+            <h3 className="text-base font-extrabold text-primary tracking-wider mb-6">
               Add Expense Record
             </h3>
 
@@ -408,7 +408,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                     Expense Category
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -424,7 +424,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                     Amount (Rs.)
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">

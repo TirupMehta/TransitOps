@@ -280,8 +280,8 @@ export const TripsTab: React.FC<TripsTabProps> = ({
             className="w-full pl-10 pr-4 py-2 bg-transparent text-sm focus:outline-none text-primary font-bold"
           />
         </div>
-        <div className="text-xs font-extrabold text-orange uppercase tracking-wider flex items-center gap-1.5">
-          <Compass className="w-5 h-5" /> Trip dispatcher control board
+        <div className="text-xs font-extrabold text-orange tracking-wider flex items-center gap-1.5">
+          <Compass className="w-5 h-5" /> Trip Dispatcher Control Board
         </div>
       </div>
 
@@ -289,9 +289,9 @@ export const TripsTab: React.FC<TripsTabProps> = ({
         {/* Left Side: Create Trip Form */}
         <div className="rounded-3xl p-6 neumorph-outset relative">
           <div className="mb-6">
-            <h3 className="font-extrabold text-primary text-sm uppercase tracking-wider mb-2">Create Trip</h3>
+            <h3 className="font-extrabold text-primary text-sm tracking-wider mb-2">Create Trip</h3>
             {/* Trip Lifecycle Progress Indicator */}
-            <div className="flex items-center justify-between text-[8px] font-extrabold text-secondary uppercase tracking-widest px-1.5 py-1 bg-card-theme/20 border border-theme rounded-xl">
+            <div className="flex items-center justify-between text-[8px] font-extrabold text-secondary tracking-widest px-1.5 py-1 bg-card-theme/20 border border-theme rounded-xl">
               <span className="text-orange">Draft</span>
               <span className="text-secondary/40">→</span>
               <span className="text-blue-500">Dispatched</span>
@@ -304,7 +304,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
 
           <form onSubmit={handleCreateTrip} className="space-y-4">
             <div>
-              <label className="block text-[9px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+              <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
                 Source Depot
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -319,7 +319,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
             </div>
 
             <div>
-              <label className="block text-[9px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+              <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
                 Destination Depot
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -334,7 +334,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
             </div>
 
             <div>
-              <label className="block text-[9px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+              <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
                 Vehicle (Available Only)
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -354,7 +354,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
             </div>
 
             <div>
-              <label className="block text-[9px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+              <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
                 Driver (Available Only)
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -375,7 +375,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-[9px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
                   Cargo Weight (kg)
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -391,7 +391,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
               </div>
 
               <div>
-                <label className="block text-[9px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
                   Planned Dist. (km)
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -460,7 +460,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
         {/* Right Side: Live Board */}
         <div className="lg:col-span-2 rounded-3xl p-6 neumorph-outset flex flex-col justify-between">
           <div>
-            <h3 className="font-extrabold text-primary text-sm uppercase tracking-wider mb-4">Live Board</h3>
+            <h3 className="font-extrabold text-primary text-sm tracking-wider mb-4">Live Board</h3>
 
             <div className="space-y-4">
               {filteredTrips.length === 0 ? (
@@ -494,13 +494,13 @@ export const TripsTab: React.FC<TripsTabProps> = ({
                         <div className="flex items-center gap-1.5">
                           <button
                             onClick={() => handleOpenCompleteModal(trip)}
-                            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase bg-emerald-500 text-white cursor-pointer hover:bg-emerald-600 transition-colors shadow-sm"
+                            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-extrabold bg-emerald-500 text-white cursor-pointer hover:bg-emerald-600 transition-colors shadow-sm"
                           >
                             <CheckCircle2 className="w-3.5 h-3.5" /> Complete
                           </button>
                           <button
                             onClick={() => handleCancelTrip(trip)}
-                            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase bg-rose-500/10 text-rose-500 border border-rose-500/20 cursor-pointer hover:bg-rose-500 hover:text-white transition-all shadow-sm"
+                            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-extrabold bg-rose-500/10 text-rose-500 border border-rose-500/20 cursor-pointer hover:bg-rose-500 hover:text-white transition-all shadow-sm"
                           >
                             <XCircle className="w-3.5 h-3.5" /> Cancel
                           </button>
@@ -511,7 +511,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
                       {trip.status === 'Draft' && (
                         <button
                           onClick={() => handleDispatchDraft(trip)}
-                          className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors shadow-sm"
+                          className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-extrabold bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors shadow-sm"
                         >
                           <Play className="w-3.5 h-3.5" /> Dispatch
                         </button>
@@ -534,7 +534,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
       {completingTrip && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 animate-fade-in">
           <div className="w-full max-w-md rounded-3xl p-6 bg-app-theme neumorph-outset relative border border-white/5 animate-scale-up">
-            <h3 className="text-base font-extrabold text-primary uppercase tracking-wider mb-6">
+            <h3 className="text-base font-extrabold text-primary tracking-wider mb-6">
               Complete Dispatch {completingTrip.tripCode}
             </h3>
 
@@ -566,7 +566,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                     Fuel Consumed (Liters)
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -582,7 +582,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                     Fuel Cost (Rs.)
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">

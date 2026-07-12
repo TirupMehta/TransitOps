@@ -66,7 +66,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="flex justify-between items-center gap-4 p-4 rounded-2xl neumorph-outset">
-        <div className="text-xs font-extrabold text-orange uppercase tracking-wider flex items-center gap-1.5">
+        <div className="text-xs font-extrabold text-orange tracking-wider flex items-center gap-1.5">
           <Settings className="w-5 h-5" /> Settings & System Administration
         </div>
       </div>
@@ -75,7 +75,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
         
         {/* Left Side: General Settings Form */}
         <div className="rounded-3xl p-6 neumorph-outset relative">
-          <h3 className="font-extrabold text-primary text-sm uppercase tracking-wider mb-6">General Settings</h3>
+          <h3 className="font-extrabold text-primary text-sm tracking-wider mb-6">General Settings</h3>
 
           {success && (
             <div className="mb-4 flex items-center gap-2 bg-emerald-500/10 border-2 border-dashed border-emerald-500/20 text-emerald-500 px-3 py-2 rounded-xl text-xs font-bold">
@@ -86,7 +86,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
 
           <form onSubmit={handleSave} className="space-y-5">
             <div>
-              <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+              <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                 Depot Name
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2.5">
@@ -101,7 +101,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
             </div>
 
             <div>
-              <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+              <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                 Preferred Currency
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2.5">
@@ -118,7 +118,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
             </div>
 
             <div>
-              <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+              <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
                 Distance Unit
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2.5">
@@ -145,16 +145,16 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
         {/* Right Side: Role-Based Access Control (RBAC) */}
         <div className="lg:col-span-2 rounded-3xl p-6 neumorph-outset">
           <div className="flex justify-between items-center mb-6">
-            <h3 className="font-extrabold text-primary text-sm uppercase tracking-wider flex items-center gap-1.5">
+            <h3 className="font-extrabold text-primary text-sm tracking-wider flex items-center gap-1.5">
               <ShieldCheck className="w-4.5 h-4.5 text-orange" /> Role-Based Access Control (RBAC)
             </h3>
-            <span className="text-[9px] font-extrabold uppercase text-orange bg-orange/10 px-2 py-0.5 rounded-full border border-orange/10">Active Security Mode</span>
+            <span className="text-[9px] font-extrabold text-orange bg-orange/10 px-2 py-0.5 rounded-full border border-orange/10">Active Security Mode</span>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-theme text-secondary text-[10px] font-extrabold uppercase tracking-wider">
+                <tr className="border-b border-theme text-secondary text-[10px] font-extrabold tracking-wider">
                   <th className="pb-3 text-left">Role</th>
                   <th className="pb-3 text-center">Fleet</th>
                   <th className="pb-3 text-center">Drivers</th>

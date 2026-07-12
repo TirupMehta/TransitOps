@@ -143,7 +143,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
         <form onSubmit={handleSubmit} className="space-y-4">
           {isSignUp && (
             <div>
-              <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1.5 px-1">
+              <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1.5 px-1">
                 Full Name
               </label>
               <div className="relative rounded-2xl neumorph-inset border border-slate-200/5">
@@ -160,7 +160,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
           )}
 
           <div>
-            <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1.5 px-1">
+            <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1.5 px-1">
               Email Address
             </label>
             <div className="relative rounded-2xl neumorph-inset border border-slate-200/5 flex items-center">
@@ -177,7 +177,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
           </div>
 
           <div>
-            <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1.5 px-1">
+            <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1.5 px-1">
               Password
             </label>
             <div className="relative rounded-2xl neumorph-inset border border-slate-200/5 flex items-center">
@@ -201,7 +201,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
           </div>
 
           <div>
-            <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1.5 px-1">
+            <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1.5 px-1">
               Role Option
             </label>
             <div className="rounded-2xl neumorph-inset border border-slate-200/5">
@@ -248,7 +248,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-theme"></div>
           </div>
-          <span className="relative bg-app-theme px-3 text-[9px] font-extrabold uppercase tracking-widest text-secondary">
+          <span className="relative bg-app-theme px-3 text-[9px] font-extrabold tracking-widest text-secondary">
             Quick Demo Access
           </span>
         </div>
@@ -276,7 +276,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
         <div className="mt-4 p-3 rounded-xl border border-theme bg-card-theme text-[9px] text-secondary leading-normal flex items-start gap-2">
           <ShieldAlert className="w-4 h-4 text-orange shrink-0 mt-0.5" />
           <div>
-            <span className="font-extrabold uppercase text-primary block tracking-wider">Access Scope Hierarchy:</span>
+            <span className="font-extrabold text-primary block tracking-wider">Access Scope Hierarchy:</span>
             <span className="font-semibold block mt-0.5">
               • Fleet Manager: Fleet, Maintenance | • Dispatcher: Dashboard, Trips
             </span>

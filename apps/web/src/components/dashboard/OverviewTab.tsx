@@ -59,7 +59,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
       {/* Search Filters (Outset Neumorphic) */}
       <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-3xl neumorph-outset">
         <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-2 text-secondary text-xs font-extrabold uppercase tracking-wider">
+          <div className="flex items-center gap-2 text-secondary text-xs font-extrabold tracking-wider">
             <Filter className="w-4 h-4 text-orange" />
             <span>Search Filters</span>
           </div>
@@ -165,7 +165,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
         <div className="lg:col-span-2 rounded-3xl p-6 neumorph-outset flex flex-col justify-between">
           <div>
             <div className="flex justify-between items-center mb-6">
-              <h3 className="font-extrabold text-primary text-sm uppercase tracking-wider">Recent Trips</h3>
+              <h3 className="font-extrabold text-primary text-sm tracking-wider">Recent Trips</h3>
               <button
                 onClick={() => setActiveTab('trips')}
                 className="text-xs font-bold text-orange hover:text-orange/80 cursor-pointer transition-all"
@@ -177,7 +177,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-theme text-secondary text-[10px] font-extrabold uppercase tracking-wider">
+                  <tr className="border-b border-theme text-secondary text-[10px] font-extrabold tracking-wider">
                     <th className="pb-3 pr-4">Trip</th>
                     <th className="pb-3 pr-4">Vehicle</th>
                     <th className="pb-3 pr-4">Driver</th>
