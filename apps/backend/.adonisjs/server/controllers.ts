@@ -5,6 +5,10 @@
 
 export const controllers = {
   AccessTokens: () => import('#controllers/access_tokens_controller'),
+  FleetManagers: () => import('#controllers/fleet_managers_controller'),
   NewAccount: () => import('#controllers/new_account_controller'),
+  Permissions: () => import('#controllers/permissions_controller'),
   Profile: () => import('#controllers/profile_controller'),
+  Roles: () => import('#controllers/roles_controller'),
+  Trpcs: () => import('#controllers/trpcs_controller'),
 }
