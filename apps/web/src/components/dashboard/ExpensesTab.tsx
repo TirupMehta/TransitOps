@@ -90,7 +90,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
               filtered.map((e) => {
                 const v = vehicles.find((veh) => veh.id === e.vehicleId);
                 return (
-                  <tr key={e.id} className="hover:bg-theme-bg-app hover:opacity-90 transition-colors">
+                  <tr key={e.id} className="hover-row transition-colors">
                     <td className="px-6 py-4 font-extrabold text-primary">{v?.registrationNumber || 'Unknown'}</td>
                     <td className="px-6 py-4">
                       <Badge variant={getBadgeVariant(e.type)}>{e.type}</Badge>

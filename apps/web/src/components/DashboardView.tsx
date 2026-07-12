@@ -107,13 +107,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
   };
 
   return (
-    <div className="flex h-screen bg-[#1a120b] overflow-hidden font-sans">
+    <div className="flex h-screen bg-app-theme overflow-hidden font-sans">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} user={user} />
 
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <Header activeTab={activeTab} user={user} theme={theme} onToggleTheme={onToggleTheme} />
 
-        <div className="flex-1 overflow-y-auto p-8 relative bg-[#1a120b]/30">
+        <div className="flex-1 overflow-y-auto p-8 relative bg-app-theme">
           {renderActiveTab()}
         </div>
       </div>

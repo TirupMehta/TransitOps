@@ -9,7 +9,7 @@
   --bg-card: #faf5e9;
   --bg-inset: #faf5e9;
   --text-primary: #2e2520;
-  --text-secondary: #87786f;
+  --text-secondary: #625146;
   --shadow-outset: 6px 6px 16px #e0d4bc, -6px -6px 16px #ffffff;
   --shadow-inset: inset 4px 4px 10px #e0d4bc, inset -4px -4px 10px #ffffff;
   --border-color: rgba(0, 0, 0, 0.04);
@@ -24,6 +24,7 @@
   --orange-accent-active: #a03f0f;
   --orange-active-shadow: inset 4px 4px 8px #7e3009, inset -4px -4px 8px rgba(255, 255, 255, 0.15);
   --divider-color: #eedebd;
+  --scrollbar-thumb: #eedebd;
 }
 
 .dark {
@@ -47,6 +48,7 @@
   --orange-accent-active: #b84a14;
   --orange-active-shadow: inset 4px 4px 8px #6d2807, inset -4px -4px 8px rgba(255, 255, 255, 0.1);
   --divider-color: rgba(238, 222, 189, 0.1);
+  --scrollbar-thumb: #32251c;
 }
 
 @layer base {
@@ -90,6 +92,22 @@
 
 .border-theme {
   border-color: var(--divider-color) !important;
+}
+
+.divide-theme > * + * {
+  border-color: var(--divider-color) !important;
+}
+
+.hover-row {
+  transition: background-color 0.15s ease;
+}
+
+.hover-row:hover {
+  background-color: var(--border-color) !important;
+}
+
+.bg-gradient-theme {
+  background: linear-gradient(135deg, var(--bg-app) 0%, var(--btn-vanilla-to) 100%) !important;
 }
 
 /* Neumorphic Outset Panel */
@@ -149,9 +167,9 @@
   background: var(--bg-app);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--btn-vanilla-from);
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--btn-vanilla-hover-to);
+  background: var(--orange-accent);
 }

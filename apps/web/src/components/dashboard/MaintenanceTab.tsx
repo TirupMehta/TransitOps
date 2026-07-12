@@ -61,7 +61,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
               filtered.map((m) => {
                 const v = vehicles.find((veh) => veh.id === m.vehicleId);
                 return (
-                  <tr key={m.id} className="hover:bg-theme-bg-app hover:opacity-90 transition-colors">
+                  <tr key={m.id} className="hover-row transition-colors">
                     <td className="px-6 py-4 font-extrabold text-primary">
                       <span className="block text-orange">{v?.registrationNumber}</span>
                       <span className="block text-xs text-secondary font-semibold mt-0.5">{v?.model}</span>

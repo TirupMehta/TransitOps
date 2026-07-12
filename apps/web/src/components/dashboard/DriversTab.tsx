@@ -85,7 +85,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers }) => {
               filtered.map((d) => {
                 const isExpired = new Date(d.licenseExpiryDate) < new Date();
                 return (
-                  <tr key={d.id} className="hover:bg-theme-bg-app hover:opacity-90 transition-colors">
+                  <tr key={d.id} className="hover-row transition-colors">
                     <td className="px-6 py-4 font-extrabold text-primary">{d.name}</td>
                     <td className="px-6 py-4">
                       <span className="block text-orange font-extrabold">{d.licenseNumber} ({d.licenseCategory})</span>

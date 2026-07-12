@@ -102,7 +102,7 @@ export const VehiclesTab: React.FC<VehiclesTabProps> = ({
               </tr>
             ) : (
               filtered.map((v) => (
-                <tr key={v.id} className="hover:bg-theme-bg-app hover:opacity-90 transition-colors">
+                <tr key={v.id} className="hover-row transition-colors">
                   <td className="px-6 py-4 font-extrabold text-orange">{v.registrationNumber}</td>
                   <td className="px-6 py-4">
                     <span className="block text-primary font-extrabold">{v.model}</span>

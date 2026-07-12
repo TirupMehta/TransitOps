@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, user, theme, onToggle
         </button>
 
         {/* User Role Tag */}
-        <span className="neumorph-inset text-orange px-3.5 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-widest border border-white/5">
+        <span className="neumorph-inset text-orange px-3.5 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-widest border border-theme">
           {user.role}
         </span>
       </div>
