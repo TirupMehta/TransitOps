@@ -72,10 +72,10 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
             <Truck className="w-7 h-7" />
           </div>
           <h2 className="text-xl font-black tracking-tight mb-1">TransitOps</h2>
-          <p className="text-[10px] text-[#faf5e9]/50 uppercase tracking-widest font-extrabold mb-8">Smart Transport Operations</p>
+          <p className="text-xs text-[#faf5e9]/65 tracking-wider font-semibold mb-8">Smart Transport Operations</p>
 
           <div className="space-y-4">
-            <span className="text-xs font-bold text-[#d35e23] uppercase tracking-wider block">One login, four roles:</span>
+            <span className="text-xs font-bold text-[#df6a2e] tracking-wider block">One login, four roles:</span>
             <ul className="space-y-2 text-xs font-semibold text-[#faf5e9]/80">
               <li className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#d35e23]"></div> Fleet Manager
@@ -93,8 +93,8 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
           </div>
         </div>
 
-        <div className="text-[9px] text-[#faf5e9]/40 uppercase tracking-widest font-extrabold mt-8">
-          TRANSITOPS © 2026 • RBAC ENABLED
+        <div className="text-xs text-[#faf5e9]/50 tracking-wider font-semibold mt-8">
+          TransitOps © 2026 • RBAC Enabled
         </div>
       </div>
 
@@ -143,7 +143,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
         <form onSubmit={handleSubmit} className="space-y-4">
           {isSignUp && (
             <div>
-              <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1.5 px-1">
+            <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                 Full Name
               </label>
               <div className="relative rounded-2xl neumorph-inset border border-slate-200/5">
@@ -248,7 +248,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-theme"></div>
           </div>
-          <span className="relative bg-app-theme px-3 text-[9px] font-extrabold tracking-widest text-secondary">
+          <span className="relative bg-app-theme px-3 text-xs font-semibold tracking-wider text-secondary/85">
             Quick Demo Access
           </span>
         </div>
@@ -260,12 +260,12 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
               key={demo.email}
               type="button"
               onClick={() => handleQuickSelect(demo.email, demo.label)}
-              className="flex flex-col p-2.5 rounded-xl transition-all cursor-pointer group neumorph-btn-vanilla text-left"
+              className="flex flex-col p-2.5 rounded-xl transition-all cursor-pointer group neumorph-btn-vanilla text-left shadow-xs"
             >
-              <span className="text-[9px] font-extrabold text-primary group-hover:text-orange transition-colors truncate">
+              <span className="text-[11px] font-bold text-primary group-hover:text-orange transition-colors truncate">
                 {demo.label}
               </span>
-              <span className="text-[8px] text-secondary font-semibold truncate mt-0.5 select-all">
+              <span className="text-[10px] text-secondary/85 font-semibold truncate mt-0.5 select-all">
                 {demo.email}
               </span>
             </button>
@@ -273,10 +273,10 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
         </div>
 
         {/* Access scoping details helper */}
-        <div className="mt-4 p-3 rounded-xl border border-theme bg-card-theme text-[9px] text-secondary leading-normal flex items-start gap-2">
+        <div className="mt-4 p-3 rounded-xl border border-theme bg-card-theme text-[11px] text-secondary/85 leading-normal flex items-start gap-2">
           <ShieldAlert className="w-4 h-4 text-orange shrink-0 mt-0.5" />
           <div>
-            <span className="font-extrabold text-primary block tracking-wider">Access Scope Hierarchy:</span>
+            <span className="font-bold text-primary block tracking-wider">Access Scope Hierarchy:</span>
             <span className="font-semibold block mt-0.5">
               • Fleet Manager: Fleet, Maintenance | • Dispatcher: Dashboard, Trips
             </span>

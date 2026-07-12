@@ -123,7 +123,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({
             <h3 className="font-extrabold text-primary text-sm tracking-wider flex items-center gap-1.5">
               <BarChart3 className="w-4 h-4 text-orange" /> Monthly Revenue
             </h3>
-            <span className="text-[10px] font-extrabold text-secondary tracking-widest">Year: 2026</span>
+            <span className="text-xs font-semibold text-secondary/80 tracking-wide">Year: 2026</span>
           </div>
 
           {/* Bar Chart Container */}
@@ -134,7 +134,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({
                 <div key={d.month} className="flex-1 flex flex-col items-center group cursor-pointer">
                   <div className="relative w-full flex flex-col items-center">
                     {/* Tooltip on hover */}
-                    <span className="absolute -top-8 bg-[#1e1610] text-[#faf5e9] text-[9px] font-extrabold px-1.5 py-0.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity border border-white/5 shadow-md">
+                    <span className="absolute -top-8 bg-[#1e1610] text-[#faf5e9] text-[11px] font-bold px-1.5 py-0.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity border border-white/5 shadow-md">
                       Rs. {d.amount.toLocaleString()}
                     </span>
                     <div
@@ -142,7 +142,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({
                       className="w-full max-w-[36px] bg-gradient-to-t from-[#b84a14] to-[#e46d2e] rounded-t-lg transition-all duration-500 group-hover:brightness-110 shadow-md border-t border-white/10"
                     ></div>
                   </div>
-                  <span className="text-[10px] font-extrabold text-secondary mt-2.5 tracking-wider">
+                  <span className="text-xs font-semibold text-secondary/80 tracking-wide">
                     {d.month}
                   </span>
                 </div>
@@ -157,7 +157,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({
             <h3 className="font-extrabold text-primary text-sm tracking-wider flex items-center gap-1.5">
               <PieChart className="w-4 h-4 text-[#8a4f10]" /> Top Costliest Vehicles
             </h3>
-            <span className="text-[10px] font-extrabold text-secondary tracking-widest">Maintenance & Fuel</span>
+            <span className="text-xs font-semibold text-secondary/80 tracking-wide">Maintenance & Fuel</span>
           </div>
 
           <div className="space-y-5 pt-4">
@@ -173,7 +173,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({
                 <div key={vc.registrationNumber} className="space-y-1.5">
                   <div className="flex justify-between text-xs font-extrabold">
                     <span className="text-primary">
-                      {vc.registrationNumber} <span className="text-secondary/60 text-[10px]">({vc.model})</span>
+                      {vc.registrationNumber} <span className="text-secondary/60 text-xs">({vc.model})</span>
                     </span>
                     <span className="text-orange font-black">Rs. {vc.cost.toLocaleString()}</span>
                   </div>

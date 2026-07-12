@@ -291,7 +291,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
           <div className="mb-6">
             <h3 className="font-extrabold text-primary text-sm tracking-wider mb-2">Create Trip</h3>
             {/* Trip Lifecycle Progress Indicator */}
-            <div className="flex items-center justify-between text-[8px] font-extrabold text-secondary tracking-widest px-1.5 py-1 bg-card-theme/20 border border-theme rounded-xl">
+            <div className="flex items-center justify-between text-xs font-bold text-secondary px-2.5 py-2 bg-card-theme/40 border border-theme rounded-2xl">
               <span className="text-orange">Draft</span>
               <span className="text-secondary/40">→</span>
               <span className="text-blue-500">Dispatched</span>
@@ -304,7 +304,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
 
           <form onSubmit={handleCreateTrip} className="space-y-4">
             <div>
-              <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
+              <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                 Source Depot
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -319,7 +319,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
             </div>
 
             <div>
-              <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
+              <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                 Destination Depot
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -334,7 +334,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
             </div>
 
             <div>
-              <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
+              <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                 Vehicle (Available Only)
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -354,7 +354,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
             </div>
 
             <div>
-              <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
+              <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                 Driver (Available Only)
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -375,7 +375,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
+                <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                   Cargo Weight (kg)
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -391,7 +391,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
               </div>
 
               <div>
-                <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
+                <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                   Planned Dist. (km)
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -547,7 +547,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
 
             <form onSubmit={handleCompleteTripSubmit} className="space-y-4">
               <div>
-                <label className="block text-[10px] font-extrabold uppercase tracking-widest text-secondary mb-1">
+                <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                   Final Odometer (km)
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -566,7 +566,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                  <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                     Fuel Consumed (Liters)
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -582,7 +582,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                  <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                     Fuel Cost (Rs.)
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">

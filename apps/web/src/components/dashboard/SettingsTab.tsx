@@ -86,7 +86,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
 
           <form onSubmit={handleSave} className="space-y-5">
             <div>
-              <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+              <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                 Depot Name
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2.5">
@@ -101,7 +101,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
             </div>
 
             <div>
-              <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+              <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                 Preferred Currency
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2.5">
@@ -118,7 +118,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
             </div>
 
             <div>
-              <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+              <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                 Distance Unit
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2.5">
@@ -148,13 +148,13 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
             <h3 className="font-extrabold text-primary text-sm tracking-wider flex items-center gap-1.5">
               <ShieldCheck className="w-4.5 h-4.5 text-orange" /> Role-Based Access Control (RBAC)
             </h3>
-            <span className="text-[9px] font-extrabold text-orange bg-orange/10 px-2 py-0.5 rounded-full border border-orange/10">Active Security Mode</span>
+            <span className="text-xs font-semibold text-orange bg-orange/10 px-2.5 py-1 rounded-full border border-orange/10">Active Security Mode</span>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-theme text-secondary text-[10px] font-extrabold tracking-wider">
+                <tr className="border-b border-theme text-secondary text-xs font-semibold tracking-wider">
                   <th className="pb-3 text-left">Role</th>
                   <th className="pb-3 text-center">Fleet</th>
                   <th className="pb-3 text-center">Drivers</th>
@@ -168,7 +168,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
                   <tr key={row.role} className="hover-row transition-colors">
                     <td className="py-4 font-extrabold text-primary">{row.role}</td>
                     <td className="py-4 text-center">
-                      <span className={`inline-block px-2.5 py-0.5 rounded-md font-extrabold text-[10px] ${
+                      <span className={`inline-block px-2.5 py-0.5 rounded-md font-bold text-xs ${
                         row.fleet === 'Edit' ? 'text-emerald-500 bg-emerald-500/10' :
                         row.fleet === 'View' ? 'text-blue-500 bg-blue-500/10' :
                         'text-secondary/40'
@@ -177,7 +177,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
                       </span>
                     </td>
                     <td className="py-4 text-center">
-                      <span className={`inline-block px-2.5 py-0.5 rounded-md font-extrabold text-[10px] ${
+                      <span className={`inline-block px-2.5 py-0.5 rounded-md font-bold text-xs ${
                         row.drivers === 'Edit' ? 'text-emerald-500 bg-emerald-500/10' :
                         row.drivers === 'View' ? 'text-blue-500 bg-blue-500/10' :
                         'text-secondary/40'
@@ -186,7 +186,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
                       </span>
                     </td>
                     <td className="py-4 text-center">
-                      <span className={`inline-block px-2.5 py-0.5 rounded-md font-extrabold text-[10px] ${
+                      <span className={`inline-block px-2.5 py-0.5 rounded-md font-bold text-xs ${
                         row.trips === 'Edit' ? 'text-emerald-500 bg-emerald-500/10' :
                         row.trips === 'View' ? 'text-blue-500 bg-blue-500/10' :
                         'text-secondary/40'
@@ -195,7 +195,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
                       </span>
                     </td>
                     <td className="py-4 text-center">
-                      <span className={`inline-block px-2.5 py-0.5 rounded-md font-extrabold text-[10px] ${
+                      <span className={`inline-block px-2.5 py-0.5 rounded-md font-bold text-xs ${
                         row.fuelExp === 'Edit' ? 'text-emerald-500 bg-emerald-500/10' :
                         row.fuelExp === 'View' ? 'text-blue-500 bg-blue-500/10' :
                         'text-secondary/40'
@@ -204,7 +204,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
                       </span>
                     </td>
                     <td className="py-4 text-center">
-                      <span className={`inline-block px-2.5 py-0.5 rounded-md font-extrabold text-[10px] ${
+                      <span className={`inline-block px-2.5 py-0.5 rounded-md font-bold text-xs ${
                         row.analytics === 'Edit' ? 'text-emerald-500 bg-emerald-500/10' :
                         row.analytics === 'View' ? 'text-blue-500 bg-blue-500/10' :
                         'text-secondary/40'

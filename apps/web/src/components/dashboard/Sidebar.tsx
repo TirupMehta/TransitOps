@@ -73,7 +73,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             {!isCollapsed && (
               <div>
                 <span className="font-extrabold text-primary tracking-wide block font-sans">TransitOps</span>
-                <span className="text-[9px] text-[#87786f] font-extrabold tracking-wider">Operations Hub</span>
+                <span className="text-xs text-[#87786f] font-bold tracking-wider">Operations Hub</span>
               </div>
             )}
           </div>
@@ -127,8 +127,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {!isCollapsed && (
             <div className="overflow-hidden">
               <span className="block text-sm font-extrabold text-primary truncate leading-tight">{user.fullName || user.email}</span>
-              <span className="block text-[9px] text-[#87786f] font-extrabold tracking-wider leading-none mt-1 flex items-center gap-1">
-                <ShieldAlert className="w-3 h-3 text-orange shrink-0" />
+              <span className="block text-[11px] text-[#87786f] font-bold tracking-wider leading-none mt-1 flex items-center gap-1">
+                <ShieldAlert className="w-3.5 h-3.5 text-orange shrink-0" />
                 {user.role || 'User'}
               </span>
             </div>

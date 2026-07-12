@@ -177,7 +177,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-theme text-secondary text-[10px] font-extrabold tracking-wider">
+                  <tr className="border-b border-theme text-secondary text-xs font-semibold tracking-wider">
                     <th className="pb-3 pr-4">Trip</th>
                     <th className="pb-3 pr-4">Vehicle</th>
                     <th className="pb-3 pr-4">Driver</th>

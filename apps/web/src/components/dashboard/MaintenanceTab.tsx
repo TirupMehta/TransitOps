@@ -150,7 +150,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
 
           <form onSubmit={handleSaveRecord} className="space-y-4">
             <div>
-              <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
+              <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                 Vehicle
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -170,7 +170,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
             </div>
 
             <div>
-              <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
+              <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                 Service Type
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -187,7 +187,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
+                <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                   Cost (Rs.)
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -203,7 +203,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
               </div>
 
               <div>
-                <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
+                <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                   Date
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -219,7 +219,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
             </div>
 
             <div>
-              <label className="block text-[9px] font-extrabold tracking-widest text-secondary mb-1">
+              <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                 Status
               </label>
               <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -244,13 +244,13 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
 
           {/* Visual Diagram Transition (Exactly from Screen 5) */}
           <div className="mt-8 p-4 rounded-2xl border border-theme bg-card-theme/30 text-xs font-bold text-secondary text-center space-y-2">
-            <span className="text-[10px] tracking-wider block text-primary/80">Workflow State Transition</span>
+            <span className="text-xs font-semibold tracking-wider block text-primary/80">Workflow State Transition</span>
             <div className="flex items-center justify-center gap-3 py-2">
               <span className="text-emerald-500 font-extrabold bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/10">Available</span>
               <ArrowRightLeft className="w-4 h-4 text-orange" />
               <span className="text-amber-500 font-extrabold bg-amber-500/10 px-2 py-0.5 rounded-md border border-amber-500/10">In Shop</span>
             </div>
-            <span className="text-[10px] text-secondary/70 leading-normal block">
+            <span className="text-xs text-secondary/70 leading-normal block">
               Note: In Shop vehicles are removed from the dispatch pool.
             </span>
           </div>
@@ -263,7 +263,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-transparent border-b border-theme text-secondary text-[10px] font-extrabold tracking-wider">
+                <tr className="bg-transparent border-b border-theme text-secondary text-xs font-semibold tracking-wider">
                   <th className="pb-3">Vehicle</th>
                   <th className="pb-3">Service</th>
                   <th className="pb-3">Cost</th>
@@ -283,7 +283,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
                     <tr key={log.id} className="hover-row transition-colors">
                       <td className="py-3 font-extrabold text-primary">
                         <span className="block text-orange">{log.vehicle?.registrationNumber || 'Unknown'}</span>
-                        <span className="block text-[10px] text-secondary font-semibold mt-0.5">{log.vehicle?.model}</span>
+                        <span className="block text-xs text-secondary/80 font-medium mt-0.5">{log.vehicle?.model}</span>
                       </td>
                       <td className="py-3 font-extrabold text-primary">{log.description}</td>
                       <td className="py-3 font-extrabold text-orange">Rs. {log.cost.toLocaleString()}</td>

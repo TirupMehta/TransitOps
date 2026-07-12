@@ -262,13 +262,13 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
                       <tr className="bg-card-theme/35">
                         <td colSpan={9} className="px-6 py-3 border-t border-dashed border-theme">
                           <div className="flex items-center gap-3">
-                            <span className="text-[10px] font-extrabold uppercase text-secondary tracking-widest">Toggle Driver Status:</span>
+                            <span className="text-xs font-semibold text-secondary/80">Toggle Driver Status:</span>
                             <div className="flex gap-2">
                               {(['Available', 'On Trip', 'Off Duty', 'Suspended'] as DriverStatus[]).map((st) => (
                                 <button
                                   key={st}
                                   onClick={() => handleToggleStatus(d.id, st)}
-                                  className={`px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase tracking-wider cursor-pointer transition-all border ${
+                                  className={`px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer transition-all border ${
                                     d.status === st
                                       ? st === 'Available' ? 'bg-emerald-500 text-white border-emerald-500 shadow-sm' :
                                         st === 'On Trip' ? 'bg-blue-500 text-white border-blue-500 shadow-sm' :
@@ -315,7 +315,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
 
             <form onSubmit={handleSave} className="space-y-4">
               <div>
-                <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                   Driver Name
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -331,7 +331,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
               </div>
 
               <div>
-                <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                   License Number
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -348,7 +348,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                  <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                     License Category
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -364,7 +364,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                  <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                     Expiry Date
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -380,7 +380,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
               </div>
 
               <div>
-                <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                   Contact Number
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -397,7 +397,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                  <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                     Trip Completion (%)
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -414,7 +414,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                  <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                     Safety Score (%)
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -432,7 +432,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
               </div>
 
               <div>
-                <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                   Initial Status
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">

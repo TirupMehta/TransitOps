@@ -72,7 +72,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, user, theme, onToggle
           <span className="text-xs font-extrabold text-primary hidden sm:inline">
             {user.fullName || user.email.split('@')[0]}
           </span>
-          <span className="neumorph-inset text-orange px-2.5 py-1 rounded-full text-[9px] font-extrabold tracking-widest border border-theme">
+          <span className="neumorph-inset text-orange px-3 py-1 rounded-full text-xs font-semibold tracking-wider border border-theme">
             {user.role}
           </span>
         </div>

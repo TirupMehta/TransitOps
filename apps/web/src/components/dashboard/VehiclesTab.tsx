@@ -274,7 +274,7 @@ export const VehiclesTab: React.FC<VehiclesTabProps> = ({
 
             <form onSubmit={handleSave} className="space-y-4">
               <div>
-                <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                   Registration Number
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -290,7 +290,7 @@ export const VehiclesTab: React.FC<VehiclesTabProps> = ({
               </div>
 
               <div>
-                <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                   Vehicle Name/Model
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -307,7 +307,7 @@ export const VehiclesTab: React.FC<VehiclesTabProps> = ({
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                  <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                     Vehicle Type
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -324,7 +324,7 @@ export const VehiclesTab: React.FC<VehiclesTabProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                  <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                     Load Capacity (kg)
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -342,7 +342,7 @@ export const VehiclesTab: React.FC<VehiclesTabProps> = ({
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                  <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                     Odometer (km)
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -358,7 +358,7 @@ export const VehiclesTab: React.FC<VehiclesTabProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                  <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                     Acq. Cost (Rs.)
                   </label>
                   <div className="rounded-xl neumorph-inset px-3 py-2">
@@ -375,7 +375,7 @@ export const VehiclesTab: React.FC<VehiclesTabProps> = ({
               </div>
 
               <div>
-                <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1">
+                <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                   Status
                 </label>
                 <div className="rounded-xl neumorph-inset px-3 py-2">
