@@ -42,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, user, theme, onToggle
         </div>
 
         {/* Global Search Bar from Mockup */}
-        <div className="relative rounded-xl neumorph-inset group border border-slate-200/5 w-64 hidden md:block">
+        <div className="relative rounded-xl neumorph-inset group border border-theme w-64 hidden md:block">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-secondary/60" />
           <input
             type="text"

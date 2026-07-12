@@ -30,27 +30,27 @@
 
 .dark {
   /* Dark Theme Colors */
-  --bg-app: #150e0a;
-  --bg-card: #201712;
-  --bg-inset: #120c08;
-  --text-primary: #faf5e9;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --shadow-outset: 6px 6px 16px #080504, -6px -6px 16px #2e211a;
-  --shadow-inset: inset 4px 4px 10px #080504, inset -4px -4px 10px #271c15;
-  --border-color: rgba(255, 255, 255, 0.03);
-  --btn-vanilla-from: #261c16;
-  --btn-vanilla-to: #1a120e;
-  --btn-vanilla-hover-from: #2f231b;
-  --btn-vanilla-hover-to: #201712;
-  --btn-vanilla-text: rgba(255, 255, 255, 0.9);
-  --btn-vanilla-shadow-active: inset 3px 3px 6px #080504, inset -3px -3px 6px #271c15;
-  --orange-accent: #df6a2e;
-  --orange-accent-hover: #eb7a3f;
-  --orange-accent-active: #b84a14;
-  --orange-active-shadow: inset 4px 4px 8px #6d2807, inset -4px -4px 8px rgba(255, 255, 255, 0.15);
-  --divider-color: rgba(238, 222, 189, 0.08);
-  --scrollbar-thumb: #2a1e17;
-  --glass-bg: rgba(21, 14, 10, 0.6);
+  --bg-app: #120e0c; /* Deep rich espresso black */
+  --bg-card: #1a1410; /* Warm dark cocoa card */
+  --bg-inset: #0a0807; /* Deepest warm shade for inputs */
+  --text-primary: #e6dfd5; /* Soft warm light sand vanilla (prevents harsh high-contrast white text) */
+  --text-secondary: #9e9185; /* Soft warm gray-brown for text */
+  --shadow-outset: 6px 6px 18px #080605, -6px -6px 18px #221c17; /* Softened dark shadows */
+  --shadow-inset: inset 4px 4px 10px #080605, inset -4px -4px 10px #221c17;
+  --border-color: rgba(255, 255, 255, 0.02); /* Extremely subtle border */
+  --btn-vanilla-from: #221b17; /* Dark cocoa button */
+  --btn-vanilla-to: #18120f;
+  --btn-vanilla-hover-from: #2a211c;
+  --btn-vanilla-hover-to: #1e1814;
+  --btn-vanilla-text: #e6dfd5;
+  --btn-vanilla-shadow-active: inset 3px 3px 6px #080605, inset -3px -3px 6px #221c17;
+  --orange-accent: #cf622c; /* Calmed down warm copper orange (less aggressive/neon) */
+  --orange-accent-hover: #dd713a;
+  --orange-accent-active: #b5501e;
+  --orange-active-shadow: inset 4px 4px 8px #6d2807, inset -4px -4px 8px rgba(255, 255, 255, 0.1);
+  --divider-color: rgba(230, 223, 213, 0.05); /* Softer divider lines */
+  --scrollbar-thumb: #251c17;
+  --glass-bg: rgba(18, 14, 12, 0.65); /* Rich dark glass overlay */
 }
 
 @layer base {
