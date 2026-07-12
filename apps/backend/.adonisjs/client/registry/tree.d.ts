@@ -29,4 +29,5 @@ export interface ApiDefinition {
       destroy: typeof routes['users.users.destroy']
     }
   }
+  trpcs: typeof routes['trpcs']
 }

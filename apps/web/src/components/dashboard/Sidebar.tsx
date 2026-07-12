@@ -57,7 +57,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     },
     {
       title: 'Assets & Crew',
-      items: navItems.filter(item => ['fleet', 'drivers'].includes(item.id))
+      items: navItems.filter(item => ['fleet', 'drivers', 'fleet-registry'].includes(item.id))
     },
     {
       title: 'Finance & Logistics',
@@ -90,12 +90,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <span className="font-extrabold text-primary text-xs tracking-wide block font-sans truncate">TransitOps</span>
               <span className="text-[8px] text-secondary font-bold tracking-wider uppercase truncate mt-0.5 block">Operations Hub</span>
             </div>
-            {!isCollapsed && (
+            {/* {!isCollapsed && (
               <div>
                 <span className="font-extrabold text-primary tracking-wide block font-sans">TransitOps</span>
                 <span className="text-xs text-[#87786f] font-bold tracking-wider">Operations Hub</span>
               </div>
-            )}
+            )} */}
           </div>
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}

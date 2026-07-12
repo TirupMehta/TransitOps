@@ -3,7 +3,6 @@ import type { Vehicle, Driver, Trip, DashboardKpis } from '../../types';
 import { StatCard } from '../ui/StatCard';
 import { Filter, Truck, CheckCircle, Wrench, Navigation, Clock, UserCheck, TrendingUp } from 'lucide-react';
 import { Badge } from '../ui/Badge';
-import { isTabAllowed } from './Sidebar';
 
 interface OverviewTabProps {
   kpis: DashboardKpis;
@@ -19,7 +18,6 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
   trips,
   vehicles,
   drivers,
-  userRole,
   setActiveTab,
 }) => {
   const [regionFilter, setRegionFilter] = useState('');

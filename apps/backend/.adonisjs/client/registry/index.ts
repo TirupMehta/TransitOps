@@ -72,6 +72,12 @@ const routes = {
     tokens: [{"old":"/api/v1/users/:id","type":0,"val":"api","end":""},{"old":"/api/v1/users/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/users/:id","type":0,"val":"users","end":""},{"old":"/api/v1/users/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['users.users.destroy']['types'],
   },
+  'trpcs': {
+    methods: ["HEAD","OPTIONS","GET","POST","PUT","PATCH","DELETE"],
+    pattern: '/trpc/*',
+    tokens: [{"old":"/trpc/*","type":0,"val":"trpc","end":""},{"old":"/trpc/*","type":2,"val":"*","end":""}],
+    types: placeholder as Registry['trpcs']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

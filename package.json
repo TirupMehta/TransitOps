@@ -12,6 +12,7 @@
     "node": ">=24.0.0"
   },
   "scripts": {
+    "predev": "node -e \"const { execSync } = require('child_process'); [3333,5173].forEach(p => { try { const pid = execSync(`netstat -ano | findstr :${p} | findstr LISTENING`, {encoding:'utf8'}).trim().split(/\\s+/).pop(); if(pid) execSync('taskkill /PID ' + pid + ' /F', {stdio:'ignore'}); } catch(e){} });\"",
     "dev": "turbo dev",
     "build": "turbo build",
     "test": "turbo test",

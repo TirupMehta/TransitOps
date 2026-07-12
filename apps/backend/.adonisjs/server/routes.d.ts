@@ -15,30 +15,42 @@ export type ScannedRoutes = {
     'users.users.change_password': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'users.users.set_active': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'users.users.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'trpcs': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
   }
   GET: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
     'users.users.index': { paramsTuple?: []; params?: {} }
     'users.users.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'trpcs': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
   }
   HEAD: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
     'users.users.index': { paramsTuple?: []; params?: {} }
     'users.users.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'trpcs': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
   }
   POST: {
     'auth.new_account.store': { paramsTuple?: []; params?: {} }
     'auth.access_tokens.store': { paramsTuple?: []; params?: {} }
     'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
     'users.users.store': { paramsTuple?: []; params?: {} }
+    'trpcs': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
   }
   PATCH: {
     'users.users.update_profile': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'users.users.change_password': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'users.users.set_active': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'trpcs': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
   }
   DELETE: {
     'users.users.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'trpcs': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
+  }
+  OPTIONS: {
+    'trpcs': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
+  }
+  PUT: {
+    'trpcs': { paramsTuple: [...ParamValue[]]; params: {'*': ParamValue[]} }
   }
 }
 declare module '@adonisjs/core/types/http' {

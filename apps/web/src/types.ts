@@ -33,6 +33,7 @@ export interface Driver {
   safetyScore: number
   status: DriverStatus
   tripCompletionRate: number // e.g. 96
+  email?: string
   createdAt?: string
   updatedAt?: string
 }

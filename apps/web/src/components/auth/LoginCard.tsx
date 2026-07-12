@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { login, signup } from '../../utils/api';
-import type { User } from '../../types';
 import { Truck, Lock, Mail, AlertCircle, Eye, EyeOff, Loader2, UserPlus, UserCheck, ShieldAlert } from 'lucide-react';
+import { useAuth } from '../../hooks/useAuth';
+import { loginSchema, signupSchema } from '../../schemas/auth.schema';
+import type { User } from '../../types';
 
 interface LoginCardProps {
   onLoginSuccess: (user: User, token: string) => void;
 }
 
 const DEMO_CREDENTIALS = [
-  { label: 'Fleet Manager', email: 'manager@transitops.in' },
-  { label: 'Safety Officer', email: 'safety@transitops.in' },
-  { label: 'Driver', email: 'driver@transitops.in' },
-  { label: 'Financial Analyst', email: 'finance@transitops.in' },
+  { label: 'Fleet Manager', email: 'fleetmanager@transit.com', password: 'Fleet@123' },
+  { label: 'Safety Officer', email: 'safety@transit.com', password: 'Safety@123' },
+  { label: 'Driver', email: 'driver@transit.com', password: 'Driver@123' },
+  { label: 'Financial Analyst', email: 'analyst@transit.com', password: 'Analyst@123' },
 ];
 
 const ROLES = [
@@ -22,45 +23,67 @@ const ROLES = [
 ];
 
 export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
+  const { login, signup } = useAuth();
+
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('Fleet Manager');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  // Field-level Zod validation errors
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !password || (isSignUp && !fullName)) {
-      setError('Please fill in all fields.');
-      return;
-    }
-
-    setError(null);
+    setFieldErrors({});
     setLoading(true);
 
     try {
       if (isSignUp) {
+        // ── Zod signup validation ──────────────────────────────────────────
+        const parsed = signupSchema.safeParse({ fullName, email, password, role });
+        if (!parsed.success) {
+          const errors: Record<string, string> = {};
+          parsed.error.issues.forEach((err) => {
+            const field = String(err.path[0]);
+            if (!errors[field]) errors[field] = err.message;
+          });
+          setFieldErrors(errors);
+          return;
+        }
+
         const result = await signup(fullName, email, password, role);
         onLoginSuccess(result.user, result.token);
       } else {
+        // ── Zod login validation ───────────────────────────────────────────
+        const parsed = loginSchema.safeParse({ email, password });
+        if (!parsed.success) {
+          const errors: Record<string, string> = {};
+          parsed.error.issues.forEach((err) => {
+            const field = String(err.path[0]);
+            if (!errors[field]) errors[field] = err.message;
+          });
+          setFieldErrors(errors);
+          return;
+        }
+
         const result = await login(email, password, role);
         onLoginSuccess(result.user, result.token);
       }
-    } catch (err: any) {
-      setError(err.message || 'Authentication failed. Please try again.');
+    } catch {
+      // Errors are surfaced via Sonner toasts inside useAuth
     } finally {
       setLoading(false);
     }
   };
 
-  const handleQuickSelect = (demoEmail: string, demoLabel: string) => {
+  const handleQuickSelect = (demoEmail: string, demoLabel: string, demoPassword?: string) => {
     setEmail(demoEmail);
-    setPassword('password');
+    setPassword(demoPassword || 'password');
     setRole(demoLabel);
-    setError(null);
+    setFieldErrors({});
   };
 
   return (
@@ -113,40 +136,23 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
           <button
             onClick={() => {
               setIsSignUp(!isSignUp);
-              setError(null);
+              setFieldErrors({});
             }}
             className="flex items-center gap-1.5 text-xs font-extrabold text-orange hover:text-orange/80 cursor-pointer transition-all"
           >
             {isSignUp ? (
-              <>
-                <UserCheck className="w-4 h-4" /> Already registered? Sign In
-              </>
+              <><UserCheck className="w-4 h-4" /> Already registered? Sign In</>
             ) : (
-              <>
-                <UserPlus className="w-4 h-4" /> New user? Sign Up
-              </>
+              <><UserPlus className="w-4 h-4" /> New user? Sign Up</>
             )}
           </button>
         </div>
 
-        {/* Error alert with custom red outline style from mockup */}
-        {error && (
-          <div className="mb-4 flex items-start gap-3 bg-red-500/10 border-2 border-dashed border-red-500/40 text-red-500 px-4 py-3 rounded-2xl text-xs font-semibold animate-slide-in">
-            <AlertCircle className="w-5 h-5 shrink-0 text-red-500 mt-0.5" />
-            <div>
-              <p className="font-bold">Access Warning</p>
-              <p className="opacity-95 text-[10px] leading-tight">{error}</p>
-            </div>
-          </div>
-        )}
-
         <form onSubmit={handleSubmit} className="space-y-4">
           {isSignUp && (
             <div>
-            <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
-                Full Name
-              </label>
-              <div className="relative rounded-2xl neumorph-inset border border-theme">
+              <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">Full Name</label>
+              <div className={`relative rounded-2xl neumorph-inset border ${fieldErrors.fullName ? 'border-red-500/60' : 'border-theme'}`}>
                 <input
                   type="text"
                   required
@@ -156,14 +162,17 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
                   className="w-full px-4 py-2.5 bg-transparent rounded-2xl text-primary placeholder-secondary/40 focus:outline-none font-bold text-xs"
                 />
               </div>
+              {fieldErrors.fullName && (
+                <p className="mt-1 px-1 text-[10px] font-semibold text-red-500 flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3" /> {fieldErrors.fullName}
+                </p>
+              )}
             </div>
           )}
 
           <div>
-            <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
-              Email Address
-            </label>
-            <div className="relative rounded-2xl neumorph-inset border border-theme flex items-center">
+            <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">Email Address</label>
+            <div className={`relative rounded-2xl neumorph-inset border flex items-center ${fieldErrors.email ? 'border-red-500/60' : 'border-theme'}`}>
               <Mail className="absolute left-4 w-4 h-4 text-secondary/60" />
               <input
                 type="email"
@@ -174,13 +183,16 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
                 className="w-full pl-11 pr-4 py-2.5 bg-transparent rounded-2xl text-primary placeholder-secondary/40 focus:outline-none font-bold text-xs"
               />
             </div>
+            {fieldErrors.email && (
+              <p className="mt-1 px-1 text-[10px] font-semibold text-red-500 flex items-center gap-1">
+                <AlertCircle className="w-3 h-3" /> {fieldErrors.email}
+              </p>
+            )}
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
-              Password
-            </label>
-            <div className="relative rounded-2xl neumorph-inset border border-theme flex items-center">
+            <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">Password</label>
+            <div className={`relative rounded-2xl neumorph-inset border flex items-center ${fieldErrors.password ? 'border-red-500/60' : 'border-theme'}`}>
               <Lock className="absolute left-4 w-4 h-4 text-secondary/60" />
               <input
                 type={showPassword ? 'text' : 'password'}
@@ -198,12 +210,15 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
             </div>
+            {fieldErrors.password && (
+              <p className="mt-1 px-1 text-[10px] font-semibold text-red-500 flex items-center gap-1">
+                <AlertCircle className="w-3 h-3" /> {fieldErrors.password}
+              </p>
+            )}
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
-              Role Option
-            </label>
+            <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">Role Option</label>
             <div className="rounded-2xl neumorph-inset border border-theme">
               <select
                 value={role}
@@ -259,7 +274,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
             <button
               key={demo.email}
               type="button"
-              onClick={() => handleQuickSelect(demo.email, demo.label)}
+              onClick={() => handleQuickSelect(demo.email, demo.label, demo.password)}
               className="flex flex-col p-2.5 rounded-xl transition-all cursor-pointer group neumorph-btn-vanilla text-left shadow-xs"
             >
               <span className="text-[11px] font-bold text-primary group-hover:text-orange transition-colors truncate">
