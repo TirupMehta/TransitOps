@@ -53,85 +53,43 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Navigation list */}
-        <div className="p-3 space-y-4 overflow-y-auto max-h-[calc(100vh-140px)]">
-          {/* Starred Section */}
-          <div className="space-y-1">
-            <span className={`text-[8px] font-extrabold uppercase tracking-widest text-secondary/40 px-3 block mb-1.5 transition-all duration-300 whitespace-nowrap ${isCollapsed ? 'h-0 opacity-0 overflow-hidden mb-0' : 'h-auto opacity-100'}`}>
-              Starred
-            </span>
-            {navItems.slice(0, 3).map((item) => {
-              const Icon = item.icon;
-              const isActive = activeTab === item.id;
-              return (
-                <button
-                  key={`star-${item.id}`}
-                  onClick={() => setActiveTab(item.id)}
-                  className={`relative group w-full flex items-center rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                    isCollapsed ? 'justify-center p-2.5' : 'gap-3 px-3 py-2 text-left'
-                  } ${
-                    isActive
-                      ? 'bg-orange text-white shadow-sm'
-                      : 'text-secondary hover:text-orange hover:bg-app-theme'
-                  }`}
-                >
+        <div className="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-140px)]">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => setActiveTab(item.id)}
+                className={`relative group w-full flex items-center justify-between rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  isCollapsed ? 'justify-center p-2.5' : 'px-3 py-2 text-left'
+                } ${
+                  isActive
+                    ? 'bg-orange text-white shadow-sm'
+                    : 'text-secondary hover:text-orange hover:bg-app-theme'
+                }`}
+              >
+                <div className="flex items-center gap-3 min-w-0">
                   <Icon className={`w-4.5 h-4.5 shrink-0 ${isActive ? 'text-white' : 'text-secondary group-hover:text-orange'}`} />
                   <span className={`transition-all duration-300 whitespace-nowrap truncate ${isCollapsed ? 'w-0 opacity-0 overflow-hidden' : 'w-auto opacity-100'}`}>
                     {item.label}
                   </span>
+                </div>
+                {!isCollapsed && item.id === 'vehicles' && (
+                  <span className="px-1.5 py-0.5 rounded-md bg-[#c82046]/10 text-[#c82046] text-[8px] font-extrabold shrink-0">
+                    Active
+                  </span>
+                )}
 
-                  {/* Collapsed Tooltip on Hover */}
-                  {isCollapsed && (
-                    <div className="absolute left-full ml-3 px-3 py-1.5 bg-card-theme text-primary text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 shadow-xl whitespace-nowrap z-50 border border-theme">
-                      {item.label} (Starred)
-                    </div>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Registry & Logs Section */}
-          <div className="space-y-1">
-            <span className={`text-[8px] font-extrabold uppercase tracking-widest text-secondary/40 px-3 block mb-1.5 transition-all duration-300 whitespace-nowrap ${isCollapsed ? 'h-0 opacity-0 overflow-hidden mb-0' : 'h-auto opacity-100'}`}>
-              Registry & Logs
-            </span>
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = activeTab === item.id;
-              return (
-                <button
-                  key={`list-${item.id}`}
-                  onClick={() => setActiveTab(item.id)}
-                  className={`relative group w-full flex items-center justify-between rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                    isCollapsed ? 'justify-center p-2.5' : 'px-3 py-2 text-left'
-                  } ${
-                    isActive
-                      ? 'bg-orange text-white shadow-sm'
-                      : 'text-secondary hover:text-orange hover:bg-app-theme'
-                  }`}
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <Icon className={`w-4.5 h-4.5 shrink-0 ${isActive ? 'text-white' : 'text-secondary group-hover:text-orange'}`} />
-                    <span className={`transition-all duration-300 whitespace-nowrap truncate ${isCollapsed ? 'w-0 opacity-0 overflow-hidden' : 'w-auto opacity-100'}`}>
-                      {item.label}
-                    </span>
+                {/* Collapsed Tooltip on Hover */}
+                {isCollapsed && (
+                  <div className="absolute left-full ml-3 px-3 py-1.5 bg-card-theme text-primary text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 shadow-xl whitespace-nowrap z-50 border border-theme">
+                    {item.label}
                   </div>
-                  {!isCollapsed && item.id === 'vehicles' && (
-                    <span className="px-1.5 py-0.5 rounded-md bg-[#c82046]/10 text-[#c82046] text-[8px] font-extrabold shrink-0">
-                      Active
-                    </span>
-                  )}
-
-                  {/* Collapsed Tooltip on Hover */}
-                  {isCollapsed && (
-                    <div className="absolute left-full ml-3 px-3 py-1.5 bg-card-theme text-primary text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 shadow-xl whitespace-nowrap z-50 border border-theme">
-                      {item.label}
-                    </div>
-                  )}
-                </button>
-              );
-            })}
-          </div>
+                )}
+              </button>
+            );
+          })}
         </div>
       </div>
 
