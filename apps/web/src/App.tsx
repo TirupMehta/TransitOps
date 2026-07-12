@@ -1,8 +1,18 @@
-import { useState, useEffect } from 'react';
-import { LoginView } from './components/LoginView';
-import { DashboardView } from './components/DashboardView';
+import { useState, useEffect, lazy, Suspense } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { getStoredUser, getStoredToken } from './utils/api';
 import type { User } from './types';
+
+const AppRoutes = lazy(() => import('./router/routes'));
+
+const LoadingScreen = () => (
+  <div className="min-h-screen bg-app-theme flex items-center justify-center">
+    <div className="flex flex-col items-center gap-3">
+      <div className="w-8 h-8 rounded-full border-2 border-orange/30 border-t-orange animate-spin" />
+      <span className="text-xs font-bold text-secondary tracking-widest uppercase">Loading...</span>
+    </div>
+  </div>
+);
 
 function App() {
   const [user, setUser] = useState<User | null>(getStoredUser());
@@ -45,23 +55,17 @@ function App() {
   };
 
   return (
-    <>
-      {user && token ? (
-        <DashboardView user={user} theme={theme} onToggleTheme={toggleTheme} />
-      ) : (
-        <div className="relative">
-          <div className="absolute top-4 right-4 z-50">
-            <button
-              onClick={toggleTheme}
-              className="p-3 rounded-2xl neumorph-btn-vanilla text-xs font-bold transition-all cursor-pointer shadow-md"
-            >
-              {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
-            </button>
-          </div>
-          <LoginView onLoginSuccess={handleLoginSuccess} />
-        </div>
-      )}
-    </>
+    <BrowserRouter>
+      <Suspense fallback={<LoadingScreen />}>
+        <AppRoutes
+          user={user}
+          token={token}
+          onLoginSuccess={handleLoginSuccess}
+          theme={theme}
+          onToggleTheme={toggleTheme}
+        />
+      </Suspense>
+    </BrowserRouter>
   );
 }
 
