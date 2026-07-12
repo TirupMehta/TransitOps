@@ -23,46 +23,101 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <aside
-      className={`bg-card-theme flex shrink-0 h-full border-r border-theme transition-all duration-300 ${
+      className={`bg-card-theme flex flex-col justify-between shrink-0 h-full border-r border-theme shadow-[4px_0_12px_rgba(0,0,0,0.05)] transition-all duration-300 ${
         isCollapsed ? 'w-16' : 'w-64'
       }`}
     >
-      {/* Left Icon Strip (Narrow Panel) */}
-      <div className="w-16 flex flex-col justify-between items-center py-4 border-r border-theme bg-card-theme shrink-0 h-full">
-        <div className="flex flex-col items-center gap-6 w-full">
-          {/* Logo (Pill like Codename.com 'C') */}
-          <div className="flex flex-col items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-black flex items-center justify-center text-white font-extrabold text-base shadow-sm cursor-pointer hover:opacity-90">
+      <div>
+        {/* Brand Header */}
+        <div className="flex items-center justify-between p-4 border-b border-theme bg-card-theme h-16 shrink-0">
+          <div className="flex items-center gap-3 overflow-hidden">
+            <div className="bg-black text-white w-9 h-9 rounded-full flex items-center justify-center font-extrabold text-base shrink-0 shadow-sm cursor-pointer hover:opacity-90">
               T
             </div>
-            {isCollapsed && (
-              <button
-                onClick={() => setIsCollapsed(false)}
-                className="p-1 rounded-lg hover:bg-app-theme text-secondary cursor-pointer"
-                title="Expand Sidebar"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            )}
+            <div className={`transition-all duration-300 ${isCollapsed ? 'w-0 opacity-0 overflow-hidden' : 'w-32 opacity-100'}`}>
+              <span className="font-extrabold text-primary text-xs tracking-wide block font-sans truncate">TransitOps</span>
+              <span className="text-[8px] text-secondary font-bold tracking-wider uppercase truncate mt-0.5 block">Operations Hub</span>
+            </div>
+          </div>
+          <button
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className="p-1 rounded-lg hover:bg-app-theme text-secondary cursor-pointer hover:text-orange shrink-0 flex items-center justify-center"
+            title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
+          >
+            {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+          </button>
+        </div>
+
+        {/* Navigation list */}
+        <div className="p-3 space-y-4 overflow-y-auto max-h-[calc(100vh-140px)]">
+          {/* Starred Section */}
+          <div className="space-y-1">
+            <span className={`text-[8px] font-extrabold uppercase tracking-widest text-secondary/40 px-3 block mb-1.5 transition-all duration-300 whitespace-nowrap ${isCollapsed ? 'h-0 opacity-0 overflow-hidden mb-0' : 'h-auto opacity-100'}`}>
+              Starred
+            </span>
+            {navItems.slice(0, 3).map((item) => {
+              const Icon = item.icon;
+              const isActive = activeTab === item.id;
+              return (
+                <button
+                  key={`star-${item.id}`}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`relative group w-full flex items-center rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    isCollapsed ? 'justify-center p-2.5' : 'gap-3 px-3 py-2 text-left'
+                  } ${
+                    isActive
+                      ? 'bg-orange text-white shadow-sm'
+                      : 'text-secondary hover:text-orange hover:bg-app-theme'
+                  }`}
+                >
+                  <Icon className={`w-4.5 h-4.5 shrink-0 ${isActive ? 'text-white' : 'text-secondary group-hover:text-orange'}`} />
+                  <span className={`transition-all duration-300 whitespace-nowrap truncate ${isCollapsed ? 'w-0 opacity-0 overflow-hidden' : 'w-auto opacity-100'}`}>
+                    {item.label}
+                  </span>
+
+                  {/* Collapsed Tooltip on Hover */}
+                  {isCollapsed && (
+                    <div className="absolute left-full ml-3 px-3 py-1.5 bg-card-theme text-primary text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 shadow-xl whitespace-nowrap z-50 border border-theme">
+                      {item.label} (Starred)
+                    </div>
+                  )}
+                </button>
+              );
+            })}
           </div>
 
-          {/* Navigation Icons list */}
-          <nav className="flex flex-col items-center gap-3 w-full px-2">
+          {/* Registry & Logs Section */}
+          <div className="space-y-1">
+            <span className={`text-[8px] font-extrabold uppercase tracking-widest text-secondary/40 px-3 block mb-1.5 transition-all duration-300 whitespace-nowrap ${isCollapsed ? 'h-0 opacity-0 overflow-hidden mb-0' : 'h-auto opacity-100'}`}>
+              Registry & Logs
+            </span>
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
               return (
                 <button
-                  key={item.id}
+                  key={`list-${item.id}`}
                   onClick={() => setActiveTab(item.id)}
-                  className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all cursor-pointer relative group ${
+                  className={`relative group w-full flex items-center justify-between rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    isCollapsed ? 'justify-center p-2.5' : 'px-3 py-2 text-left'
+                  } ${
                     isActive
-                      ? 'bg-orange text-white shadow-sm font-extrabold'
+                      ? 'bg-orange text-white shadow-sm'
                       : 'text-secondary hover:text-orange hover:bg-app-theme'
                   }`}
                 >
-                  <Icon className="w-4.5 h-4.5" />
-                  
+                  <div className="flex items-center gap-3 min-w-0">
+                    <Icon className={`w-4.5 h-4.5 shrink-0 ${isActive ? 'text-white' : 'text-secondary group-hover:text-orange'}`} />
+                    <span className={`transition-all duration-300 whitespace-nowrap truncate ${isCollapsed ? 'w-0 opacity-0 overflow-hidden' : 'w-auto opacity-100'}`}>
+                      {item.label}
+                    </span>
+                  </div>
+                  {!isCollapsed && item.id === 'vehicles' && (
+                    <span className="px-1.5 py-0.5 rounded-md bg-[#c82046]/10 text-[#c82046] text-[8px] font-extrabold shrink-0">
+                      Active
+                    </span>
+                  )}
+
                   {/* Collapsed Tooltip on Hover */}
                   {isCollapsed && (
                     <div className="absolute left-full ml-3 px-3 py-1.5 bg-card-theme text-primary text-xs font-bold rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 shadow-xl whitespace-nowrap z-50 border border-theme">
@@ -72,98 +127,35 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 </button>
               );
             })}
-          </nav>
-        </div>
-
-        {/* User initials & Settings */}
-        <div className="flex flex-col items-center gap-4 w-full">
-          <button
-            onClick={() => logout()}
-            className="w-9 h-9 rounded-xl flex items-center justify-center text-secondary hover:text-rose-500 hover:bg-rose-500/5 transition-all cursor-pointer"
-            title="Sign Out"
-          >
-            <LogOut className="w-4 h-4" />
-          </button>
-          
-          <div className="w-9 h-9 rounded-full text-orange neumorph-inset flex items-center justify-center font-extrabold text-[10px] shrink-0 cursor-default uppercase">
-            {user.initials}
           </div>
         </div>
       </div>
 
-      {/* Right Content Panel (Visible when expanded) */}
-      {!isCollapsed && (
-        <div className="flex-1 flex flex-col justify-between p-4 overflow-y-auto min-w-0">
-          <div>
-            {/* Header: Title */}
-            <div className="flex items-center justify-between pb-4 mb-4 border-b border-theme">
-              <div>
-                <span className="font-extrabold text-primary text-sm tracking-wide block font-sans">TransitOps</span>
-                <span className="text-[9px] text-secondary font-bold tracking-wider uppercase mt-0.5 block">Operations Hub</span>
-              </div>
-              <button
-                onClick={() => setIsCollapsed(true)}
-                className="p-1 rounded-lg hover:bg-app-theme text-secondary cursor-pointer"
-                title="Collapse Sidebar"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Navigation Sections */}
-            <div className="space-y-6">
-              <div>
-                <span className="text-[9px] font-extrabold uppercase tracking-widest text-secondary/40 px-2 block mb-2">Starred</span>
-                <div className="space-y-1">
-                  {navItems.slice(0, 3).map((item) => (
-                    <button
-                      key={`star-${item.id}`}
-                      onClick={() => setActiveTab(item.id)}
-                      className={`w-full text-left px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                        activeTab === item.id
-                          ? 'text-orange bg-app-theme font-extrabold'
-                          : 'text-secondary hover:text-orange hover:bg-app-theme/50'
-                      }`}
-                    >
-                      {item.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <span className="text-[9px] font-extrabold uppercase tracking-widest text-secondary/40 px-2 block mb-2">Registry & Logs</span>
-                <div className="space-y-1">
-                  {navItems.map((item) => (
-                    <button
-                      key={`list-${item.id}`}
-                      onClick={() => setActiveTab(item.id)}
-                      className={`w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                        activeTab === item.id
-                          ? 'text-orange bg-app-theme font-extrabold'
-                          : 'text-secondary hover:text-orange hover:bg-app-theme/50'
-                      }`}
-                    >
-                      <span className="truncate mr-2">{item.label}</span>
-                      {item.id === 'vehicles' && <span className="px-1.5 py-0.5 rounded-md bg-[#c82046]/10 text-[#c82046] text-[8px] font-extrabold shrink-0">Active</span>}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
+      {/* User profile & Logout footer */}
+      <div className="p-3 border-t border-theme bg-card-theme space-y-3">
+        <div className={`flex items-center gap-3 py-1 transition-all duration-300 ${isCollapsed ? 'justify-center px-0' : 'px-2'}`}>
+          <div className="w-8.5 h-8.5 rounded-full text-orange neumorph-inset flex items-center justify-center font-extrabold text-[10px] shrink-0 uppercase border border-theme">
+            {user.initials}
           </div>
-
-          {/* User profile footer */}
-          <div className="border-t border-theme pt-3 mt-4">
-            <div className="flex items-center gap-2 px-1">
-              <div className="overflow-hidden">
-                <span className="block text-xs font-extrabold text-primary truncate leading-tight">{user.fullName || user.email}</span>
-                <span className="block text-[8px] text-secondary font-extrabold tracking-wider uppercase mt-1">{user.role || 'User'}</span>
-              </div>
-            </div>
+          <div className={`transition-all duration-300 overflow-hidden ${isCollapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'}`}>
+            <span className="block text-xs font-extrabold text-primary truncate leading-tight">{user.fullName || user.email}</span>
+            <span className="block text-[8px] text-secondary font-extrabold tracking-wider uppercase mt-1 leading-none">{user.role || 'User'}</span>
           </div>
         </div>
-      )}
+
+        <button
+          onClick={() => logout()}
+          className={`w-full flex items-center gap-2.5 px-3 py-2 hover:bg-rose-500/5 border border-transparent hover:border-[#eccbc1]/20 hover:text-red-500 rounded-xl text-xs font-extrabold transition-all text-secondary cursor-pointer ${
+            isCollapsed ? 'justify-center' : ''
+          }`}
+          title={isCollapsed ? 'Sign Out' : undefined}
+        >
+          <LogOut className="w-4 h-4 shrink-0" />
+          <span className={`transition-all duration-300 whitespace-nowrap ${isCollapsed ? 'w-0 opacity-0 overflow-hidden' : 'w-auto opacity-100'}`}>
+            Sign Out
+          </span>
+        </button>
+      </div>
     </aside>
   );
 };
