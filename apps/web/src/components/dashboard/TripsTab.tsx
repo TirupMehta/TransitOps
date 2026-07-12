@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import type { Trip, Vehicle, Driver, TripStatus } from '../../types';
 import { Badge } from '../ui/Badge';
-import { Search, Compass, AlertTriangle, CheckCircle, Play, XCircle, CheckCircle2, HelpCircle, AlertCircle } from 'lucide-react';
+import { Search, Compass, AlertTriangle, CheckCircle, Play, XCircle, CheckCircle2, HelpCircle, AlertCircle, Lock } from 'lucide-react';
 import { storage } from '../../utils/api';
 
 interface TripsTabProps {
   trips: Trip[];
   vehicles: Vehicle[];
   drivers: Driver[];
+  userRole?: string;
   onUpdate: () => void;
 }
 
@@ -15,8 +16,10 @@ export const TripsTab: React.FC<TripsTabProps> = ({
   trips,
   vehicles,
   drivers,
+  userRole,
   onUpdate,
 }) => {
+  const canWrite = userRole?.toLowerCase().includes('manager') || userRole?.toLowerCase().includes('driver') || userRole?.toLowerCase().includes('dispatcher');
   const [search, setSearch] = useState('');
   
   // Create Trip Form State
@@ -281,13 +284,19 @@ export const TripsTab: React.FC<TripsTabProps> = ({
           />
         </div>
         <div className="text-xs font-extrabold text-orange tracking-wider flex items-center gap-1.5">
+          {!canWrite && (
+            <span className="text-xs font-semibold text-secondary/60 bg-card-theme/50 px-3 py-1.5 rounded-xl border border-theme flex items-center gap-1.5 shadow-xs mr-2">
+              <Lock className="w-3.5 h-3.5 text-orange" /> Read-Only View
+            </span>
+          )}
           <Compass className="w-5 h-5" /> Trip Dispatcher Control Board
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Side: Create Trip Form */}
-        <div className="rounded-3xl p-6 neumorph-outset relative">
+        {canWrite && (
+          <div className="rounded-3xl p-6 neumorph-outset relative">
           <div className="mb-6">
             <h3 className="font-extrabold text-primary text-sm tracking-wider mb-2">Create Trip</h3>
             {/* Trip Lifecycle Progress Indicator */}
@@ -456,9 +465,10 @@ export const TripsTab: React.FC<TripsTabProps> = ({
             </div>
           </form>
         </div>
+      )}
 
         {/* Right Side: Live Board */}
-        <div className="lg:col-span-2 rounded-3xl p-6 neumorph-outset flex flex-col justify-between">
+        <div className={`${canWrite ? 'lg:col-span-2' : 'lg:col-span-3'} rounded-3xl p-6 neumorph-outset flex flex-col justify-between`}>
           <div>
             <h3 className="font-extrabold text-primary text-sm tracking-wider mb-4">Live Board</h3>
 
@@ -490,7 +500,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
                       <Badge variant={getBadgeVariant(trip.status)}>{trip.status}</Badge>
 
                       {/* Dispatched actions */}
-                      {trip.status === 'Dispatched' && (
+                      {trip.status === 'Dispatched' && canWrite && (
                         <div className="flex items-center gap-1.5">
                           <button
                             onClick={() => handleOpenCompleteModal(trip)}
@@ -508,7 +518,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
                       )}
 
                       {/* Draft actions */}
-                      {trip.status === 'Draft' && (
+                      {trip.status === 'Draft' && canWrite && (
                         <button
                           onClick={() => handleDispatchDraft(trip)}
                           className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors shadow-sm"

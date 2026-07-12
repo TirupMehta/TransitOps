@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import type { Expense, Vehicle } from '../../types';
-import { Search, Fuel, Plus, AlertCircle } from 'lucide-react';
+import { Search, Fuel, Plus, AlertCircle, Lock as LockIcon } from 'lucide-react';
 import { storage } from '../../utils/api';
 
 interface ExpensesTabProps {
   expenses: Expense[];
   vehicles: Vehicle[];
+  userRole?: string;
   onUpdate: () => void;
 }
 
 export const ExpensesTab: React.FC<ExpensesTabProps> = ({
   expenses,
   vehicles,
+  userRole,
   onUpdate,
 }) => {
+  const canWrite = userRole?.toLowerCase().includes('manager') || userRole?.toLowerCase().includes('finance') || userRole?.toLowerCase().includes('analyst');
   const [search, setSearch] = useState('');
 
   // Fuel Log Modal State
@@ -144,30 +147,38 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
         </div>
 
         <div className="flex items-center gap-3">
-          <button
-            onClick={() => {
-              setFuelVehicleId(null);
-              setFuelLiters(30);
-              setFuelCost(2500);
-              setFuelError(null);
-              setIsFuelModalOpen(true);
-            }}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all neumorph-btn-vanilla cursor-pointer shadow-md"
-          >
-            <Fuel className="w-4 h-4 text-orange" /> Log Fuel
-          </button>
-          <button
-            onClick={() => {
-              setExpVehicleId(null);
-              setExpAmount(150);
-              setExpDesc('Toll plaza payment');
-              setExpError(null);
-              setIsExpenseModalOpen(true);
-            }}
-            className="flex items-center gap-1.5 px-4.5 py-2 rounded-xl text-xs font-bold transition-all neumorph-btn-orange cursor-pointer shadow-md hover:scale-[1.02]"
-          >
-            <Plus className="w-4 h-4" /> Add Expense
-          </button>
+          {canWrite ? (
+            <>
+              <button
+                onClick={() => {
+                  setFuelVehicleId(null);
+                  setFuelLiters(30);
+                  setFuelCost(2500);
+                  setFuelError(null);
+                  setIsFuelModalOpen(true);
+                }}
+                className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all neumorph-btn-vanilla cursor-pointer shadow-md"
+              >
+                <Fuel className="w-4 h-4 text-orange" /> Log Fuel
+              </button>
+              <button
+                onClick={() => {
+                  setExpVehicleId(null);
+                  setExpAmount(150);
+                  setExpDesc('Toll plaza payment');
+                  setExpError(null);
+                  setIsExpenseModalOpen(true);
+                }}
+                className="flex items-center gap-1.5 px-4.5 py-2 rounded-xl text-xs font-bold transition-all neumorph-btn-orange cursor-pointer shadow-md hover:scale-[1.02]"
+              >
+                <Plus className="w-4 h-4" /> Add Expense
+              </button>
+            </>
+          ) : (
+            <span className="text-xs font-semibold text-secondary/60 bg-card-theme/50 px-3.5 py-2 rounded-xl border border-theme flex items-center gap-1.5 shadow-xs">
+              <LockIcon className="w-3.5 h-3.5 text-orange" /> Read-Only View
+            </span>
+          )}
         </div>
       </div>
 

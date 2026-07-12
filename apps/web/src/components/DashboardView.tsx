@@ -80,6 +80,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
         return (
           <VehiclesTab
             vehicles={vehicles}
+            userRole={user.role}
             onUpdate={refreshData}
           />
         );
@@ -87,6 +88,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
         return (
           <DriversTab 
             drivers={drivers} 
+            userRole={user.role}
             onUpdate={refreshData} 
           />
         );
@@ -96,6 +98,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
             trips={trips}
             vehicles={vehicles}
             drivers={drivers}
+            userRole={user.role}
             onUpdate={refreshData}
           />
         );
@@ -104,6 +107,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
           <MaintenanceTab
             maintenance={maintenance}
             vehicles={vehicles}
+            userRole={user.role}
             onUpdate={refreshData}
           />
         );
@@ -112,6 +116,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ user, theme, onTog
           <ExpensesTab 
             expenses={expenses} 
             vehicles={vehicles} 
+            userRole={user.role}
             onUpdate={refreshData}
           />
         );

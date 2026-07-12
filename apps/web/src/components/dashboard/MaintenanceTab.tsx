@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import type { MaintenanceLog, Vehicle } from '../../types';
 import { Badge } from '../ui/Badge';
-import { Search, Wrench, AlertCircle, ArrowRightLeft, CheckCircle2 } from 'lucide-react';
+import { Search, Wrench, AlertCircle, ArrowRightLeft, CheckCircle2, Lock } from 'lucide-react';
 import { storage } from '../../utils/api';
 
 interface MaintenanceTabProps {
   maintenance: MaintenanceLog[];
   vehicles: Vehicle[];
+  userRole?: string;
   onUpdate: () => void;
 }
 
 export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
   maintenance,
   vehicles,
+  userRole,
   onUpdate,
 }) => {
+  const canWrite = userRole?.toLowerCase().includes('manager');
   const [search, setSearch] = useState('');
   
   // Log Service Record Form State
@@ -132,13 +135,19 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
           />
         </div>
         <div className="text-xs font-extrabold text-orange tracking-wider flex items-center gap-1.5">
+          {!canWrite && (
+            <span className="text-xs font-semibold text-secondary/60 bg-card-theme/50 px-3 py-1.5 rounded-xl border border-theme flex items-center gap-1.5 shadow-xs mr-2">
+              <Lock className="w-3.5 h-3.5 text-orange" /> Read-Only View
+            </span>
+          )}
           <Wrench className="w-5 h-5" /> Maintenance Workshop Logs
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Panel: Log Service Record Form */}
-        <div className="rounded-3xl p-6 neumorph-outset relative">
+        {canWrite && (
+          <div className="rounded-3xl p-6 neumorph-outset relative">
           <h3 className="font-extrabold text-primary text-sm tracking-wider mb-6">Log Service Record</h3>
 
           {validationError && (
@@ -255,9 +264,10 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
             </span>
           </div>
         </div>
+      )}
 
         {/* Right Panel: Service Log Table */}
-        <div className="lg:col-span-2 rounded-3xl p-6 neumorph-outset">
+        <div className={`${canWrite ? 'lg:col-span-2' : 'lg:col-span-3'} rounded-3xl p-6 neumorph-outset`}>
           <h3 className="font-extrabold text-primary text-sm tracking-wider mb-6">Service Log</h3>
 
           <div className="overflow-x-auto">
@@ -268,7 +278,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
                   <th className="pb-3">Service</th>
                   <th className="pb-3">Cost</th>
                   <th className="pb-3">Status</th>
-                  <th className="pb-3 text-center">Action</th>
+                  {canWrite && <th className="pb-3 text-center">Action</th>}
                 </tr>
               </thead>
               <tbody className="text-xs font-semibold text-primary">
@@ -292,18 +302,20 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
                           {log.status === 'Active' ? 'In Shop' : 'Completed'}
                         </Badge>
                       </td>
-                      <td className="py-3 text-center">
-                        {log.status === 'Active' ? (
-                          <button
-                            onClick={() => handleCompleteMaintenance(log)}
-                            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-white cursor-pointer hover:bg-emerald-600 transition-colors shadow-xs"
-                          >
-                            <CheckCircle2 className="w-3 h-3" /> Complete
-                          </button>
-                        ) : (
-                          <span className="text-secondary/50 font-bold text-xs tracking-wider">Closed</span>
-                        )}
-                      </td>
+                      {canWrite && (
+                        <td className="py-3 text-center">
+                          {log.status === 'Active' ? (
+                            <button
+                              onClick={() => handleCompleteMaintenance(log)}
+                              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-white cursor-pointer hover:bg-emerald-600 transition-colors shadow-xs"
+                            >
+                              <CheckCircle2 className="w-3 h-3" /> Complete
+                            </button>
+                          ) : (
+                            <span className="text-secondary/50 font-bold text-xs tracking-wider">Closed</span>
+                          )}
+                        </td>
+                      )}
                     </tr>
                   ))
                 )}
