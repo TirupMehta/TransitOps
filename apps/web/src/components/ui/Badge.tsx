@@ -8,11 +8,11 @@ interface BadgeProps {
 export const Badge: React.FC<BadgeProps> = ({ variant, children }) => {
   const getStyles = () => {
     switch (variant) {
-      case 'success': return 'bg-emerald-50 text-emerald-700 border-emerald-100/80';
-      case 'warning': return 'bg-amber-50 text-amber-700 border-amber-100/80';
-      case 'danger': return 'bg-rose-50 text-rose-700 border-rose-100/80';
-      case 'info': return 'bg-blue-50 text-blue-700 border-blue-100/80';
-      case 'neutral': return 'bg-slate-100 text-slate-650 border-slate-200';
+      case 'success': return 'bg-[#f0f4e4] text-[#4f6128] border-[#d8e2bd]';
+      case 'warning': return 'bg-[#fbf2e6] text-[#8a4f10] border-[#f0dcb8]';
+      case 'danger': return 'bg-[#f9ebe6] text-[#8c2510] border-[#eccbc1]';
+      case 'info': return 'bg-[#eaf3f5] text-[#2b5058] border-[#cbe0e5]';
+      case 'neutral': return 'bg-[#f2efe7] text-[#5a5246] border-[#dfdbcf]';
     }
   };
 

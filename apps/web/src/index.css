@@ -2,7 +2,69 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-800 antialiased;
+    background-color: #faf5e9;
+    color: #2e2520;
     font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   }
+}
+
+/* Neumorphic Outset Panel */
+.neumorph-outset {
+  background-color: #faf5e9;
+  box-shadow: 6px 6px 16px #e0d4bc, -6px -6px 16px #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Neumorphic Inset Panel (pressed inputs or fields) */
+.neumorph-inset {
+  background-color: #faf5e9;
+  box-shadow: inset 4px 4px 10px #e0d4bc, inset -4px -4px 10px #ffffff;
+}
+
+/* Skeuomorphic clicky vanilla buttons */
+.neumorph-btn-vanilla {
+  background: linear-gradient(145deg, #ffffff, #fdfbf7);
+  box-shadow: 4px 4px 8px #e2dac6, -4px -4px 8px #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  color: #2e2520;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.neumorph-btn-vanilla:hover {
+  background: linear-gradient(145deg, #fdfbf7, #f6ebd4);
+}
+.neumorph-btn-vanilla:active {
+  box-shadow: inset 3px 3px 6px #e0d4bc, inset -3px -3px 6px #ffffff;
+}
+
+/* Skeuomorphic clicky Burnt Orange buttons */
+.neumorph-btn-orange {
+  background: linear-gradient(145deg, #e7733a, #b84a14);
+  box-shadow: 4px 4px 10px #e2dac6, -4px -4px 10px #ffffff;
+  color: #ffffff;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.neumorph-btn-orange:hover {
+  background: linear-gradient(145deg, #f3844d, #c55118);
+}
+.neumorph-btn-orange:active {
+  background: #b84a14;
+  box-shadow: inset 4px 4px 8px #7e3009, inset -4px -4px 8px rgba(255, 255, 255, 0.15);
+}
+
+/* Custom warm scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #faf5e9;
+}
+::-webkit-scrollbar-thumb {
+  background: #eedebd;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d5c39d;
 }

@@ -7,7 +7,6 @@ interface LoginCardProps {
   onLoginSuccess: (user: User, token: string) => void;
 }
 
-
 export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,69 +34,69 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
     }
   };
 
-
   return (
-    <div className="w-full max-w-md bg-white rounded-2xl border border-slate-100/80 shadow-2xl p-8 relative overflow-hidden transition-all duration-300">
-      {/* Decorative Top Accent Line */}
-      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-650"></div>
+    <div className="w-full max-w-md rounded-3xl p-8 relative overflow-hidden transition-all duration-300 neumorph-outset border border-white/50">
+      
+      {/* Burnt Orange Top Stripe Accent */}
+      <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#b84a14] via-[#e7733a] to-[#b84a14]"></div>
 
-      {/* Logo and Header */}
+      {/* Brand Icon and Header */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-14 h-14 bg-indigo-50 rounded-2xl mb-4 border border-indigo-100/50 text-indigo-600 shadow-xs">
-          <Truck className="w-8 h-8" />
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 text-[#b84a14] bg-[#faf5e9] shadow-[3px_3px_6px_#e0d4bc,-3px_-3px_6px_#ffffff] border border-white/40">
+          <Truck className="w-9 h-9" />
         </div>
-        <h1 className="text-2xl font-bold text-slate-900 tracking-tight mb-1.5 font-sans">TransitOps</h1>
-        <p className="text-sm text-slate-500 font-medium">Smart Transport Operations Platform</p>
+        <h1 className="text-2xl font-extrabold text-[#2e2520] tracking-tight mb-1 font-sans">TransitOps</h1>
+        <p className="text-xs text-[#87786f] font-bold uppercase tracking-wider">Transport Operations Platform</p>
       </div>
 
-      {/* Error Alert */}
+      {/* Error Alert Box */}
       {error && (
-        <div className="mb-6 flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm transition-all duration-200 animate-slide-in">
-          <AlertCircle className="w-5 h-5 shrink-0 text-red-500 mt-0.5" />
+        <div className="mb-6 flex items-start gap-3 bg-[#fdf5f2] border border-[#f5d5c6] text-[#a6350f] px-4 py-3 rounded-2xl text-xs font-semibold animate-slide-in shadow-xs">
+          <AlertCircle className="w-5 h-5 shrink-0 text-[#b84a14] mt-0.5" />
           <div>
-            <p className="font-semibold">Authentication failed</p>
+            <p className="font-bold">Authentication failed</p>
             <p className="opacity-90">{error}</p>
           </div>
         </div>
       )}
 
-      {/* Login Form */}
-      <form onSubmit={handleSubmit} className="space-y-5">
+      {/* Inputs and Submit Form */}
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">
+          <label className="block text-[10px] font-extrabold uppercase tracking-widest text-[#87786f] mb-2 px-1">
             Email Address
           </label>
-          <div className="relative group">
-            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-indigo-500 transition-colors" />
+          <div className="relative rounded-2xl neumorph-inset group border border-slate-200/25">
+            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#87786f]/70" />
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@transitops.com"
-              className="w-full pl-11 pr-4 py-3 border border-slate-200 rounded-xl text-slate-905 placeholder:text-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100/80 transition-all font-medium"
+              className="w-full pl-12 pr-4 py-3.5 bg-transparent rounded-2xl text-[#2e2520] placeholder-[#87786f]/55 focus:outline-none font-bold text-sm"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">
+          <label className="block text-[10px] font-extrabold uppercase tracking-widest text-[#87786f] mb-2 px-1">
             Password
           </label>
-          <div className="relative group">
-            <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-indigo-500 transition-colors" />
+          <div className="relative rounded-2xl neumorph-inset group border border-slate-200/25">
+            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#87786f]/70" />
             <input
               type={showPassword ? 'text' : 'password'}
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full pl-11 pr-12 py-3 border border-slate-200 rounded-xl text-slate-905 placeholder:text-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100/80 transition-all font-medium"
+              className="w-full pl-12 pr-12 py-3.5 bg-transparent rounded-2xl text-[#2e2520] placeholder-[#87786f]/55 focus:outline-none font-bold text-sm"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg transition-all cursor-pointer"
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1.5 text-[#87786f]/60 hover:text-[#b84a14] rounded-lg transition-all cursor-pointer"
             >
               {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
             </button>
@@ -107,7 +106,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-gradient-to-r from-indigo-600 to-indigo-750 text-white font-semibold py-3 rounded-xl hover:from-indigo-700 hover:to-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-100 active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/10 cursor-pointer disabled:opacity-75 disabled:pointer-events-none text-sm"
+          className="w-full font-bold py-3.5 rounded-2xl transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 disabled:pointer-events-none neumorph-btn-orange text-sm shadow-md"
         >
           {loading ? (
             <>
@@ -119,7 +118,6 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
           )}
         </button>
       </form>
-
     </div>
   );
 };
