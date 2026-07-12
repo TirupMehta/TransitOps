@@ -208,7 +208,7 @@ export const VehiclesTab: React.FC<VehiclesTabProps> = ({
               <th className="px-6 py-4 text-center">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-theme text-sm font-semibold text-primary">
+          <tbody className="text-sm font-semibold text-primary">
             {filtered.length === 0 ? (
               <tr>
                 <td colSpan={8} className="text-center py-12 text-secondary font-bold bg-transparent">
@@ -217,7 +217,7 @@ export const VehiclesTab: React.FC<VehiclesTabProps> = ({
               </tr>
             ) : (
               filtered.map((v) => (
-                <tr key={v.id} className="hover-row transition-colors">
+                <tr key={v.id} className="border-b border-theme/30 hover-row transition-colors">
                   <td className="px-6 py-4 font-extrabold text-primary">{v.registrationNumber}</td>
                   <td className="px-6 py-4 font-extrabold text-orange">{v.model}</td>
                   <td className="px-6 py-4 text-primary font-bold">{v.type}</td>

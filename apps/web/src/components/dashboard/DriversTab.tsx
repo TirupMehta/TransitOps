@@ -200,7 +200,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
               <th className="px-6 py-4 text-center">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-theme text-sm font-semibold text-primary">
+          <tbody className="text-sm font-semibold text-primary">
             {filtered.length === 0 ? (
               <tr>
                 <td colSpan={9} className="text-center py-12 text-secondary font-bold bg-transparent">
@@ -215,7 +215,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
                 return (
                   <React.Fragment key={d.id}>
                     <tr
-                      className={`hover-row transition-colors cursor-pointer ${isSelected ? 'bg-orange/5' : ''}`}
+                      className={`border-b border-theme/30 hover-row transition-colors cursor-pointer ${isSelected ? 'bg-orange/5' : ''}`}
                       onClick={() => setSelectedDriverId(isSelected ? null : d.id)}
                     >
                       <td className="px-6 py-4 font-extrabold text-primary">{d.name}</td>

@@ -186,7 +186,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
                   <th className="pb-3 text-right">Total Cost</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-theme text-xs font-semibold text-primary">
+              <tbody className="text-xs font-semibold text-primary">
                 {filteredFuelLogs.length === 0 ? (
                   <tr>
                     <td colSpan={4} className="text-center py-12 text-secondary font-bold bg-transparent">
@@ -195,7 +195,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
                   </tr>
                 ) : (
                   filteredFuelLogs.map((log) => (
-                    <tr key={log.id} className="hover-row transition-colors">
+                    <tr key={log.id} className="border-b border-theme/30 hover-row transition-colors">
                       <td className="py-3 font-extrabold text-primary">{log.vehicle?.registrationNumber || 'Unknown'}</td>
                       <td className="py-3 font-bold text-secondary">{formatDateString(log.date)}</td>
                       <td className="py-3 text-primary">{log.description.replace('Filled ', '')}</td>
@@ -223,7 +223,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
                   <th className="pb-3 text-right">Total</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-theme text-xs font-semibold text-primary">
+              <tbody className="text-xs font-semibold text-primary">
                 {filteredOtherExpenses.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="text-center py-12 text-secondary font-bold bg-transparent">
@@ -236,7 +236,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
                     const isMaint = exp.type === 'Maintenance';
                     const isOther = exp.type === 'Other';
                     return (
-                      <tr key={exp.id} className="hover-row transition-colors">
+                      <tr key={exp.id} className="border-b border-theme/30 hover-row transition-colors">
                         <td className="py-3 font-extrabold text-primary">{exp.tripObj?.tripCode || 'N/A'}</td>
                         <td className="py-3 font-extrabold text-orange">{exp.vehicleObj?.registrationNumber || 'Unknown'}</td>
                         <td className="py-3 text-primary">{isToll ? `Rs. ${exp.amount.toLocaleString()}` : '0'}</td>

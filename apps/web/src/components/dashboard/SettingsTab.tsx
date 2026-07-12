@@ -163,9 +163,9 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
                   <th className="pb-3 text-center">Analytics</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-theme text-xs font-semibold text-primary">
+              <tbody className="text-xs font-semibold text-primary">
                 {matrix.map((row) => (
-                  <tr key={row.role} className="hover-row transition-colors">
+                  <tr key={row.role} className="border-b border-theme/30 hover-row transition-colors">
                     <td className="py-4 font-extrabold text-primary">{row.role}</td>
                     <td className="py-4 text-center">
                       <span className={`inline-block px-2.5 py-0.5 rounded-md font-bold text-xs ${

@@ -260,7 +260,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                     <th className="pb-3 text-right">ETA</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-theme text-xs font-semibold text-primary">
+                <tbody className="text-xs font-semibold text-primary">
                   {recentTrips.length === 0 ? (
                     <tr>
                       <td colSpan={5} className="text-center py-12 text-secondary font-bold bg-transparent">
@@ -269,7 +269,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                     </tr>
                   ) : (
                     recentTrips.map((trip) => (
-                      <tr key={trip.id} className="hover-row transition-colors">
+                      <tr key={trip.id} className="border-b border-theme/30 hover-row transition-colors">
                         <td className="py-3 font-extrabold text-primary">{trip.tripCode}</td>
                         <td className="py-3 font-extrabold text-orange">{trip.vehicleObj?.model || 'Unassigned'}</td>
                         <td className="py-3 font-bold text-primary">{trip.driverObj?.name || 'Unassigned'}</td>

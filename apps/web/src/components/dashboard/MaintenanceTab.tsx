@@ -271,7 +271,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
                   <th className="pb-3 text-center">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-theme text-xs font-semibold text-primary">
+              <tbody className="text-xs font-semibold text-primary">
                 {filteredLogs.length === 0 ? (
                   <tr>
                     <td colSpan={5} className="text-center py-12 text-secondary font-bold bg-transparent">
@@ -280,7 +280,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
                   </tr>
                 ) : (
                   filteredLogs.map((log) => (
-                    <tr key={log.id} className="hover-row transition-colors">
+                    <tr key={log.id} className="border-b border-theme/30 hover-row transition-colors">
                       <td className="py-3 font-extrabold text-primary">
                         <span className="block text-orange">{log.vehicle?.registrationNumber || 'Unknown'}</span>
                         <span className="block text-xs text-secondary/80 font-medium mt-0.5">{log.vehicle?.model}</span>
