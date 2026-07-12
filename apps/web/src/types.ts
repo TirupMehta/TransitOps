@@ -32,6 +32,7 @@ export interface Driver {
   contactNumber: string
   safetyScore: number
   status: DriverStatus
+  tripCompletionRate: number // e.g. 96
   createdAt?: string
   updatedAt?: string
 }
@@ -40,6 +41,7 @@ export type TripStatus = 'Draft' | 'Dispatched' | 'Completed' | 'Cancelled';
 
 export interface Trip {
   id: number
+  tripCode: string // e.g. TR001
   source: string
   destination: string
   cargoWeight: number
@@ -47,6 +49,7 @@ export interface Trip {
   status: TripStatus
   vehicleId: number
   driverId: number
+  eta: string // e.g. "45 min", "3h 10m", "--"
   vehicle?: Vehicle
   driver?: Driver
   createdAt?: string
@@ -79,6 +82,7 @@ export interface FuelLog {
 export interface Expense {
   id: number
   vehicleId: number
+  tripId?: number
   type: 'Fuel' | 'Toll' | 'Maintenance' | 'Other'
   amount: number
   date: string
@@ -96,4 +100,10 @@ export interface DashboardKpis {
   pendingTrips: number
   driversOnDuty: number
   fleetUtilization: number
+}
+
+export interface GeneralSettings {
+  depotName: string
+  currency: string
+  distanceUnit: string
 }

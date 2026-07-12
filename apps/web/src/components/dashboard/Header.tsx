@@ -1,6 +1,7 @@
 import React from 'react';
 import type { User } from '../../types';
-import { Sun, Moon } from 'lucide-react';
+import { logout } from '../../utils/api';
+import { Sun, Moon, Search, LogOut } from 'lucide-react';
 
 interface HeaderProps {
   activeTab: string;
@@ -13,44 +14,77 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, user, theme, onToggle
   const getBreadcrumbTitle = (tab: string) => {
     switch (tab) {
       case 'dashboard': return 'Overview Dashboard';
-      case 'vehicles': return 'Vehicle Registry';
-      case 'drivers': return 'Driver Management';
-      case 'trips': return 'Trip Management';
+      case 'fleet': return 'Fleet Registry';
+      case 'drivers': return 'Driver Profiles';
+      case 'trips': return 'Trip Dispatcher';
       case 'maintenance': return 'Maintenance Shop';
       case 'expenses': return 'Fuel & Expenses';
-      case 'reports': return 'Reports & ROI';
+      case 'analytics': return 'Reports & Analytics';
+      case 'settings': return 'Settings & RBAC';
       default: return tab;
     }
   };
 
+  const handleLogout = async () => {
+    await logout();
+  };
+
   return (
     <header className="h-16 border-b border-theme bg-card-theme flex items-center justify-between px-8 shrink-0">
-      <div className="flex items-center gap-2">
-        <span className="text-secondary text-xs font-extrabold tracking-wider uppercase">TransitOps</span>
-        <span className="text-secondary/20 text-lg font-light">/</span>
-        <h2 className="text-sm font-extrabold text-primary uppercase tracking-widest font-sans">
-          {getBreadcrumbTitle(activeTab)}
-        </h2>
+      {/* Left side: Breadcrumb & Search */}
+      <div className="flex items-center gap-8 flex-1">
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="text-secondary text-xs font-extrabold tracking-wider uppercase">TransitOps</span>
+          <span className="text-secondary/20 text-lg font-light">/</span>
+          <h2 className="text-sm font-extrabold text-primary uppercase tracking-widest font-sans">
+            {getBreadcrumbTitle(activeTab)}
+          </h2>
+        </div>
+
+        {/* Global Search Bar from Mockup */}
+        <div className="relative rounded-xl neumorph-inset group border border-slate-200/5 w-64 hidden md:block">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-secondary/60" />
+          <input
+            type="text"
+            placeholder="Search..."
+            className="w-full pl-9 pr-3 py-1.5 bg-transparent text-xs focus:outline-none text-primary font-semibold"
+          />
+        </div>
       </div>
       
-      <div className="flex items-center gap-3">
-        {/* Theme Switcher Button */}
+      {/* Right side: Actions, Profile, and Sign Out */}
+      <div className="flex items-center gap-4 shrink-0">
+        {/* Theme Switcher */}
         <button
           onClick={onToggleTheme}
           title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-          className="p-2 rounded-xl neumorph-btn-vanilla flex items-center justify-center cursor-pointer"
+          className="p-2 rounded-xl neumorph-btn-vanilla flex items-center justify-center cursor-pointer shadow-sm hover:scale-105 transition-transform"
         >
           {theme === 'dark' ? (
-            <Sun className="w-4 h-4 text-orange" />
+            <Sun className="w-3.5 h-3.5 text-orange" />
           ) : (
-            <Moon className="w-4 h-4 text-orange" />
+            <Moon className="w-3.5 h-3.5 text-orange" />
           )}
         </button>
 
-        {/* User Role Tag */}
-        <span className="neumorph-inset text-orange px-3.5 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-widest border border-theme">
-          {user.role}
-        </span>
+        {/* User Info (Mockup style: Name, Badge) */}
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-extrabold text-primary hidden sm:inline">
+            {user.fullName || user.email.split('@')[0]}
+          </span>
+          <span className="neumorph-inset text-orange px-2.5 py-1 rounded-full text-[9px] font-extrabold uppercase tracking-widest border border-theme">
+            {user.role}
+          </span>
+        </div>
+
+        {/* Logout Button from Mockup */}
+        <button
+          onClick={handleLogout}
+          title="Sign Out"
+          className="p-2 rounded-xl neumorph-btn-vanilla flex items-center justify-center cursor-pointer hover:text-red-500 hover:border-red-500/20 shadow-sm"
+        >
+          <LogOut className="w-3.5 h-3.5" />
+        </button>
       </div>
     </header>
   );
