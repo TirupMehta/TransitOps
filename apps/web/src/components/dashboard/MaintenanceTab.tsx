@@ -121,7 +121,7 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
     <div className="space-y-6">
       {/* Search toolbar */}
       <div className="flex justify-between items-center gap-4 p-4 rounded-2xl neumorph-outset">
-        <div className="relative rounded-xl neumorph-inset group border border-slate-200/5 w-80">
+        <div className="relative rounded-xl neumorph-inset group border border-theme w-80">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary/70" />
           <input
             type="text"
@@ -296,12 +296,12 @@ export const MaintenanceTab: React.FC<MaintenanceTabProps> = ({
                         {log.status === 'Active' ? (
                           <button
                             onClick={() => handleCompleteMaintenance(log)}
-                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[9px] font-extrabold uppercase bg-emerald-500 text-white cursor-pointer hover:bg-emerald-600 transition-colors shadow-xs"
+                            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-white cursor-pointer hover:bg-emerald-600 transition-colors shadow-xs"
                           >
                             <CheckCircle2 className="w-3 h-3" /> Complete
                           </button>
                         ) : (
-                          <span className="text-secondary/50 font-bold text-[9px] uppercase tracking-wider">Closed</span>
+                          <span className="text-secondary/50 font-bold text-xs tracking-wider">Closed</span>
                         )}
                       </td>
                     </tr>

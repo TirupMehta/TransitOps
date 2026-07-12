@@ -38,7 +38,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({ onUpdate }) => {
       analytics: 'Edit',
     },
     {
-      role: 'Dispatcher',
+      role: 'Driver',
       fleet: 'View',
       drivers: 'View',
       trips: 'Edit',

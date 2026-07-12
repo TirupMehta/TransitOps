@@ -10,13 +10,13 @@ interface LoginCardProps {
 const DEMO_CREDENTIALS = [
   { label: 'Fleet Manager', email: 'manager@transitops.in' },
   { label: 'Safety Officer', email: 'safety@transitops.in' },
-  { label: 'Dispatcher', email: 'dispatcher@transitops.in' },
+  { label: 'Driver', email: 'driver@transitops.in' },
   { label: 'Financial Analyst', email: 'finance@transitops.in' },
 ];
 
 const ROLES = [
   'Fleet Manager',
-  'Dispatcher',
+  'Driver',
   'Safety Officer',
   'Financial Analyst',
 ];
@@ -81,7 +81,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
                 <div className="w-1.5 h-1.5 rounded-full bg-[#d35e23]"></div> Fleet Manager
               </li>
               <li className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#d35e23]"></div> Dispatcher
+                <div className="w-1.5 h-1.5 rounded-full bg-[#df6a2e]"></div> Driver
               </li>
               <li className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#d35e23]"></div> Safety Officer
@@ -146,7 +146,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
             <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
                 Full Name
               </label>
-              <div className="relative rounded-2xl neumorph-inset border border-slate-200/5">
+              <div className="relative rounded-2xl neumorph-inset border border-theme">
                 <input
                   type="text"
                   required
@@ -160,10 +160,10 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
           )}
 
           <div>
-            <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1.5 px-1">
+            <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
               Email Address
             </label>
-            <div className="relative rounded-2xl neumorph-inset border border-slate-200/5 flex items-center">
+            <div className="relative rounded-2xl neumorph-inset border border-theme flex items-center">
               <Mail className="absolute left-4 w-4 h-4 text-secondary/60" />
               <input
                 type="email"
@@ -177,10 +177,10 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
           </div>
 
           <div>
-            <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1.5 px-1">
+            <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
               Password
             </label>
-            <div className="relative rounded-2xl neumorph-inset border border-slate-200/5 flex items-center">
+            <div className="relative rounded-2xl neumorph-inset border border-theme flex items-center">
               <Lock className="absolute left-4 w-4 h-4 text-secondary/60" />
               <input
                 type={showPassword ? 'text' : 'password'}
@@ -201,10 +201,10 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
           </div>
 
           <div>
-            <label className="block text-[10px] font-extrabold tracking-widest text-secondary mb-1.5 px-1">
+            <label className="block text-xs font-semibold text-secondary mb-1.5 px-1">
               Role Option
             </label>
-            <div className="rounded-2xl neumorph-inset border border-slate-200/5">
+            <div className="rounded-2xl neumorph-inset border border-theme">
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
@@ -278,7 +278,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({ onLoginSuccess }) => {
           <div>
             <span className="font-bold text-primary block tracking-wider">Access Scope Hierarchy:</span>
             <span className="font-semibold block mt-0.5">
-              • Fleet Manager: Fleet, Maintenance | • Dispatcher: Dashboard, Trips
+              • Fleet Manager: Fleet, Maintenance | • Driver: Dashboard, Trips
             </span>
             <span className="font-semibold block">
               • Safety Officer: Drivers, Compliance | • Financial Analyst: Fuel & Expenses, Analytics

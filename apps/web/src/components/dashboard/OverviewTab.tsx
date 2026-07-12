@@ -139,15 +139,15 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
           title="Pending Trips"
           value={String(kpis.pendingTrips).padStart(2, '0')}
           subtitle="Draft status"
-          icon={<Clock className="w-3.5 h-3.5 text-slate-500" />}
-          iconBg="bg-slate-500/10"
+          icon={<Clock className="w-3.5 h-3.5 text-orange" />}
+          iconBg="bg-orange/10"
         />
         <StatCard
           title="Drivers On Duty"
           value={String(kpis.driversOnDuty).padStart(2, '0')}
           subtitle="On Service"
-          icon={<UserCheck className="w-3.5 h-3.5 text-purple-500" />}
-          iconBg="bg-purple-500/10"
+          icon={<UserCheck className="w-3.5 h-3.5 text-amber-600" />}
+          iconBg="bg-amber-600/10"
         />
         <StatCard
           title="Fleet Utilization"
@@ -233,7 +233,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                   </span>
                   <span className="text-secondary">{availableCount} vehicles</span>
                 </div>
-                <div className="h-2 w-full rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden neumorph-inset">
+                <div className="h-2 w-full rounded-full bg-inset-theme overflow-hidden neumorph-inset">
                   <div
                     className="h-full bg-emerald-500 rounded-full transition-all duration-500"
                     style={{ width: `${(availableCount / totalCount) * 100}%` }}
@@ -249,7 +249,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                   </span>
                   <span className="text-secondary">{onTripCount} vehicles</span>
                 </div>
-                <div className="h-2 w-full rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden neumorph-inset">
+                <div className="h-2 w-full rounded-full bg-inset-theme overflow-hidden neumorph-inset">
                   <div
                     className="h-full bg-blue-500 rounded-full transition-all duration-500"
                     style={{ width: `${(onTripCount / totalCount) * 100}%` }}
@@ -265,7 +265,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                   </span>
                   <span className="text-secondary">{inShopCount} vehicles</span>
                 </div>
-                <div className="h-2 w-full rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden neumorph-inset">
+                <div className="h-2 w-full rounded-full bg-inset-theme overflow-hidden neumorph-inset">
                   <div
                     className="h-full bg-amber-500 rounded-full transition-all duration-500"
                     style={{ width: `${(inShopCount / totalCount) * 100}%` }}
@@ -281,7 +281,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
                   </span>
                   <span className="text-secondary">{retiredCount} vehicles</span>
                 </div>
-                <div className="h-2 w-full rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden neumorph-inset">
+                <div className="h-2 w-full rounded-full bg-inset-theme overflow-hidden neumorph-inset">
                   <div
                     className="h-full bg-rose-500 rounded-full transition-all duration-500"
                     style={{ width: `${(retiredCount / totalCount) * 100}%` }}

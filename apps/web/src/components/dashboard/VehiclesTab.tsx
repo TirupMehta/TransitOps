@@ -142,7 +142,7 @@ export const VehiclesTab: React.FC<VehiclesTabProps> = ({
     <div className="space-y-6">
       {/* Search & Actions toolbar */}
       <div className="flex flex-wrap justify-between items-center gap-4 p-4 rounded-2xl neumorph-outset">
-        <div className="relative rounded-xl neumorph-inset group border border-slate-200/5 w-80">
+        <div className="relative rounded-xl neumorph-inset group border border-theme w-80">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary/70" />
           <input
             type="text"
@@ -259,8 +259,8 @@ export const VehiclesTab: React.FC<VehiclesTabProps> = ({
 
       {/* Add / Edit Vehicle Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 animate-fade-in">
-          <div className="w-full max-w-md rounded-3xl p-6 bg-app-theme neumorph-outset relative border border-white/5 animate-scale-up">
+        <div className="fixed inset-0 z-50 flex items-center justify-center glass-backdrop p-4 animate-fade-in">
+          <div className="w-full max-w-md rounded-3xl p-6 bg-app-theme neumorph-outset relative border border-theme animate-scale-up">
             <h3 className="text-base font-extrabold text-primary tracking-wider mb-6">
               {editVehicle ? 'Edit Vehicle Profile' : 'Add New Vehicle'}
             </h3>

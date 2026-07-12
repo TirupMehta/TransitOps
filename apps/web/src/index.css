@@ -7,7 +7,7 @@
   /* Light Theme Colors */
   --bg-app: #faf5e9;
   --bg-card: #faf5e9;
-  --bg-inset: #faf5e9;
+  --bg-inset: #ebdcb9;
   --text-primary: #211a16;
   --text-secondary: #4c3d34;
   --shadow-outset: 6px 6px 16px #e0d4bc, -6px -6px 16px #ffffff;
@@ -25,13 +25,14 @@
   --orange-active-shadow: inset 4px 4px 8px #7e3009, inset -4px -4px 8px rgba(255, 255, 255, 0.15);
   --divider-color: #eedebd;
   --scrollbar-thumb: #eedebd;
+  --glass-bg: rgba(250, 245, 233, 0.45);
 }
 
 .dark {
   /* Dark Theme Colors */
   --bg-app: #150e0a;
   --bg-card: #201712;
-  --bg-inset: #1a120e;
+  --bg-inset: #120c08;
   --text-primary: #faf5e9;
   --text-secondary: rgba(255, 255, 255, 0.7);
   --shadow-outset: 6px 6px 16px #080504, -6px -6px 16px #2e211a;
@@ -49,6 +50,7 @@
   --orange-active-shadow: inset 4px 4px 8px #6d2807, inset -4px -4px 8px rgba(255, 255, 255, 0.15);
   --divider-color: rgba(238, 222, 189, 0.08);
   --scrollbar-thumb: #2a1e17;
+  --glass-bg: rgba(21, 14, 10, 0.6);
 }
 
 @layer base {
@@ -91,6 +93,16 @@
 
 .bg-card-theme {
   background-color: var(--bg-card) !important;
+}
+
+.bg-inset-theme {
+  background-color: var(--bg-inset) !important;
+}
+
+.glass-backdrop {
+  background-color: var(--glass-bg) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
 }
 
 .border-theme {

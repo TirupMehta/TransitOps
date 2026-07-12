@@ -164,10 +164,10 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({
             {vehicleCosts.slice(0, 4).map((vc, i) => {
               const pct = (vc.cost / maxVehicleCost) * 100;
               const barColors = [
-                'bg-gradient-to-r from-red-600 to-rose-500',
+                'bg-gradient-to-r from-rose-600 to-rose-500',
                 'bg-gradient-to-r from-amber-600 to-amber-500',
                 'bg-gradient-to-r from-orange-600 to-orange-500',
-                'bg-gradient-to-r from-slate-600 to-slate-500'
+                'bg-gradient-to-r from-[#625146] to-[#87786f]'
               ];
               return (
                 <div key={vc.registrationNumber} className="space-y-1.5">
@@ -177,7 +177,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({
                     </span>
                     <span className="text-orange font-black">Rs. {vc.cost.toLocaleString()}</span>
                   </div>
-                  <div className="h-3 w-full rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden neumorph-inset">
+                  <div className="h-3 w-full rounded-full bg-inset-theme overflow-hidden neumorph-inset">
                     <div
                       className={`h-full rounded-full transition-all duration-500 ${barColors[i] || barColors[3]}`}
                       style={{ width: `${pct}%` }}

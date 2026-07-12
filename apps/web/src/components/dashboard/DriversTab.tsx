@@ -146,7 +146,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
     <div className="space-y-6">
       {/* Actions Toolbar */}
       <div className="flex flex-wrap justify-between items-center gap-4 p-4 rounded-2xl neumorph-outset">
-        <div className="relative rounded-xl neumorph-inset group border border-slate-200/5 w-80">
+        <div className="relative rounded-xl neumorph-inset group border border-theme w-80">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary/70" />
           <input
             type="text"
@@ -272,7 +272,7 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
                                     d.status === st
                                       ? st === 'Available' ? 'bg-emerald-500 text-white border-emerald-500 shadow-sm' :
                                         st === 'On Trip' ? 'bg-blue-500 text-white border-blue-500 shadow-sm' :
-                                        st === 'Off Duty' ? 'bg-slate-500 text-white border-slate-500 shadow-sm' :
+                                        st === 'Off Duty' ? 'bg-[#625146] text-white border-[#625146] shadow-sm' :
                                         'bg-red-500 text-white border-red-500 shadow-sm'
                                       : 'bg-transparent text-secondary border-theme hover:text-orange hover:border-orange'
                                   }`}
@@ -300,8 +300,8 @@ export const DriversTab: React.FC<DriversTabProps> = ({ drivers, onUpdate }) => 
 
       {/* Add / Edit Driver Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 animate-fade-in">
-          <div className="w-full max-w-md rounded-3xl p-6 bg-app-theme neumorph-outset relative border border-white/5 animate-scale-up">
+        <div className="fixed inset-0 z-50 flex items-center justify-center glass-backdrop p-4 animate-fade-in">
+          <div className="w-full max-w-md rounded-3xl p-6 bg-app-theme neumorph-outset relative border border-theme animate-scale-up">
             <h3 className="text-base font-extrabold text-primary tracking-wider mb-6">
               {editDriver ? 'Edit Driver Profile' : 'Add New Driver'}
             </h3>

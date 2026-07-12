@@ -22,7 +22,7 @@ export const StatCard: React.FC<StatCardProps> = ({ title, value, subtitle, icon
       <p className="text-xs text-secondary/80 font-semibold tracking-wide">{subtitle}</p>
       
       {progress !== undefined && (
-        <div className="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-1.5 mt-3.5 neumorph-inset">
+        <div className="w-full bg-inset-theme rounded-full h-1.5 mt-3.5 neumorph-inset">
           <div 
             className="bg-orange h-full rounded-full transition-all duration-500 shadow-xs" 
             style={{ width: `${progress}%` }}

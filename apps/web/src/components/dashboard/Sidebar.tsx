@@ -21,8 +21,8 @@ export const isTabAllowed = (tabId: string, role?: string): boolean => {
     return true;
   }
   
-  // Dispatcher scope: Dashboard, Fleet, Drivers (view), Trips (edit), Settings
-  if (r.includes('dispatcher')) {
+  // Driver / Dispatcher scope: Dashboard, Fleet, Drivers (view), Trips (edit), Settings
+  if (r.includes('dispatcher') || r.includes('driver')) {
     return ['dashboard', 'fleet', 'drivers', 'trips', 'settings'].includes(tabId);
   }
   

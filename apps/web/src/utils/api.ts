@@ -146,9 +146,9 @@ const DEMO_USERS: Record<string, { name: string; role: string }> = {
   'manager@transitops.in': { name: 'David Smith', role: 'Fleet Manager' },
   'safety@transitops.com': { name: 'Elena Rostova', role: 'Safety Officer' },
   'safety@transitops.in': { name: 'Elena Rostova', role: 'Safety Officer' },
-  'driver@transitops.com': { name: 'Marcus Miller', role: 'Dispatcher' }, // Wait, mockup uses "Dispatcher" instead of "Driver"
-  'driver@transitops.in': { name: 'Marcus Miller', role: 'Dispatcher' },
-  'dispatcher@transitops.in': { name: 'Ranjeet K.', role: 'Dispatcher' },
+  'driver@transitops.com': { name: 'Marcus Miller', role: 'Driver' },
+  'driver@transitops.in': { name: 'Marcus Miller', role: 'Driver' },
+  'dispatcher@transitops.in': { name: 'Ranjeet K.', role: 'Driver' },
   'finance@transitops.com': { name: 'Sarah Jenkins', role: 'Financial Analyst' },
   'finance@transitops.in': { name: 'Sarah Jenkins', role: 'Financial Analyst' },
 };

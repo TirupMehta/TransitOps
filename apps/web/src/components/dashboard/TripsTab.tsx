@@ -270,7 +270,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
     <div className="space-y-6">
       {/* Search Bar Toolbar */}
       <div className="flex justify-between items-center gap-4 p-4 rounded-2xl neumorph-outset">
-        <div className="relative rounded-xl neumorph-inset group border border-slate-200/5 w-80">
+        <div className="relative rounded-xl neumorph-inset group border border-theme w-80">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary/70" />
           <input
             type="text"
@@ -475,13 +475,13 @@ export const TripsTab: React.FC<TripsTabProps> = ({
                         <span className="text-xs font-extrabold text-orange">{trip.tripCode}</span>
                         <div className="font-extrabold text-primary text-sm">{trip.source} → {trip.destination}</div>
                       </div>
-                      <div className="text-[11px] text-secondary font-semibold">
+                      <div className="text-xs text-secondary font-semibold">
                         Driver: <span className="text-primary font-bold">{trip.driver?.name || 'Unassigned'}</span> |
                         Vehicle: <span className="text-primary font-bold">{trip.vehicle?.registrationNumber || 'Unassigned'} ({trip.vehicle?.model})</span> |
                         Weight: <span className="text-primary font-bold">{trip.cargoWeight} kg</span> |
                         Dist: <span className="text-primary font-bold">{trip.distance} km</span>
                       </div>
-                      <div className="text-[10px] text-secondary font-bold flex items-center gap-1.5 mt-1">
+                      <div className="text-xs text-secondary font-bold flex items-center gap-1.5 mt-1">
                         <span>ETA: <strong className="text-primary">{trip.eta}</strong></span>
                       </div>
                     </div>
@@ -494,13 +494,13 @@ export const TripsTab: React.FC<TripsTabProps> = ({
                         <div className="flex items-center gap-1.5">
                           <button
                             onClick={() => handleOpenCompleteModal(trip)}
-                            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-extrabold bg-emerald-500 text-white cursor-pointer hover:bg-emerald-600 transition-colors shadow-sm"
+                            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-white cursor-pointer hover:bg-emerald-600 transition-colors shadow-sm"
                           >
                             <CheckCircle2 className="w-3.5 h-3.5" /> Complete
                           </button>
                           <button
                             onClick={() => handleCancelTrip(trip)}
-                            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-extrabold bg-rose-500/10 text-rose-500 border border-rose-500/20 cursor-pointer hover:bg-rose-500 hover:text-white transition-all shadow-sm"
+                            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-500/10 text-rose-500 border border-rose-500/20 cursor-pointer hover:bg-rose-500 hover:text-white transition-all shadow-sm"
                           >
                             <XCircle className="w-3.5 h-3.5" /> Cancel
                           </button>
@@ -511,7 +511,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
                       {trip.status === 'Draft' && (
                         <button
                           onClick={() => handleDispatchDraft(trip)}
-                          className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-extrabold bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors shadow-sm"
+                          className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors shadow-sm"
                         >
                           <Play className="w-3.5 h-3.5" /> Dispatch
                         </button>
@@ -532,8 +532,8 @@ export const TripsTab: React.FC<TripsTabProps> = ({
 
       {/* Complete Trip Odometer & Fuel Modal */}
       {completingTrip && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 animate-fade-in">
-          <div className="w-full max-w-md rounded-3xl p-6 bg-app-theme neumorph-outset relative border border-white/5 animate-scale-up">
+        <div className="fixed inset-0 z-50 flex items-center justify-center glass-backdrop p-4 animate-fade-in">
+          <div className="w-full max-w-md rounded-3xl p-6 bg-app-theme neumorph-outset relative border border-theme animate-scale-up">
             <h3 className="text-base font-extrabold text-primary tracking-wider mb-6">
               Complete Dispatch {completingTrip.tripCode}
             </h3>
@@ -559,7 +559,7 @@ export const TripsTab: React.FC<TripsTabProps> = ({
                     className="w-full bg-transparent text-xs text-primary font-bold focus:outline-none"
                   />
                 </div>
-                <span className="text-[10px] text-secondary/60 mt-1 block">
+                <span className="text-xs text-secondary/60 mt-1 block">
                   Current vehicle odometer: {vehicles.find(v => v.id === completingTrip.vehicleId)?.odometer} km
                 </span>
               </div>

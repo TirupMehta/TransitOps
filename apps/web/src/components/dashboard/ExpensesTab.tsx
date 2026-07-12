@@ -132,7 +132,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
     <div className="space-y-6">
       {/* Search & Actions toolbar */}
       <div className="flex flex-wrap justify-between items-center gap-4 p-4 rounded-2xl neumorph-outset">
-        <div className="relative rounded-xl neumorph-inset group border border-slate-200/5 w-80">
+        <div className="relative rounded-xl neumorph-inset group border border-theme w-80">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary/70" />
           <input
             type="text"
@@ -179,7 +179,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-theme text-secondary text-[10px] font-extrabold tracking-wider">
+                <tr className="border-b border-theme text-secondary text-xs font-semibold tracking-wider">
                   <th className="pb-3 pr-4">Vehicle</th>
                   <th className="pb-3 pr-4">Date</th>
                   <th className="pb-3 pr-4">Liters</th>
@@ -214,7 +214,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-theme text-secondary text-[10px] font-extrabold tracking-wider">
+                <tr className="border-b border-theme text-secondary text-xs font-semibold tracking-wider">
                   <th className="pb-3 pr-4">Trip</th>
                   <th className="pb-3 pr-4">Vehicle</th>
                   <th className="pb-3 pr-4">Toll</th>
@@ -255,7 +255,7 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
       </div>
 
       {/* Footer dynamic Operational Cost (Exactly from Screen 6) */}
-      <div className="p-5 rounded-3xl neumorph-outset flex flex-wrap justify-between items-center bg-gradient-theme border border-white/5 shadow-md">
+      <div className="p-5 rounded-3xl neumorph-outset flex flex-wrap justify-between items-center bg-gradient-theme border border-theme shadow-md">
         <span className="text-xs font-extrabold text-secondary tracking-widest">Dynamic Calculations</span>
         <div className="text-sm font-extrabold text-primary flex items-center gap-2">
           <span>TOTAL OPERATIONAL COST (AUTO) = FUEL + MAINTENANCE =</span>
@@ -267,8 +267,8 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
 
       {/* Log Fuel Modal */}
       {isFuelModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 animate-fade-in">
-          <div className="w-full max-w-md rounded-3xl p-6 bg-app-theme neumorph-outset relative border border-white/5 animate-scale-up">
+        <div className="fixed inset-0 z-50 flex items-center justify-center glass-backdrop p-4 animate-fade-in">
+          <div className="w-full max-w-md rounded-3xl p-6 bg-app-theme neumorph-outset relative border border-theme animate-scale-up">
             <h3 className="text-base font-extrabold text-primary tracking-wider mb-6">
               Log Fuel Refill
             </h3>
@@ -372,8 +372,8 @@ export const ExpensesTab: React.FC<ExpensesTabProps> = ({
 
       {/* Add Other Expense Modal */}
       {isExpenseModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 animate-fade-in">
-          <div className="w-full max-w-md rounded-3xl p-6 bg-app-theme neumorph-outset relative border border-white/5 animate-scale-up">
+        <div className="fixed inset-0 z-50 flex items-center justify-center glass-backdrop p-4 animate-fade-in">
+          <div className="w-full max-w-md rounded-3xl p-6 bg-app-theme neumorph-outset relative border border-theme animate-scale-up">
             <h3 className="text-base font-extrabold text-primary tracking-wider mb-6">
               Add Expense Record
             </h3>

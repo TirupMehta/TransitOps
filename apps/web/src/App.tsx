@@ -53,7 +53,7 @@ function App() {
           <div className="absolute top-4 right-4 z-50">
             <button
               onClick={toggleTheme}
-              className="p-3 rounded-2xl neumorph-btn-vanilla text-xs font-bold transition-all uppercase tracking-widest cursor-pointer shadow-md"
+              className="p-3 rounded-2xl neumorph-btn-vanilla text-xs font-bold transition-all cursor-pointer shadow-md"
             >
               {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
             </button>
